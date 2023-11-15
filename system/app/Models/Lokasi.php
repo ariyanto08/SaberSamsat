@@ -10,4 +10,6 @@ class Lokasi extends Model
     use HasFactory;
     protected $table = 'saber_lokasi';
     protected $primaryKey = 'lokasi_id';
+
+    public $timestamps = false;
 }

@@ -10,4 +10,6 @@ class Kecamatan extends Model
     use HasFactory;
     protected $table = 'saber_kecamatan';
     protected $primaryKey = 'kecamatan_id';
+
+    public $timestamps = false;
 }

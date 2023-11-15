@@ -10,4 +10,6 @@ class Jadwal extends Model
     use HasFactory;
     protected $table = 'saber_jadwal';
     protected $primaryKey = 'jadwal_id';
+
+    public $timestamps = false;
 }

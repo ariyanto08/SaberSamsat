@@ -10,4 +10,6 @@ class Kontak extends Model
     use HasFactory;
     protected $table = 'saber_kontak';
     protected $primaryKey = 'kontak_id';
+
+    public $timestamps = false;
 }
