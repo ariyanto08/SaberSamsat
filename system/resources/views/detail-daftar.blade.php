@@ -45,12 +45,12 @@
       <div id="logo" class="me-auto">
         <!-- Uncomment below if you prefer to use a text logo -->
         <!-- <h1><a href="index.html">The<span>Event</span></a></h1>-->
-        <a href="index.html" class="scrollto"><img src="{{url('public')}}/assets/img/SABERfinal.png" height="150%" alt="" title=""></a>
+        <a href="{{url('/')}}" class="scrollto"><img src="{{url('public')}}/assets/img/SABERfinal.png" height="150%" alt="" title=""></a>
       </div>
 
       <nav id="navbar" class="navbar order-last order-lg-0">
         <ul>
-          <li><a class="nav-link scrollto" href="index.html">Beranda</a></li>
+          <li><a class="nav-link scrollto" href="{{url('/')}}">Beranda</a></li>
 
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
@@ -74,7 +74,7 @@
 
         <ul class="nav nav-tabs" role="tablist" data-aos="fade-up" data-aos-delay="100">
           <li class="nav-item" style="margin-bottom: 10px;">
-            <a class="nav-link active" href="#day-1" role="tab" data-bs-toggle="tab">ID PENDAFTARAN #1234</a>
+            <a class="nav-link active" href="#day-1" role="tab" data-bs-toggle="tab">ID PENDAFTARAN #{{$daftar->daftar_id}}</a>
           </li>
 
         </ul>
@@ -89,35 +89,35 @@
             <div class="row schedule-item">
               <div class="col-md-2"><time>Nama</time></div>
               <div class="col-md-10">
-                <h4>Merli Andika</h4>
+                <h4>{{$daftar->daftar_nama}}</h4>
 
               </div>
             </div>
             <div class="row schedule-item">
               <div class="col-md-2"><time>NIK</time></div>
               <div class="col-md-10">
-                <h4>6104223444405</h4>
+                <h4>{{$daftar->daftar_nik}}</h4>
 
               </div>
             </div>
             <div class="row schedule-item">
               <div class="col-md-2"><time>No. Telp / WA</time></div>
               <div class="col-md-10">
-                <h4>085228928005</h4>
+                <h4>{{$daftar->daftar_wa}}</h4>
 
               </div>
             </div>
             <div class="row schedule-item">
               <div class="col-md-2"><time>Alamat</time></div>
               <div class="col-md-10">
-                <h4>Jl. Gatot Subroto No. 171</h4>
+                <h4>{{$daftar->daftar_alamat}}</h4>
 
               </div>
             </div>
             <div class="row schedule-item">
               <div class="col-md-2"><time>Kecamatan</time></div>
               <div class="col-md-2">
-                <h4>Delta Pawan</h4>
+                <h4>{{$daftar->kecamatan->kecamatan_nama}}</h4>
               </div>
               <div class="col-md-8">
 
@@ -129,7 +129,7 @@
             <div class="row schedule-item">
               <div class="col-md-2"><time>NOPOL</time></div>
               <div class="col-md-2">
-                <h4>KB 1223 GA</h4></div>
+                <h4>KB {{$nopol->nopol_tengah}} {{$nopol->nopol_belakang}} </h4></div>
               <div class="col-md-3">
 
                 <a class="nopols" href="#" data-bs-toggle="modal" data-bs-target="#nopol-modal" data-ticket-type="pro-access">+ KLIK UNTUK NOPOL LAIN</a>

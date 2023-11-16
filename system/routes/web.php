@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\WebController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +14,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('beranda');
-});
+Route::get('/',[WebController::class,'index']);
+Route::post('/',[WebController::class,'daftar']);
+Route::get('detail-daftar/{daftar}',[WebController::class,'detail'])->name('detail-daftar');

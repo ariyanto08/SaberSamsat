@@ -106,23 +106,24 @@
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-              <form method="POST" action="keranjang.html" class="form-inlin">
+              <form method="POST" action="{{url('/')}}" class="form-inlin">
+                @csrf
                 <div class="form-group">
-                  <input type="text" class="form-control" name="your-name" placeholder="Nama Anda">
+                  <input type="text" class="form-control" name="daftar_nama" placeholder="Nama Anda">
                 </div>
                 <div class="form-group mt-3">
-                  <input type="text" class="form-control" name="your-nik" placeholder="NIK Anda">
+                  <input type="text" class="form-control" name="daftar_nik" placeholder="NIK Anda">
                 </div>
                 <div class="form-group mt-3">
-                  <input type="text" class="form-control" name="your-wa" placeholder="Nomor WA">
+                  <input type="text" class="form-control" name="daftar_wa" placeholder="Nomor WA">
                 </div>
                 <div class="form-group mt-3">
-                  <input type="text" class="form-control" name="your-alamat" placeholder="Alamat Anda">
+                  <input type="text" class="form-control" name="daftar_alamat" placeholder="Alamat Anda">
                 </div>
 
                 <div class="form-group mt-3">
 
-                  <select id="ticket-type" name="ticket-type" class="form-select">
+                  <select id="ticket-type" name="daftar_kecamatan" class="form-select">
                     <option value="0" selected>-- Pilih Kecamatan Pendaftaran--</option>
                     <option value="1">Delta Pawan</option>
                     <option value="2">Benua Kayong</option>
@@ -154,10 +155,10 @@
                     <label for="exampleFormControlInput1" class="form-label mt-1">KB</label>
                   </div>
                   <div class="col col-lg-3">
-                    <input type="text" class="form-control text-center" name="your-alamat" placeholder="XXXX" maxlength="4" >
+                    <input type="text" class="form-control text-center" name="tengah" placeholder="XXXX" maxlength="4" >
                   </div>
                   <div class="col col-lg-2">
-                    <input type="text" class="form-control text-center" name="your-alamat" placeholder="XX" maxlength="2">
+                    <input type="text" class="form-control text-center" name="belakang" placeholder="XX" maxlength="2">
                   </div>
 
 
