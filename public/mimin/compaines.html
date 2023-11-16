@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="keywords" content="" />
+	<meta name="author" content="" />
+	<meta name="robots" content="" />
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="SIPEGA" />
+	<meta property="og:title" content="SIPEGA" />
+	<meta property="og:description" content="SIPEGA" />
+	<meta property="og:image" content="https://jobick.dexignlab.com/xhtml/social-image.png" />
+	<meta name="format-detection" content="telephone=no">
+	
+	<!-- PAGE TITLE HERE -->
+	<title>SIPEGA</title>
+	
+	<!-- FAVICONS ICON -->
+	<link rel="shortcut icon" type="image/png" href="images/favicon.png" />
+	<link href="./vendor/jquery-nice-select/css/nice-select.css" rel="stylesheet">
+	
+	<!-- Style css -->
+    <link href="./css/style.css" rel="stylesheet">
+	
+</head>
+<body>
+
+    <!--*******************
+        Preloader start
+    ********************-->
+    <div id="preloader">
+		<div class="lds-ripple">
+			<div></div>
+			<div></div>
+		</div>
+    </div>
+    <!--*******************
+        Preloader end
+    ********************-->
+
+    <!--**********************************
+        Main wrapper start
+    ***********************************-->
+    <div id="main-wrapper">
+
+        <!--**********************************
+            Nav header start
+        ***********************************-->
+        <div class="nav-header">
+            <a href="index.html" class="brand-logo">
+				<img src="images/sipegaNEW.png" width="100%">
+				
+
+            </a>
+            <div class="nav-control">
+                <div class="hamburger">
+                    <span class="line"></span><span class="line"></span><span class="line"></span>
+                </div>
+            </div>
+        </div>
+        <!--**********************************
+            Nav header end
+        ***********************************-->
+		
+		
+		
+		<!--**********************************
+            Header start
+        ***********************************-->
+        <div class="header">
+            <div class="header-content">
+                <nav class="navbar navbar-expand">
+                    <div class="collapse navbar-collapse justify-content-between">
+                        <div class="header-left">
+							<div class="dashboard_bar">
+                               Companies
+                            </div>
+							
+                        </div>
+                        <ul class="navbar-nav header-right"><li class="nav-item dropdown header-profile">
+                                <a class="nav-link" href="javascript:void(0);" role="button" data-bs-toggle="dropdown">
+                                    <div id="pegawaigambar"></div>
+                                </a>
+                                
+                            </li>
+							<li class="nav-item">
+								
+							</li>
+                        </ul>
+                    </div>
+				</nav>
+			</div>
+		</div>
+        <!--**********************************
+            Header end ti-comment-alt
+        ***********************************-->
+
+        <!--**********************************
+            Sidebar start
+        ***********************************-->
+        <div class="dlabnav">
+            <div class="dlabnav-scroll">
+				<div class="dropdown header-profile2 ">
+					<a class="nav-link " href="javascript:void(0);"  role="button" data-bs-toggle="dropdown">
+						<div class="header-info2 d-flex align-items-center">
+							<div id="pegawaigambarmenu"></div>
+							<div class="d-flex align-items-center sidebar-info">
+								<div>
+									<span class="font-w400 d-block">MUKHTAR EFENDI, S. Pd, M. Pd</span>
+									<small class="text-end font-w400">Sekretaris</small>
+								</div>
+							</div>
+							
+						</div>
+					</a>
+					
+				</div>
+				<ul class="metismenu" id="menu">
+                    <li><a class="" href="index.html" aria-expanded="false">
+							<i class="flaticon-025-dashboard"></i>
+							<span class="nav-text">Dashboard</span>
+						</a>
+                    </li>
+					<li><a class="" href="kinerja-daftar.html" aria-expanded="false">
+							<i class="flaticon-093-waving"></i>
+							<span class="nav-text">Kinerja</span>
+						</a>
+                    </li>
+                    <li><a class="" href="kehadiran-daftar.html" aria-expanded="false">
+						<i class="flaticon-050-info"></i>
+							<span class="nav-text">Kehadiran</span>
+						</a>
+					</li>
+                    <li><a class="" href="kepatuhan-daftar.html" aria-expanded="false">
+							<i class="flaticon-041-graph"></i>
+							<span class="nav-text">Kepatuhan</span>
+						</a>
+					</li>
+                    <li><a class="" href="notifikasi.html" aria-expanded="false">
+							<i class="flaticon-086-star"></i>
+							<span class="nav-text">Notifikasi</span>
+						</a>
+					</li>
+                    
+                </ul>
+				<div class="plus-box">
+					<p class="fs-14 font-w600 mb-2">SIPEGA <br>memudahkan<br>Pengawasan,<br>Pengendalian ASN<br></p>
+					<p>Untuk Ketapang lebih baik</p>
+					<img src="images/SIPEGA-PUTIH.png" width="100%">
+				</div>
+				<div class="copyright">
+					<p><strong>SIPEGA</strong> © 2023 All Rights Reserved</p>
+					<p class="fs-12">Made with <span class="heart"></span> by PDE-DISKOMINFO</p>
+				</div>
+			</div>
+        </div>
+        <!--**********************************
+            Sidebar end
+        ***********************************-->
+		
+		<!--**********************************
+            Content body start
+        ***********************************-->
+        <div class="content-body">
+            <!-- row -->
+			<div class="container-fluid">
+				<div class="d-flex align-items-center flex-wrap search-job bg-white px-0 mb-4 row">
+					<div class="col-xl-2 col-xxl-3 search-dropdown d-flex align-items-center">
+						<select class="form-control border-0 default-select style-1 h-auto">
+							<option>Choose Location</option>
+							<option>London</option>
+							<option>France</option>
+						</select>
+					</div>
+					<div class="col-xl-2 col-xxl-3 search-dropdown d-flex align-items-center">
+						<select class="form-control border-0 default-select style-1 h-auto">
+							<option>Salary Range</option>
+							<option>London</option>
+							<option>France</option>
+						</select>
+					</div>
+					<div class="col-xl-8 col-xxl-6 d-md-flex job-title-search pe-0">
+						<div class="input-group search-area">
+							<input type="text" class="form-control h-auto" placeholder="search job title here...">
+						<span class="input-group-text"><a href="javascript:void(0)" class="btn btn-primary btn-rounded">Search<i class="flaticon-381-search-2 ms-2"></i></a></span>
+						</div>	
+					</div>
+				</div>
+				<div class="d-flex align-items-center justify-content-between my-5 flex-wrap">
+					<div class="sm-mb-0 mb-3">
+						<h5>Showing 12 of 124 Jobs Results</h5>
+						<span>Based your preferences</span>
+					</div>
+					<div>
+						<div class="d-flex align-items-center">
+							<span class="me-4">
+								<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+								  <path id="List" d="M13.143,14.857H9.714A1.716,1.716,0,0,1,8,13.143V9.714A1.716,1.716,0,0,1,9.714,8h3.429a1.716,1.716,0,0,1,1.714,1.714v3.429A1.716,1.716,0,0,1,13.143,14.857ZM9.714,9.714v3.429h3.43V9.714ZM32,11.429a.857.857,0,0,0-.857-.857H17.429a.857.857,0,1,0,0,1.714H31.143A.857.857,0,0,0,32,11.429Zm-18.857,12H9.714A1.716,1.716,0,0,1,8,21.714V18.286a1.716,1.716,0,0,1,1.714-1.714h3.429a1.716,1.716,0,0,1,1.714,1.714v3.429A1.716,1.716,0,0,1,13.143,23.429ZM9.714,18.286v3.429h3.43V18.286ZM32,20a.857.857,0,0,0-.857-.857H17.429a.857.857,0,1,0,0,1.714H31.143A.857.857,0,0,0,32,20ZM13.143,32H9.714A1.716,1.716,0,0,1,8,30.286V26.857a1.716,1.716,0,0,1,1.714-1.714h3.429a1.716,1.716,0,0,1,1.714,1.714v3.429A1.716,1.716,0,0,1,13.143,32ZM9.714,26.857v3.429h3.43V26.857ZM32,28.571a.857.857,0,0,0-.857-.857H17.429a.857.857,0,1,0,0,1.714H31.143A.857.857,0,0,0,32,28.571Z" transform="translate(-8 -8)" fill="#848484"/>
+								</svg>
+							</span>
+							<span class="me-4">
+								<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+								  <g id="_012-menu-1" data-name="012-menu-1" transform="translate(-1 -1)">
+									<path id="Path_1965" data-name="Path 1965" d="M10.818,1H2.091A1.091,1.091,0,0,0,1,2.091v8.727a1.091,1.091,0,0,0,1.091,1.091h8.727a1.091,1.091,0,0,0,1.091-1.091V2.091A1.091,1.091,0,0,0,10.818,1ZM9.727,9.727H3.182V3.182H9.727Z" fill="#f93a0b"/>
+									<path id="Path_1966" data-name="Path 1966" d="M22.818,1H14.091A1.091,1.091,0,0,0,13,2.091v8.727a1.091,1.091,0,0,0,1.091,1.091h8.727a1.091,1.091,0,0,0,1.091-1.091V2.091A1.091,1.091,0,0,0,22.818,1ZM21.727,9.727H15.182V3.182h6.545Z" transform="translate(1.091)" fill="#f93a0b"/>
+									<path id="Path_1967" data-name="Path 1967" d="M10.818,13H2.091A1.091,1.091,0,0,0,1,14.091v8.727a1.091,1.091,0,0,0,1.091,1.091h8.727a1.091,1.091,0,0,0,1.091-1.091V14.091A1.091,1.091,0,0,0,10.818,13ZM9.727,21.727H3.182V15.182H9.727Z" transform="translate(0 1.091)" fill="#f93a0b"/>
+									<path id="Path_1968" data-name="Path 1968" d="M22.818,13H14.091A1.091,1.091,0,0,0,13,14.091v8.727a1.091,1.091,0,0,0,1.091,1.091h8.727a1.091,1.091,0,0,0,1.091-1.091V14.091A1.091,1.091,0,0,0,22.818,13Zm-1.091,8.727H15.182V15.182h6.545Z" transform="translate(1.091 1.091)" fill="#f93a0b"/>
+								  </g>
+								</svg>
+							</span>
+							<div>	
+								<select class="default-select dashboard-select border-0 bg-transparent">
+								  <option data-display="newest">newest</option>
+								  
+								  <option value="2">oldest</option>
+								</select>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xl-12">
+						<div class="row">
+							<div class="col-xl-6">
+								<div class="card">
+									<div class="card-body">
+										<div class="d-flex justify-content-between align-items-center flex-wrap">
+											<div class="d-flex">
+												<span class="Studios-info">
+													<svg xmlns="http://www.w3.org/2000/svg" width="97" height="97" viewBox="0 0 97 97">
+													  <g  transform="translate(-0.785)">
+														<rect  width="97" height="97" rx="12" transform="translate(0.785)" fill="#c5c5c5"/>
+														<g  transform="translate(0.348)">
+														  <rect  data-name="placeholder" width="97" height="97" rx="12" transform="translate(0.438)" fill="#2769ee"/>
+														  <ellipse  data-name="Ellipse 12" cx="24.359" cy="24.702" rx="24.359" ry="24.702" transform="translate(20.2 27.447)" fill="#fff"/>
+														  <ellipse  data-name="Ellipse 11" cx="14.853" cy="15.096" rx="14.853" ry="15.096" transform="translate(49.907 20.585)" fill="#ffe70c" style="mix-blend-mode: multiply;isolation: isolate"/>
+														</g>
+													  </g>
+													</svg>
+												</span>
+												<div>
+													<h4 class="fs-20 mb-1">Bubble Studios</h4>
+													<span class="mb-3 d-block">Desgin Team Agency</span>
+													<span class="d-block"><i class="fas fa-map-marker-alt me-2"></i>Manchester, England</span>
+												</div>
+											</div>
+											<div class="job-available">
+												<a href="javascript:void(0);" class="btn btn-outline-primary btn-rounded">6 Jobs Available</a>
+											</div>
+										</div>	
+									</div>
+								</div>
+							</div>
+							<div class="col-xl-6">
+								<div class="card">
+									<div class="card-body">
+										<div class="d-flex justify-content-between align-items-center flex-wrap">
+											<div class="d-flex">
+												<span class="Studios-info">
+													<svg xmlns="http://www.w3.org/2000/svg" width="97" height="97" viewBox="0 0 97 97">
+													  <g  transform="translate(-0.785)">
+														<rect  width="97" height="97" rx="12" transform="translate(0.785)" fill="#c5c5c5"/>
+														<g  transform="translate(0.348)">
+														  <rect  data-name="placeholder" width="97" height="97" rx="12" transform="translate(0.438)" fill="#47ae3b"/>
+														  <ellipse  data-name="Ellipse 12" cx="24.359" cy="24.702" rx="24.359" ry="24.702" transform="translate(20.2 27.447)" fill="#fff"/>
+														  <ellipse  data-name="Ellipse 11" cx="14.853" cy="15.096" rx="14.853" ry="15.096" transform="translate(49.907 20.585)" fill="#ffe70c" style="mix-blend-mode: multiply;isolation: isolate"/>
+														</g>
+													  </g>
+													</svg>
+												</span>
+												<div>
+													<h4 class="fs-20 mb-1">Foodia Studios</h4>
+													<span class="mb-3 d-block">Desgin Team Agency</span>
+													<span class="d-block"><i class="fas fa-map-marker-alt me-2"></i>Manchester, England</span>
+												</div>
+											</div>
+											<div class="job-available">
+												<a href="javascript:void(0);" class="btn btn-outline-primary btn-rounded">6 Jobs Available</a>
+											</div>
+										</div>	
+									</div>
+								</div>
+							</div>
+							<div class="col-xl-6">
+								<div class="card">
+									<div class="card-body">
+										<div class="d-flex justify-content-between align-items-center flex-wrap">
+											<div class="d-flex">
+												<span class="Studios-info">
+													<svg xmlns="http://www.w3.org/2000/svg" width="97" height="97" viewBox="0 0 97 97">
+													  <g  transform="translate(-0.785)">
+														<rect  width="97" height="97" rx="12" transform="translate(0.785)" fill="#c5c5c5"/>
+														<g  transform="translate(0.348)">
+														  <rect  data-name="placeholder" width="97" height="97" rx="12" transform="translate(0.438)" fill="#8030d0"/>
+														  <ellipse  data-name="Ellipse 12" cx="24.359" cy="24.702" rx="24.359" ry="24.702" transform="translate(20.2 27.447)" fill="#fff"/>
+														  <ellipse  data-name="Ellipse 11" cx="14.853" cy="15.096" rx="14.853" ry="15.096" transform="translate(49.907 20.585)" fill="#ffe70c" style="mix-blend-mode: multiply;isolation: isolate"/>
+														</g>
+													  </g>
+													</svg>
+												</span>
+												<div>
+													<h4 class="fs-20 mb-1">Kelon inc.</h4>
+													<span class="mb-3 d-block">Desgin Team Agency</span>
+													<span class="d-block"><i class="fas fa-map-marker-alt me-2"></i>Manchester, England</span>
+												</div>
+											</div>
+											<div class="job-available">
+												<a href="javascript:void(0);" class="btn btn-outline-primary btn-rounded">6 Jobs Available</a>
+											</div>
+										</div>	
+									</div>
+								</div>
+							</div>
+							<div class="col-xl-6">
+								<div class="card">
+									<div class="card-body">
+										<div class="d-flex justify-content-between align-items-center flex-wrap">
+											<div class="d-flex">
+												<span class="Studios-info">
+													<svg xmlns="http://www.w3.org/2000/svg" width="97" height="97" viewBox="0 0 97 97">
+													  <g  transform="translate(-0.785)">
+														<rect  width="97" height="97" rx="12" transform="translate(0.785)" fill="#c5c5c5"/>
+														<g  transform="translate(0.348)">
+														  <rect  data-name="placeholder" width="97" height="97" rx="12" transform="translate(0.438)" fill="#e1b746"/>
+														  <ellipse  data-name="Ellipse 12" cx="24.359" cy="24.702" rx="24.359" ry="24.702" transform="translate(20.2 27.447)" fill="#fff"/>
+														  <ellipse  data-name="Ellipse 11" cx="14.853" cy="15.096" rx="14.853" ry="15.096" transform="translate(49.907 20.585)" fill="#ffe70c" style="mix-blend-mode: multiply;isolation: isolate"/>
+														</g>
+													  </g>
+													</svg>
+												</span>
+												<div>
+													<h4 class="fs-20 mb-1">Kelon inc.</h4>
+													<span class="mb-3 d-block">Desgin Team Agency</span>
+													<span class="d-block"><i class="fas fa-map-marker-alt me-2"></i>Manchester, England</span>
+												</div>
+											</div>
+											<div class="job-available">
+												<a href="javascript:void(0);" class="btn btn-outline-primary btn-rounded">6 Jobs Available</a>
+											</div>
+										</div>	
+									</div>
+								</div>
+							</div>
+							<div class="col-xl-6">
+								<div class="card">
+									<div class="card-body">
+										<div class="d-flex justify-content-between align-items-center flex-wrap">
+											<div class="d-flex">
+												<span class="Studios-info">
+													<svg xmlns="http://www.w3.org/2000/svg" width="97" height="97" viewBox="0 0 97 97">
+													  <g  transform="translate(-0.785)">
+														<rect  width="97" height="97" rx="12" transform="translate(0.785)" fill="#c5c5c5"/>
+														<g  transform="translate(0.348)">
+														  <rect  data-name="placeholder" width="97" height="97" rx="12" transform="translate(0.438)" fill="#314c82"/>
+														  <ellipse  data-name="Ellipse 12" cx="24.359" cy="24.702" rx="24.359" ry="24.702" transform="translate(20.2 27.447)" fill="#fff"/>
+														  <ellipse  data-name="Ellipse 11" cx="14.853" cy="15.096" rx="14.853" ry="15.096" transform="translate(49.907 20.585)" fill="#ffe70c" style="mix-blend-mode: multiply;isolation: isolate"/>
+														</g>
+													  </g>
+													</svg>
+												</span>
+												<div>
+													<h4 class="fs-20 mb-1">Kelon inc.</h4>
+													<span class="mb-3 d-block">Desgin Team Agency</span>
+													<span class="d-block"><i class="fas fa-map-marker-alt me-2"></i>Manchester, England</span>
+												</div>
+											</div>
+											<div class="job-available">
+												<a href="javascript:void(0);" class="btn btn-outline-primary btn-rounded">6 Jobs Available</a>
+											</div>
+										</div>	
+									</div>
+								</div>
+							</div>
+							<div class="col-xl-6">
+								<div class="card">
+									<div class="card-body">
+										<div class="d-flex justify-content-between align-items-center flex-wrap">
+											<div class="d-flex">
+												<span class="Studios-info">
+													<svg xmlns="http://www.w3.org/2000/svg" width="97" height="97" viewBox="0 0 97 97">
+													  <g  transform="translate(-0.785)">
+														<rect  width="97" height="97" rx="12" transform="translate(0.785)" fill="#c5c5c5"/>
+														<g  transform="translate(0.348)">
+														  <rect  data-name="placeholder" width="97" height="97" rx="12" transform="translate(0.438)" fill="#676767"/>
+														  <ellipse  data-name="Ellipse 12" cx="24.359" cy="24.702" rx="24.359" ry="24.702" transform="translate(20.2 27.447)" fill="#fff"/>
+														  <ellipse  data-name="Ellipse 11" cx="14.853" cy="15.096" rx="14.853" ry="15.096" transform="translate(49.907 20.585)" fill="#ffe70c" style="mix-blend-mode: multiply;isolation: isolate"/>
+														</g>
+													  </g>
+													</svg>
+												</span>
+												<div>
+													<h4 class="fs-20 mb-1">Kelon inc.</h4>
+													<span class="mb-3 d-block">Desgin Team Agency</span>
+													<span class="d-block"><i class="fas fa-map-marker-alt me-2"></i>Manchester, England</span>
+												</div>
+											</div>
+											<div class="job-available">
+												<a href="javascript:void(0);" class="btn btn-outline-primary btn-rounded">6 Jobs Available</a>
+											</div>
+										</div>	
+									</div>
+								</div>
+							</div>
+							<div class="col-xl-6">
+								<div class="card">
+									<div class="card-body">
+										<div class="d-flex justify-content-between align-items-center flex-wrap">
+											<div class="d-flex">
+												<span class="Studios-info">
+													<svg xmlns="http://www.w3.org/2000/svg" width="97" height="97" viewBox="0 0 97 97">
+													  <g  transform="translate(-0.785)">
+														<rect  width="97" height="97" rx="12" transform="translate(0.785)" fill="#c5c5c5"/>
+														<g  transform="translate(0.348)">
+														  <rect  data-name="placeholder" width="97" height="97" rx="12" transform="translate(0.438)" fill="#f94a4a"/>
+														  <ellipse  data-name="Ellipse 12" cx="24.359" cy="24.702" rx="24.359" ry="24.702" transform="translate(20.2 27.447)" fill="#fff"/>
+														  <ellipse  data-name="Ellipse 11" cx="14.853" cy="15.096" rx="14.853" ry="15.096" transform="translate(49.907 20.585)" fill="#ffe70c" style="mix-blend-mode: multiply;isolation: isolate"/>
+														</g>
+													  </g>
+													</svg>
+												</span>
+												<div>
+													<h4 class="fs-20 mb-1">Kelon inc.</h4>
+													<span class="mb-3 d-block">Desgin Team Agency</span>
+													<span class="d-block"><i class="fas fa-map-marker-alt me-2"></i>Manchester, England</span>
+												</div>
+											</div>
+											<div class="job-available">
+												<a href="javascript:void(0);" class="btn btn-outline-primary btn-rounded">6 Jobs Available</a>
+											</div>
+										</div>	
+									</div>
+								</div>
+							</div>
+							<div class="col-xl-6">
+								<div class="card">
+									<div class="card-body">
+										<div class="d-flex justify-content-between align-items-center flex-wrap">
+											<div class="d-flex">
+												<span class="Studios-info">
+													<svg xmlns="http://www.w3.org/2000/svg" width="97" height="97" viewBox="0 0 97 97">
+													  <g  transform="translate(-0.785)">
+														<rect  width="97" height="97" rx="12" transform="translate(0.785)" fill="#c5c5c5"/>
+														<g  transform="translate(0.348)">
+														  <rect  data-name="placeholder" width="97" height="97" rx="12" transform="translate(0.438)" fill="#ee9827"/>
+														  <ellipse  data-name="Ellipse 12" cx="24.359" cy="24.702" rx="24.359" ry="24.702" transform="translate(20.2 27.447)" fill="#fff"/>
+														  <ellipse  data-name="Ellipse 11" cx="14.853" cy="15.096" rx="14.853" ry="15.096" transform="translate(49.907 20.585)" fill="#ffe70c" style="mix-blend-mode: multiply;isolation: isolate"/>
+														</g>
+													  </g>
+													</svg>
+												</span>
+												<div>
+													<h4 class="fs-20 mb-1">Kelon inc.</h4>
+													<span class="mb-3 d-block">Desgin Team Agency</span>
+													<span class="d-block"><i class="fas fa-map-marker-alt me-2"></i>Manchester, England</span>
+												</div>
+											</div>
+											<div class="job-available">
+												<a href="javascript:void(0);" class="btn btn-outline-primary btn-rounded">6 Jobs Available</a>
+											</div>
+										</div>	
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="d-flex align-items-center justify-content-between flex-wrap">
+					<div class="sm-mb-0 mb-3">
+						<h5 class="mb-0">Showing 5 of 102 Data</h5>
+					</div>
+					<nav>
+						<ul class="pagination pagination-circle">
+							<li class="page-item page-indicator">
+								<a class="page-link" href="javascript:void(0)">Prev</a>
+							</li>
+							<li class="page-item active"><a class="page-link" href="javascript:void(0)">1</a>
+							</li>
+							<li class="page-item"><a class="page-link" href="javascript:void(0)">2</a></li>
+							<li class="page-item"><a class="page-link" href="javascript:void(0)">3</a></li>
+							<li class="page-item"><a class="page-link" href="javascript:void(0)">4</a></li>
+							<li class="page-item page-indicator">
+								<a class="page-link" href="javascript:void(0)">Next</a>
+							</li>
+						</ul>
+					</nav>
+				</div>
+            </div>
+        </div>
+        <!--**********************************
+            Content body end
+        ***********************************-->
+		
+		
+		
+        <!--**********************************
+            Footer start
+        ***********************************-->
+        <div class="footer">
+            <div class="copyright">
+                <p>Copyright © Designed &amp; Developed by <a href="https://ketapangkab.go.id/" target="_blank">PDE-DISKOMINFO</a> 2023</p>
+            </div>
+        </div>
+        <!--**********************************
+            Footer end
+        ***********************************-->
+
+		<!--**********************************
+           Support ticket button start
+        ***********************************-->
+		
+        <!--**********************************
+           Support ticket button end
+        ***********************************-->
+
+
+	</div>
+    <!--**********************************
+        Main wrapper end
+    ***********************************-->
+
+    <!--**********************************
+        Scripts
+    ***********************************-->
+    <!-- Required vendors -->
+    <script src="./vendor/global/global.min.js"></script>
+
+	<script src="vendor/jquery-nice-select/js/jquery.nice-select.min.js"></script>
+	
+	<!-- Apex Chart -->
+	
+	<!-- Chart piety plugin files -->
+	<!-- Dashboard 1 -->
+    <script src="./js/custom.min.js"></script>
+	<script src="./js/dlabnav-init.js"></script>
+	
+    
+
+</body>
+</html>

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Lokasi;
 use App\Models\Kecamatan;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -21,5 +22,10 @@ class Pendaftaran extends Model
     public function nopol()
     {
         return $this->belongsTo(DaftarNopol::class, 'nopol_daftar');
+    }
+
+    public function lokasi()
+    {
+        return $this->belongsTo(Lokasi::class, 'daftar_lokasi');
     }
 }
