@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Lokasi;
+use App\Models\Kecamatan;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Pendaftaran extends Model
 {
@@ -16,5 +18,10 @@ class Pendaftaran extends Model
     public function kecamatan()
     {
         return $this->belongsTo(Kecamatan::class, 'daftar_kecamatan', 'kecamatan_id');
+    }
+
+    public function lokasi()
+    {
+        return $this->belongsTo(Lokasi::class, 'daftar_lokasi');
     }
 }

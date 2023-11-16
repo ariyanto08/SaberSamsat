@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="keywords" content="" />
+	<meta name="author" content="" />
+	<meta name="robots" content="" />
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="SIPEGA" />
+	<meta property="og:title" content="SIPEGA" />
+	<meta property="og:description" content="SIPEGA" />
+	<meta property="og:image" content="https://jobick.dexignlab.com/xhtml/social-image.png" />
+	<meta name="format-detection" content="telephone=no">
+	
+	<!-- PAGE TITLE HERE -->
+	<title>SIPEGA</title>
+	
+	<!-- FAVICONS ICON -->
+	<link rel="shortcut icon" type="image/png" href="images/favicon.png" />
+	<link href="./vendor/jquery-nice-select/css/nice-select.css" rel="stylesheet">
+	<link href="./vendor/datatables/css/jquery.dataTables.min.css" rel="stylesheet">
+	
+	<!-- Style css -->
+    <link href="./css/style.css" rel="stylesheet">
+	
+</head>
+<body>
+
+    <!--*******************
+        Preloader start
+    ********************-->
+    <div id="preloader">
+		<div class="lds-ripple">
+			<div></div>
+			<div></div>
+		</div>
+    </div>
+    <!--*******************
+        Preloader end
+    ********************-->
+
+    <!--**********************************
+        Main wrapper start
+    ***********************************-->
+    <div id="main-wrapper">
+
+        <!--**********************************
+            Nav header start
+        ***********************************-->
+        <div class="nav-header">
+            <a href="index.html" class="brand-logo">
+				<img src="images/sipegaNEW.png" width="100%">
+				
+
+            </a>
+            <div class="nav-control">
+                <div class="hamburger">
+                    <span class="line"></span><span class="line"></span><span class="line"></span>
+                </div>
+            </div>
+        </div>
+        <!--**********************************
+            Nav header end
+        ***********************************-->
+		
+		
+		
+		<!--**********************************
+            Header start
+        ***********************************-->
+        <div class="header">
+            <div class="header-content">
+                <nav class="navbar navbar-expand">
+                    <div class="collapse navbar-collapse justify-content-between">
+                        <div class="header-left">
+							<div class="dashboard_bar">
+                                Job Application
+                            </div>
+							
+                        </div>
+                        <ul class="navbar-nav header-right"><li class="nav-item dropdown header-profile">
+                                <a class="nav-link" href="javascript:void(0);" role="button" data-bs-toggle="dropdown">
+                                    <div id="pegawaigambar"></div>
+                                </a>
+                                
+                            </li>
+							<li class="nav-item">
+								
+							</li>
+                        </ul>
+                    </div>
+				</nav>
+			</div>
+		</div>
+        <!--**********************************
+            Header end ti-comment-alt
+        ***********************************-->
+
+        <!--**********************************
+            Sidebar start
+        ***********************************-->
+        <div class="dlabnav">
+            <div class="dlabnav-scroll">
+				<div class="dropdown header-profile2 ">
+					<a class="nav-link " href="javascript:void(0);"  role="button" data-bs-toggle="dropdown">
+						<div class="header-info2 d-flex align-items-center">
+							<div id="pegawaigambarmenu"></div>
+							<div class="d-flex align-items-center sidebar-info">
+								<div>
+									<span class="font-w400 d-block">MUKHTAR EFENDI, S. Pd, M. Pd</span>
+									<small class="text-end font-w400">Sekretaris</small>
+								</div>
+							</div>
+							
+						</div>
+					</a>
+					
+				</div>
+				<ul class="metismenu" id="menu">
+                    <li><a class="" href="index.html" aria-expanded="false">
+							<i class="flaticon-025-dashboard"></i>
+							<span class="nav-text">Dashboard</span>
+						</a>
+                    </li>
+					<li><a class="" href="kinerja-daftar.html" aria-expanded="false">
+							<i class="flaticon-093-waving"></i>
+							<span class="nav-text">Kinerja</span>
+						</a>
+                    </li>
+                    <li><a class="" href="kehadiran-daftar.html" aria-expanded="false">
+						<i class="flaticon-050-info"></i>
+							<span class="nav-text">Kehadiran</span>
+						</a>
+					</li>
+                    <li><a class="" href="kepatuhan-daftar.html" aria-expanded="false">
+							<i class="flaticon-041-graph"></i>
+							<span class="nav-text">Kepatuhan</span>
+						</a>
+					</li>
+                    <li><a class="" href="notifikasi.html" aria-expanded="false">
+							<i class="flaticon-086-star"></i>
+							<span class="nav-text">Notifikasi</span>
+						</a>
+					</li>
+                    
+                </ul>
+				<div class="plus-box">
+					<p class="fs-14 font-w600 mb-2">SIPEGA <br>memudahkan<br>Pengawasan,<br>Pengendalian ASN<br></p>
+					<p>Untuk Ketapang lebih baik</p>
+					<img src="images/SIPEGA-PUTIH.png" width="100%">
+				</div>
+				<div class="copyright">
+					<p><strong>SIPEGA</strong> © 2023 All Rights Reserved</p>
+					<p class="fs-12">Made with <span class="heart"></span> by PDE-DISKOMINFO</p>
+				</div>
+			</div>
+        </div>
+        <!--**********************************
+            Sidebar end
+        ***********************************-->
+		
+		<!--**********************************
+            Content body start
+        ***********************************-->
+        <div class="content-body">
+            <!-- row -->
+			<div class="container-fluid">
+				<div class="d-flex align-items-center mb-4 flex-wrap">
+					<h4 class="fs-20 font-w600 me-auto">Job Application</h4>
+					<div>
+					<a href="new-job.html" class="btn btn-primary me-3 btn-sm"><i class="fas fa-plus me-2"></i>Add New Job</a>
+					<a href="javascript:void(0);" class="btn btn-secondary btn-sm me-3"> <i class="fas fa-envelope"></i></a>
+					<a href="javascript:void(0);" class="btn btn-secondary btn-sm me-3"><i class="fas fa-phone-alt"></i></a>
+					<a href="javascript:void(0);" class="btn btn-secondary btn-sm" ><i class="fas fa-info"></i></a>
+					
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xl-12">
+						<div class="table-responsive">
+							<table class="table display mb-4 dataTablesCard job-table table-responsive-xl card-table" id="example5">
+								<thead>
+									<tr>
+										<th>No</th>
+										<th>Position</th>
+										<th>Name</th>
+										<th>Email</th>
+										<th>Phone Number</th>
+										<th>Applied On</th>
+										<th>Submitted By</th>
+										<th>Status</th>
+										<th class="text-center">Actions</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>1.</td>
+										<td class="wspace-no">Database analyst</td>
+										<td>Jordan</td>
+										<td>Jordan@gmail.com</td>
+										<td>1234598765</td>
+										<td>24-01-2021</td>
+										<td>Nicholas</td>
+										<td><span class="btn btn-warning btn-sm btn-rounded">Pending</span></td>
+										<td class="action-btn wspace-no">
+											<span>
+												<a href="javascript:void(0);"><i class="fas fa-check text-success"></i></a>
+											</span>
+											<span>
+												<a href="javascript:void(0);"><i class="fas fa-times text-danger"></i></a>
+											</span>
+											<span>
+												<a href="javascript:void(0);"><i class="fas fa-eye"></i></a>
+											</span>	
+											<span>
+												<a href="javascript:void(0);"><i class="far fa-trash-alt text-danger"></i></a>
+											</span>
+											<span>
+												<a href="javascript:void(0);"><i class="fas fa-download text-warning"></i></a>
+											</span>
+										</td>
+									</tr>
+									<tr>
+										<td>2.</td>
+										<td class="wspace-no">Network architect</td>
+										<td>Asher</td>
+										<td>Jordan@gmail.com</td>
+										<td>1234598765</td>
+										<td>24-01-2021</td>
+										<td>Dominic</td>
+										<td><span class="btn btn-warning btn-sm btn-rounded">Pending</span></td>
+										<td class="action-btn wspace-no">
+											<span>
+												<a href="javascript:void(0);"><i class="fas fa-check text-success"></i></a>
+											</span>
+											<span>
+												<a href="javascript:void(0);"><i class="fas fa-times text-danger"></i></a>
+											</span>
+											<span>
+												<a href="javascript:void(0);"><i class="fas fa-eye"></i></a>
+											</span>	
+											<span>
+												<a href="javascript:void(0);"><i class="far fa-trash-alt text-danger"></i></a>
+											</span>
+											<span>
+												<a href="javascript:void(0);"><i class="fas fa-download text-warning"></i></a>
+											</span>
+										</td>
+									</tr>
+									<tr>
+										<td>3.</td>
+										<td class="wspace-no">Network architect</td>
+										<td>Carter</td>
+										<td>Jordan@gmail.com</td>
+										<td>1234598765</td>
+										<td>24-01-2021</td>
+										<td>Austin</td>
+										<td><span class="btn btn-info btn-sm btn-rounded">Pending</span></td>
+										<td class="action-btn wspace-no">
+											<span>
+												<a href="javascript:void(0);"><i class="fas fa-check text-success"></i></a>
+											</span>
+											<span>
+												<a href="javascript:void(0);"><i class="fas fa-times text-danger"></i></a>
+											</span>
+											<span>
+												<a href="javascript:void(0);"><i class="fas fa-eye"></i></a>
+											</span>	
+											<span>
+												<a href="javascript:void(0);"><i class="far fa-trash-alt text-danger"></i></a>
+											</span>
+											<span>
+												<a href="javascript:void(0);"><i class="fas fa-download text-warning"></i></a>
+											</span>
+										</td>
+									</tr>
+									<tr>
+										<td>4.</td>
+										<td class="wspace-no">Systems analyst</td>
+										<td>Grayson</td>
+										<td>Jordan@gmail.com</td>
+										<td>1234598765</td>
+										<td>24-01-2021</td>
+										<td>Everett</td>
+										<td><span class="btn btn-danger btn-sm btn-rounded">Rejected</span></td>
+										<td class="action-btn wspace-no">
+											<span>
+												<a href="javascript:void(0);"><i class="fas fa-check text-success"></i></a>
+											</span>
+											<span>
+												<a href="javascript:void(0);"><i class="fas fa-times text-danger"></i></a>
+											</span>
+											<span>
+												<a href="javascript:void(0);"><i class="fas fa-eye"></i></a>
+											</span>	
+											<span>
+												<a href="javascript:void(0);"><i class="far fa-trash-alt text-danger"></i></a>
+											</span>
+											<span>
+												<a href="javascript:void(0);"><i class="fas fa-download text-warning"></i></a>
+											</span>
+										</td>
+									</tr>
+									<tr>
+										<td>5.</td>
+										<td class="wspace-no">Network engineer</td>
+										<td>Thomas</td>
+										<td>Jordan@gmail.com</td>
+										<td>1234598765</td>
+										<td>24-01-2021</td>
+										<td>Brooks</td>
+										<td><span class="btn btn-warning btn-sm btn-rounded">Pending</span></td>
+										<td class="action-btn wspace-no">
+											<span>
+												<a href="javascript:void(0);"><i class="fas fa-check text-success"></i></a>
+											</span>
+											<span>
+												<a href="javascript:void(0);"><i class="fas fa-times text-danger"></i></a>
+											</span>
+											<span>
+												<a href="javascript:void(0);"><i class="fas fa-eye"></i></a>
+											</span>	
+											<span>
+												<a href="javascript:void(0);"><i class="far fa-trash-alt text-danger"></i></a>
+											</span>
+											<span>
+												<a href="javascript:void(0);"><i class="fas fa-download text-warning"></i></a>
+											</span>
+										</td>
+									</tr>
+									<tr>
+										<td>6.</td>
+										<td class="wspace-no">Service desk analyst</td>
+										<td>Miles</td>
+										<td>Jordan@gmail.com</td>
+										<td>1234598765</td>
+										<td>24-01-2021</td>
+										<td>Wesley</td>
+										<td><span class="btn btn-primary btn-sm btn-rounded">Selected</span></td>
+										<td class="action-btn wspace-no">
+											<span>
+												<a href="javascript:void(0);"><i class="fas fa-check text-success"></i></a>
+											</span>
+											<span>
+												<a href="javascript:void(0);"><i class="fas fa-times text-danger"></i></a>
+											</span>
+											<span>
+												<a href="javascript:void(0);"><i class="fas fa-eye"></i></a>
+											</span>	
+											<span>
+												<a href="javascript:void(0);"><i class="far fa-trash-alt text-danger"></i></a>
+											</span>
+											<span>
+												<a href="javascript:void(0);"><i class="fas fa-download text-warning"></i></a>
+											</span>
+										</td>
+									</tr>
+									<tr>
+										<td>7.</td>
+										<td>Network Engineer</td>
+										<td>Adrian</td>
+										<td>Jordan@gmail.com</td>
+										<td>1234598765</td>
+										<td>24-01-2021</td>
+										<td>Kayden</td>
+										<td><span class="btn btn-success btn-sm btn-rounded">Success</span></td>
+										<td class="action-btn wspace-no">
+											<span>
+												<a href="javascript:void(0);"><i class="fas fa-check text-success"></i></a>
+											</span>
+											<span>
+												<a href="javascript:void(0);"><i class="fas fa-times text-danger"></i></a>
+											</span>
+											<span>
+												<a href="javascript:void(0);"><i class="fas fa-eye"></i></a>
+											</span>	
+											<span>
+												<a href="javascript:void(0);"><i class="far fa-trash-alt text-danger"></i></a>
+											</span>
+											<span>
+												<a href="javascript:void(0);"><i class="fas fa-download text-warning"></i></a>
+											</span>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+            </div>
+        </div>
+        <!--**********************************
+            Content body end
+        ***********************************-->
+		
+		
+		
+        <!--**********************************
+            Footer start
+        ***********************************-->
+        <div class="footer">
+            <div class="copyright">
+                <p>Copyright © Designed &amp; Developed by <a href="https://ketapangkab.go.id/" target="_blank">PDE-DISKOMINFO</a> 2023</p>
+            </div>
+        </div>
+        <!--**********************************
+            Footer end
+        ***********************************-->
+
+		<!--**********************************
+           Support ticket button start
+        ***********************************-->
+		
+        <!--**********************************
+           Support ticket button end
+        ***********************************-->
+
+
+	</div>
+    <!--**********************************
+        Main wrapper end
+    ***********************************-->
+
+    <!--**********************************
+        Scripts
+    ***********************************-->
+    <!-- Required vendors -->
+    <script src="./vendor/global/global.min.js"></script>
+	
+	<script src="vendor/jquery-nice-select/js/jquery.nice-select.min.js"></script>
+	
+
+	
+	
+	<!-- <script src="./vendor/popper/popper.min.js"></script>
+	<script src="./vendor/bootstrap/js/bootstrap.bundle.min.js"></script> -->
+	
+	<!-- Chart piety plugin files -->
+   <script src="./vendor/datatables/js/jquery.dataTables.min.js"></script>
+   <script src="./js/plugins-init/datatables.init.js"></script>
+	
+	<!-- Dashboard 1 -->
+	 
+	
+	
+	
+    <script src="./js/custom.min.js"></script>
+	<script src="./js/dlabnav-init.js"></script>
+	
+    
+	<script>
+	/*	$(document).ready(function(){
+			//$('[data-toggle="tooltip"]').tooltip();
+  return new bootstrap.Tooltip($('[data-toggle="tooltip"]'))
+	});*/
+
+var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+  return new bootstrap.Tooltip(tooltipTriggerEl)
+})
+	</script>
+
+</body>
+</html>
