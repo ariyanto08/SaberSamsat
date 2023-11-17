@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -55,7 +54,7 @@
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
-      <a class="buy-tickets" href="#" data-bs-toggle="modal" data-bs-target="#buy-ticket-modal" data-ticket-type="pro-access">Pendaftaran</a>
+      {{-- <a class="buy-tickets" href="#" data-bs-toggle="modal" data-bs-target="#buy-ticket-modal" data-ticket-type="pro-access">Pendaftaran</a> --}}
       <a class="buy-tickets" href="http://saber.ketapangkab.go.id/mimin">Login</a>
 
 
@@ -68,8 +67,8 @@
     <section id="schedule" class="section-with-bg">
       <div class="container" data-aos="fade-up">
         <div class="section-header">
-          <h2>DETAIL PENDAFTARAN</h2>
-          <p>Mohon agar dapat memperhatikan detail pendaftaran anda!</p>
+          <h2>PENDAFTARAN BERHASIL !!!</h2>
+          <p>Kami akan segera menghubungi anda apabila kuota pendaftaran sesuai dengan kecamatan yang anda pilih sudah terpenuhi</p>
         </div>
 
         <ul class="nav nav-tabs" role="tablist" data-aos="fade-up" data-aos-delay="100">
@@ -129,12 +128,8 @@
             <div class="row schedule-item">
               <div class="col-md-2"><time>NOPOL</time></div>
               <div class="col-md-2">
-                <h4>KB {{$nopol->nopol_tengah}} {{$nopol->nopol_belakang}} </h4></div>
-              <div class="col-md-3">
+                <h4>KB {{$nopol->nopol_tengah}} {{$nopol->nopol_belakang}}</h4></div>
 
-                <a class="nopols" href="#" data-bs-toggle="modal" data-bs-target="#nopol-modal" data-ticket-type="pro-access">+ KLIK UNTUK NOPOL LAIN</a>
-
-              </div>
             </div>
 
             <div class="row schedule-item">
@@ -145,22 +140,8 @@
               </div>
             </div>
 
-            <div class="row schedule-item align-items-center">
-              <div class="col-md-2"></div>
-              <div class="col-md-7"></div>
-              <div class="col-md-3">
-                <a class="nopols" href="keranjangberhasil.html">PROSES PENDAFTARAN</a>
-              </div>
-
-            </div>
-
-
-
-
-
           </div>
           <!-- End Schdule Day 1 -->
-
 
         </div>
 
@@ -174,7 +155,7 @@
 
 
     <!-- Modal Order Form -->
-    <div id="buy-ticket-modal" class="modal fade">
+    {{-- <div id="buy-ticket-modal" class="modal fade">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
@@ -245,7 +226,7 @@
           </div>
         </div><!-- /.modal-content -->
       </div><!-- /.modal-dialog -->
-    </div><!-- /.modal -->
+    </div><!-- /.modal --> --}}
 
   </section><!-- End Buy Ticket Section -->
   <section id="nopol" class="section-with-bg" style="margin-top: -50px;">
@@ -261,21 +242,8 @@
           </div>
           <div class="modal-body">
             <form method="POST" action="keranjang2.html">
-              <div class="form-group mt-3 mb-2 row">
-                <div class="col col-lg-2">
-                  <label for="exampleFormControlInput1" class="form-label mt-1">NOPOL:</label>
-                </div>
-                <div class="col col-lg-1">
-                  <label for="exampleFormControlInput1" class="form-label mt-1">KB</label>
-                </div>
-                <div class="col col-lg-3">
-                  <input type="text" class="form-control text-center" name="your-alamat" placeholder="XXXX" maxlength="4" >
-                </div>
-                <div class="col col-lg-2">
-                  <input type="text" class="form-control text-center" name="your-alamat" placeholder="XX" maxlength="2">
-                </div>
-
-
+              <div class="form-group mt-3">
+                <input type="text" class="form-control" name="your-nopol" placeholder="NOPOL Anda">
               </div>
               <div class="text-center mt-3">
                 <button type="submit" class="btn">Tambah NOPOL</button>

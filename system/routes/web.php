@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/',[WebController::class,'index']);
 Route::post('/',[WebController::class,'daftar']);
-Route::get('detail-daftar/{daftar}',[WebController::class,'detail'])->name('detail-daftar');
+Route::get('daftar-berhasil/{daftar}',[WebController::class,'detail']);
 
 Route::prefix('mimin')->group(function () {
    Route::get('beranda', [MiminController::class, 'beranda']);
