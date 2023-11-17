@@ -24,6 +24,8 @@ Route::prefix('mimin')->group(function () {
    Route::get('beranda', [MiminController::class, 'beranda']);
    Route::get('permohonan', [MiminController::class, 'permohonan']);
    Route::get('permohonan-detail/{daftar}', [MiminController::class, 'permohonanDetail']);
+   Route::get('permohonan-proses/{daftar}', [MiminController::class, 'permohonanProses']);
+   Route::post('permohonan-proses', [MiminController::class, 'simpanPermohonan']);
    Route::get('pelayanan', [MiminController::class, 'pelayanan']);
    Route::get('pelayanan-detail', [MiminController::class, 'pelayananDetail']);
    Route::get('pengaturan', [MiminController::class, 'pengaturan']);

@@ -9,14 +9,14 @@
                 <div class="row">
 
                     @foreach ($list_permohonan as $item)
-                        <div class="col-xl-6"><a href="{{url('mimin/permohonan-detail', $item->daftar_id)}}">
+                        <div class="col-xl-6"><a href="{{url('mimin/permohonan-detail', $item['daftar_id'])}}">
                             <div class="card">
                                 <div class="card-body">
                                     <div class="d-flex justify-content-between align-items-center flex-wrap">
                                         <div class="d-flex">
                                             
                                             <div>
-                                                <h4 class="fs-20 mb-1">{{$item->kecamatan->kecamatan_nama}}</h4>
+                                                <h4 class="fs-20 mb-1">{{$item->kecamatan['kecamatan_nama']}}</h4>
                                                 
                                                 <span class="d-block text-capitalize"><i class="fas fa-map-marker-alt me-2"></i>{{$item->lokasi->lokasi_nama}}</span>
                                             </div>

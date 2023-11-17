@@ -78,7 +78,7 @@
                     <div class="card-header">
                         <h4 class="card-title">Data Pemohon Kecamatan Delta Pawan</h4>
                         @if ($permohonan_count >= $permohonan->kecamatan->kecamatan_target)
-                            <a href="{{url('permohonan-proses')}}">
+                            <a href="{{url('mimin/permohonan-proses', $permohonan->daftar_id)}}">
                                 <button type="button" class="btn light btn-primary btn-xs">Proses Permohonan</button>
                             </a>                            
                         @endif

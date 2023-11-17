@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Jadwal;
 use App\Models\Kecamatan;
+use App\Models\Layanan;
 use App\Models\Lokasi;
 use App\Models\Pendaftaran;
 use DateTime;
@@ -17,8 +19,9 @@ class MiminController extends Controller
 
     function permohonan()
     {
-        $data ['list_permohonan'] = Pendaftaran::where('daftar_status', 0)->get();
-        // dd($data ['permohonan_count']);
+        $p = Pendaftaran::where('daftar_status', 0)->get();
+        $data ['list_permohonan'] = $p->groupBy('daftar_kecamatan');
+        // dd($p);
         return view('mimin.permohonan', $data);
     }
 
@@ -33,6 +36,44 @@ class MiminController extends Controller
             ->count();
         // dd($data ['permohonan_count']);
         return view('mimin.permohonan-detail', $data);
+    }
+
+    function permohonanProses(){
+        return view('mimin.permohonan-proses');
+    }
+
+    public function simpanPermohonan(Request $request)
+    {
+        // dd($request->daftar_id);
+
+        $request->validate([
+            'penanggung_jawab' => 'required',
+            'waktu_pelaksana' => 'required',
+        ]);
+
+        // $jadwal = new Jadwal();
+        // $jadwal->jadwal_kecamatan = $request->
+        // Simpan data ke tabel jadwal
+        $jadwal = Jadwal::create([
+            'penanggung_jawab' => $request->penanggung_jawab,
+            'waktu_pelaksana' => $request->waktu_pelaksana,
+            'id_permohonan' => $request->id_permohonan,
+        ]);
+
+        // Ambil data dari tabel permohonan
+        $permohonan = Pendaftaran::findOrFail($request->id_permohonan);
+
+        // Simpan data ke tabel layanan
+        Layanan::create([
+            'id_jadwal' => $jadwal->id,
+            'kecamatan' => $permohonan->kecamatan,
+            'lokasi' => $permohonan->lokasi,
+            'nopol' => $permohonan->nopol,
+            'id_permohonan' => $request->id_permohonan,
+        ]);
+
+        // Redirect atau tampilkan pesan sukses
+        return redirect()->route('nama_rute')->with('success', 'Data berhasil disimpan.');
     }
 
     function pelayanan()
