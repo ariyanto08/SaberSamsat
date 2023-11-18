@@ -41,7 +41,7 @@ class WebController extends Controller
     function detail(Pendaftaran $daftar)
     {
         $data['daftar'] = $daftar;
-        $data['nopol'] = DaftarNopol::where('nopol_daftar', $daftar->daftar_id)->first();
+        $data['list_nopol'] = DaftarNopol::where('nopol_daftar', $daftar->daftar_id)->get();
         return view('daftar-berhasil', $data);
     }
 }

@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Jadwal;
-use App\Models\Kecamatan;
-use App\Models\Layanan;
-use App\Models\Lokasi;
-use App\Models\Pendaftaran;
 use DateTime;
+use App\Models\Jadwal;
+use App\Models\Lokasi;
+use App\Models\Layanan;
+use App\Models\Kecamatan;
+use App\Models\Pendaftaran;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class MiminController extends Controller
 {
@@ -19,9 +20,10 @@ class MiminController extends Controller
 
     function permohonan()
     {
-        $p = Pendaftaran::where('daftar_status', 0)->get();
-        $data ['list_permohonan'] = $p->groupBy('daftar_kecamatan');
-        // dd($p);
+        // $kecamatan =Kecamatan::select('kecamatan_id')->first();
+        // $p = Pendaftaran::where('daftar_status', 0)->get();
+        $data ['list_permohonan'] = Pendaftaran::all();
+        // dd($kecamatan);
         return view('mimin.permohonan', $data);
     }
 
@@ -91,7 +93,7 @@ class MiminController extends Controller
         $data ['list_kecamatan'] = Kecamatan::orderby('kecamatan_id', 'asc')->get();
         return view('mimin.pengaturan', $data);
     }
-    
+
     function tambahKecamatan()
     {
         $kecamatan = new Kecamatan();
@@ -100,10 +102,10 @@ class MiminController extends Controller
         $kecamatan->kecamatan_target_pendapatan = request('kecamatan_target_pendapatan');
         $kecamatan->save();
         // dd(request()->all());
-        
+
         return redirect('mimin/pengaturan');
     }
-    
+
     function pengaturanLokasi(Kecamatan $kecamatan)
     {
         $data ['kecamatan'] = $kecamatan;
@@ -111,8 +113,8 @@ class MiminController extends Controller
         // dd($data ['list_lokasi_kecamatan']);
 
         return view('mimin.pengaturan-lokasi', $data);
-    }    
-    
+    }
+
     function tambahLokasi($kecamatan_id)
     {
         // dd($kecamatan_id);
