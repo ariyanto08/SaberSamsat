@@ -1,16 +1,15 @@
 @extends('mimin.base')
 @section('content')
-    
+
     <div class="container-fluid">
         <div class="row page-titles">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item active"><a href="javascript:void(0)">Permohonan Kecamatan {{$kecamatan->kecamatan_nama}}</a></li>
-                
+                <li class="breadcrumb-item active"><a href="javascript:void(0)">Permohonan Kecamatan {{$kecamatan->kecamatan_nama}}</a></li>                
             </ol>
         </div>
         <!-- row -->
         <div class="row">
-            
+
             <div class="col-xl-3 col-xxl-3 col-lg-3 col-sm-3">
                 <div class="widget-stat card">
                     <div class="card-body p-4">
@@ -30,8 +29,8 @@
                     </div>
                 </div>
             </div>
-            
-            
+
+
             <div class="col-xl-6 col-xxl-6 col-lg-6 col-sm-6">
                 <div class="widget-stat card bg-success">
                     <div class="card-body p-4">
@@ -69,8 +68,8 @@
                     </div>
                 </div>
             </div>
-            
-            
+
+
         </div>
         <div class="row">
             <div class="col-12">
@@ -80,7 +79,7 @@
                         @if ($permohonan_count >= $kecamatan->kecamatan_target)
                             <a href="{{url('mimin/permohonan-proses', $kecamatan->kecamatan_id)}}">
                                 <button type="button" class="btn light btn-primary btn-xs">Proses Permohonan</button>
-                            </a>                            
+                            </a>
                         @endif
                     </div>
                     <div class="card-body">
@@ -106,16 +105,15 @@
                                             <td>{{$item->daftar_alamat}}</td>
                                             <td>
                                                 <a href="javascript:void(0)" class="badge badge-rounded badge-secondary">KB 1234 GA</a>
-
                                             </td>
                                             <td>
                                                 <div class="d-flex">
                                                 <a href="#" class="btn btn-primary shadow btn-xs sharp me-1"><i class="fas fa-pencil-alt"></i></a>
                                                 </div>
                                             </td>
-                                        </tr>                                        
+                                        </tr>
                                     @endforeach
-                                    
+
                                 </tbody>
                                 <tfoot>
                                     <tr>
@@ -132,9 +130,6 @@
                     </div>
                 </div>
             </div>
-            
-            
-            
         </div>
     </div>
 

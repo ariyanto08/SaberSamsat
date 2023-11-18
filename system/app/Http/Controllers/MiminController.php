@@ -9,6 +9,7 @@ use App\Models\Layanan;
 use App\Models\Lokasi;
 use App\Models\Pendaftaran;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class MiminController extends Controller
 {
@@ -96,7 +97,7 @@ class MiminController extends Controller
         $data ['list_kecamatan'] = Kecamatan::orderby('kecamatan_id', 'asc')->get();
         return view('mimin.pengaturan', $data);
     }
-    
+
     function tambahKecamatan()
     {
         $kecamatan = new Kecamatan();
@@ -105,10 +106,10 @@ class MiminController extends Controller
         $kecamatan->kecamatan_target_pendapatan = request('kecamatan_target_pendapatan');
         $kecamatan->save();
         // dd(request()->all());
-        
+
         return redirect('mimin/pengaturan');
     }
-    
+
     function pengaturanLokasi(Kecamatan $kecamatan)
     {
         $data ['kecamatan'] = $kecamatan;
@@ -116,8 +117,8 @@ class MiminController extends Controller
         // dd($data ['list_lokasi_kecamatan']);
 
         return view('mimin.pengaturan-lokasi', $data);
-    }    
-    
+    }
+
     function tambahLokasi($kecamatan_id)
     {
         // dd($kecamatan_id);
