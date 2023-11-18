@@ -95,7 +95,7 @@
 
                     <div class="col-lg-4">
                         <h3>Jumlah Layanan</h3>
-                        <p><span style="font-size: 55px; font-weight: 700;">2.345</span></p>
+                        <p><span style="font-size: 55px; font-weight: 700;">{{$layanan_count}}</span></p>
                     </div>
                 </div>
             </div>

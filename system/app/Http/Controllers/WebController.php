@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Kecamatan;
 use App\Models\DaftarNopol;
+use App\Models\Layanan;
 use App\Models\Pendaftaran;
 use Illuminate\Http\Request;
 
@@ -12,6 +13,7 @@ class WebController extends Controller
     function index()
     {
         $data['kecamatan'] = Kecamatan::all();
+        $data['layanan_count'] = Layanan::where('layanan_status',1)->count();
         return view('beranda', $data);
     }
 

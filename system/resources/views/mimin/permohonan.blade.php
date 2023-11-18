@@ -18,7 +18,7 @@
                                             <div>
                                                 <h4 class="fs-20 mb-1">{{$item->kecamatan_nama}}</h4>
                                                 @foreach ($item->lokasi as $lokasi)
-                                                    <span class="d-block text-capitalize"><i class="fas fa-map-marker-alt me-2"></i>{{$lokasi->lokasi_nama}}</span>                                                    
+                                                    <span class="d-block text-capitalize"><i class="fas fa-map-marker-alt me-2"></i>{{$lokasi->lokasi_nama}}</span>
                                                 @endforeach
                                             </div>
                                         </div>
