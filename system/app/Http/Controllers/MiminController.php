@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\DaftarNopol;
 use App\Models\Jadwal;
 use App\Models\Kecamatan;
 use App\Models\Layanan;
 use App\Models\Lokasi;
 use App\Models\Pendaftaran;
-use DateTime;
 use Illuminate\Http\Request;
 
 class MiminController extends Controller
@@ -18,62 +18,67 @@ class MiminController extends Controller
     }
 
     function permohonan()
-    {
-        $p = Pendaftaran::where('daftar_status', 0)->get();
-        $data ['list_permohonan'] = $p->groupBy('daftar_kecamatan');
-        // dd($p);
+    {               
+        $data['list_kecamatan'] = Kecamatan::withCount('daftar')->with('lokasi')->whereHas('daftar', function ($query) {
+            $query->where('daftar_status', 0);
+        })->get();
+
         return view('mimin.permohonan', $data);
     }
 
-    function permohonanDetail(Pendaftaran $daftar)
+    function permohonanDetail(Kecamatan $kecamatan)
     {
-        $data ['permohonan'] = $daftar;
+        $data ['kecamatan'] = $kecamatan;
         $data ['list_permohonan'] = Pendaftaran::where('daftar_status', 0)
-            ->where('daftar_kecamatan', $daftar->daftar_kecamatan)
+            ->where('daftar_kecamatan', $kecamatan->kecamatan_id)
             ->get();
-        $data ['permohonan_count'] = Pendaftaran::where('daftar_kecamatan', $daftar->daftar_kecamatan)
+        $data ['permohonan_count'] = Pendaftaran::where('daftar_kecamatan', $kecamatan->kecamatan_id)
             ->where('daftar_status', 0)
             ->count();
         // dd($data ['permohonan_count']);
         return view('mimin.permohonan-detail', $data);
     }
 
-    function permohonanProses(){
-        return view('mimin.permohonan-proses');
+    function permohonanProses(Kecamatan $kecamatan)
+    {
+        $data ['kecamatan'] = $kecamatan;
+        $data ['lokasi'] = Lokasi::where('lokasi_kecamatan', $kecamatan->kecamatan_id)->first();
+
+        return view('mimin.permohonan-proses', $data);
     }
 
-    public function simpanPermohonan(Request $request)
+    public function prosesPermohonan(Request $request)
     {
-        // dd($request->daftar_id);
+        // dd(request()->all());
+        $jadwal = new Jadwal;
+        $jadwal->jadwal_kecamatan = request('jadwal_kecamatan');
+        $jadwal->jadwal_lokasi = request('jadwal_lokasi');
+        $jadwal->jadwal_penanggungjawab = request('jadwal_penanggungjawab');
+        $jadwal->jadwal_mulai = request('jadwal_mulai');
+        $jadwal->jadwal_selesai = request('jadwal_selesai');
+        $jadwal->jadwal_waktu = request('jadwal_waktu');
+        $jadwal->save();
 
-        $request->validate([
-            'penanggung_jawab' => 'required',
-            'waktu_pelaksana' => 'required',
-        ]);
+        $list_pemohon = Pendaftaran::where('daftar_status', 0)->where('daftar_kecamatan', $jadwal->jadwal_kecamatan)->get();        
 
-        // $jadwal = new Jadwal();
-        // $jadwal->jadwal_kecamatan = $request->
-        // Simpan data ke tabel jadwal
-        $jadwal = Jadwal::create([
-            'penanggung_jawab' => $request->penanggung_jawab,
-            'waktu_pelaksana' => $request->waktu_pelaksana,
-            'id_permohonan' => $request->id_permohonan,
-        ]);
+        foreach ($list_pemohon as $pemohon) {
+            $pemohon->daftar_status = 1;
+            $pemohon->daftar_jadwal = $jadwal->jadwal_id;
+            $pemohon->save();
+        }
 
-        // Ambil data dari tabel permohonan
-        $permohonan = Pendaftaran::findOrFail($request->id_permohonan);
+        foreach ($list_pemohon as $pemohon) {
+            $layanan = new Layanan;
+            $layanan->layanan_kecamatan = $pemohon->daftar_kecamatan;
+            $layanan->layanan_lokasi = $pemohon->daftar_lokasi;
+            $layanan->layanan_daftar = $pemohon->daftar_id;
+            $layanan->layanan_jadwal = $pemohon->daftar_jadwal;            
+            $nopol = DaftarNopol::where('nopol_daftar', $pemohon->daftar_id)->first();
+            $layanan->layanan_nopol = $nopol->nopol_daftar;
+            $layanan->save();
+        }
 
-        // Simpan data ke tabel layanan
-        Layanan::create([
-            'id_jadwal' => $jadwal->id,
-            'kecamatan' => $permohonan->kecamatan,
-            'lokasi' => $permohonan->lokasi,
-            'nopol' => $permohonan->nopol,
-            'id_permohonan' => $request->id_permohonan,
-        ]);
-
-        // Redirect atau tampilkan pesan sukses
-        return redirect()->route('nama_rute')->with('success', 'Data berhasil disimpan.');
+        return redirect('mimin/permohonan');
     }
 
     function pelayanan()

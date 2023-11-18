@@ -4,7 +4,7 @@
     <div class="container-fluid">
         <div class="row page-titles">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item active"><a href="javascript:void(0)">Permohonan Kecamatan {{$permohonan->kecamatan->kecamatan_nama}}</a></li>
+                <li class="breadcrumb-item active"><a href="javascript:void(0)">Permohonan Kecamatan {{$kecamatan->kecamatan_nama}}</a></li>
                 
             </ol>
         </div>
@@ -24,7 +24,7 @@
                             </span>
                             <div class="media-body">
                                 <p class="mb-1">Target Layanan</p>
-                                <h4 class="mb-0">{{$permohonan->kecamatan->kecamatan_target}} Layanan</h4>
+                                <h4 class="mb-0">{{$kecamatan->kecamatan_target}} Layanan</h4>
                             </div>
                         </div>
                     </div>
@@ -44,7 +44,7 @@
                             </span>
                             <div class="media-body text-white text-end">
                                 <p class="mb-1">Target Pendapatan</p>
-                                <h3 class="text-white">Rp. {{$permohonan->kecamatan->kecamatan_target_pendapatan}},-</h3>
+                                <h3 class="text-white">Rp. {{$kecamatan->kecamatan_target_pendapatan}},-</h3>
                             </div>
                         </div>
                     </div>
@@ -63,7 +63,7 @@
                             </span>
                             <div class="media-body text-white text-end">
                                 <p class="mb-1">Permohonan</p>
-                                <h3 class="text-white">298</h3>
+                                <h3 class="text-white">{{$permohonan_count}}</h3>
                             </div>
                         </div>
                     </div>
@@ -77,8 +77,8 @@
                 <div class="card">
                     <div class="card-header">
                         <h4 class="card-title">Data Pemohon Kecamatan Delta Pawan</h4>
-                        @if ($permohonan_count >= $permohonan->kecamatan->kecamatan_target)
-                            <a href="{{url('mimin/permohonan-proses', $permohonan->daftar_id)}}">
+                        @if ($permohonan_count >= $kecamatan->kecamatan_target)
+                            <a href="{{url('mimin/permohonan-proses', $kecamatan->kecamatan_id)}}">
                                 <button type="button" class="btn light btn-primary btn-xs">Proses Permohonan</button>
                             </a>                            
                         @endif

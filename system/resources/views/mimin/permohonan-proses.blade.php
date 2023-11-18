@@ -26,25 +26,35 @@
                                 <form action="{{url('mimin/permohonan-proses')}}" method="post">
                                     @csrf
                                     <div class="row">
+                                        <input type="text" name="jadwal_kecamatan" value="{{$kecamatan->kecamatan_id}}" hidden>
+                                        <input type="text" name="jadwal_lokasi" value="{{$lokasi->lokasi_id}}" hidden>
                                         <div class="col-lg-12 mb-2">
                                             <div class="mb-3">
                                                 <label class="text-label form-label">Penanggung Jawab<span class="text-danger">*</span></label>
-                                                <input type="text" name="firstName" class="form-control" placeholder="Nama Penanggung Jawab" required>
+                                                <input type="text" name="jadwal_penanggungjawab" class="form-control" placeholder="Nama Penanggung Jawab" required>
                                             </div>
                                         </div>                                        
-                                        <div class="col-lg-6 mb-2">
+                                        <div class="col-lg-4 mb-2">
                                             <div class="mb-3">
                                                 <label class="text-label form-label">Tanggal Mulai<span class="text-danger">*</span></label>
                                                 <div class="example">
-                                                    <input class="form-control input-daterange-datepicker" type="date" name="daterange">
+                                                    <input class="form-control input-daterange-datepicker" type="date" name="jadwal_mulai" required>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-lg-6 mb-2">
+                                        <div class="col-lg-4 mb-2">
                                             <div class="mb-3">
                                                 <label class="text-label form-label">Tanggal Selesai<span class="text-danger">*</span></label>
                                                 <div class="example">
-                                                    <input class="form-control input-daterange-datepicker" type="date" name="daterange">
+                                                    <input class="form-control input-daterange-datepicker" type="date" name="jadwal_selesai" required>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 mb-2">
+                                            <div class="mb-3">
+                                                <label class="text-label form-label">Waktu<span class="text-danger">*</span></label>
+                                                <div class="example">
+                                                    <input class="form-control input-daterange-datepicker" type="time" name="jadwal_waktu" required>
                                                 </div>
                                             </div>
                                         </div>
