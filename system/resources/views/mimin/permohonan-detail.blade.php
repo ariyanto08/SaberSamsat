@@ -47,7 +47,7 @@
                             </span>
                             <div class="media-body text-white text-end">
                                 <p class="mb-1">Target Pendapatan</p>
-                                <h3 class="text-white">Rp. {{ $kecamatan->kecamatan_target_pendapatan }},-</h3>
+                                <h3 class="text-white">Rp. {{ number_format($kecamatan->kecamatan_target_pendapatan) }},-</h3>
                             </div>
                         </div>
                     </div>
@@ -112,7 +112,7 @@
                                             <td>
                                                 @foreach ($item->nopol as $nopol)
                                                     <a href="javascript:void(0)"
-                                                        class="badge badge-rounded badge-secondary">KB {{$nopol->nopol_tengah}} {{$nopol->nopol_belakang}}</a>
+                                                        class="badge badge-rounded badge-secondary">KB {{$nopol->nopol_tengah}} <span class="text-uppercase">{{$nopol->nopol_belakang}}</span></a>
                                                 @endforeach
                                             </td>
                                             <td>

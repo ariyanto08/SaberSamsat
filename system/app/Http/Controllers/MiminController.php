@@ -98,7 +98,7 @@ class MiminController extends Controller
     function pelayananDetail(Kecamatan $kecamatan)
     {
         $data['kecamatan'] = $kecamatan;
-        $data['list_pelayanan'] = Layanan::with('nopol')
+        $data['list_pelayanan'] = Layanan::with('daftar.nopol')
         ->where('layanan_kecamatan', $kecamatan->kecamatan_id)->get();
         $data['layanan_count'] = Layanan::where('layanan_kecamatan', $kecamatan->kecamatan_id)
             ->where('layanan_status', 0)
@@ -106,6 +106,7 @@ class MiminController extends Controller
         $data['pelayanan_count'] = Layanan::where('layanan_kecamatan', $kecamatan->kecamatan_id)
             ->where('layanan_status', 1)
             ->count();
+
         return view('mimin.pelayanan-detail', $data);
     }
 

@@ -110,10 +110,10 @@
                                             <td>{{ $item->daftar->daftar_alamat }}</td>
                                             @if ($item->layanan_status == 1)
                                                 <td>
-                                                    @foreach ($item->nopol as $nopol)
+                                                    @foreach ($item->daftar->nopol as $nopol)
                                                         <a href="javascript:void(0)"
                                                             class="badge badge-rounded badge-success">KB
-                                                            {{ $nopol->nopol_tengah }} {{ $nopol->nopol_belakang }}</a>
+                                                            {{ $nopol->nopol_tengah }} <span class="text-uppercase">{{ $nopol->nopol_belakang }}</span></a>                                                        
                                                     @endforeach
                                                 </td>
                                                 <td>
@@ -132,10 +132,10 @@
                                                 </td>
                                             @else
                                                 <td>
-                                                    @foreach ($item->nopol as $nopol)
+                                                    @foreach ($item->daftar->nopol as $nopol)
                                                         <a href="javascript:void(0)"
                                                             class="badge badge-rounded badge-danger">KB
-                                                            {{ $nopol->nopol_tengah }} {{ $nopol->nopol_belakang }}</a>
+                                                            {{ $nopol->nopol_tengah }} <span class="text-uppercase">{{ $nopol->nopol_belakang }}</span></a>                                                        
                                                     @endforeach
                                                 </td>
                                                 <td>

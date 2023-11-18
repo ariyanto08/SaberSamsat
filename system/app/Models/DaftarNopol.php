@@ -18,4 +18,9 @@ class DaftarNopol extends Model
     {
         return $this->belongsTo(Layanan::class, 'layanan_nopol');
     }
+
+    public function daftar()
+    {
+        return $this->belongsTo(Pendaftaran::class, 'nopol_daftar');
+    }
 }
