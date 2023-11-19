@@ -1,6 +1,6 @@
 <?php
 
-
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\WebController;
 use App\Http\Controllers\MiminController;
 use Illuminate\Support\Facades\Route;
@@ -17,10 +17,17 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/',[WebController::class,'index']);
+Route::post('/',[WebController::class,'kontak']);
 Route::post('/',[WebController::class,'daftar']);
 Route::get('daftar-berhasil/{daftar}',[WebController::class,'detail']);
 
-Route::prefix('mimin')->group(function () {
+//login
+Route::get('mimin/login',[AuthController::class,'showLogin'])->name('login');
+Route::post('mimin/login',[AuthController::class,'prosesLogin']);
+Route::get('logout',[AuthController::class,'logout']);
+
+
+Route::prefix('mimin')->middleware('auth')->group(function () {
    Route::get('beranda', [MiminController::class, 'beranda']);
    Route::get('permohonan', [MiminController::class, 'permohonan']);
    Route::get('permohonan-detail/{kecamatan}', [MiminController::class, 'permohonanDetail']);

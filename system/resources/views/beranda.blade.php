@@ -62,7 +62,7 @@
             </nav><!-- .navbar -->
             <a class="buy-tickets" href="#" data-bs-toggle="modal" data-bs-target="#buy-ticket-modal"
                 data-ticket-type="pro-access">Pendaftaran</a>
-            <a class="buy-tickets" href="http://saber.ketapangkab.go.id/mimin">Login</a>
+            <a class="buy-tickets" href="{{url('mimin/login')}}">Login</a>
 
 
 
@@ -423,27 +423,29 @@
                 </div>
 
                 <div class="form">
-                    <form action="forms/contact.php" method="post" role="form" class="php-email-form">
+                    <form action="{{url('/')}}" method="POST" role="form" class="php-email-form">
+                        @csrf
                         <div class="row">
                             <div class="form-group col-md-6">
-                                <input type="text" name="name" class="form-control" id="name"
+                                <input type="text" name="kontak_nama" class="form-control" id="name"
                                     placeholder="Nama Anda" required>
                             </div>
                             <div class="form-group col-md-6 mt-3 mt-md-0">
-                                <input type="email" class="form-control" name="email" id="email"
+                                <input type="email" class="form-control" name="kontak_email" id="email"
                                     placeholder="Email Anda" required>
                             </div>
                         </div>
                         <div class="form-group mt-3">
-                            <input type="text" class="form-control" name="subject" id="subject"
+                            <input type="text" class="form-control" name="kontak_judul" id="subject"
                                 placeholder="Judul Pesan" required>
                         </div>
                         <div class="form-group mt-3">
-                            <textarea class="form-control" name="message" rows="5" placeholder="Pesan" required></textarea>
+                            <textarea class="form-control" name="kontak_pesan" rows="5" placeholder="Pesan" required></textarea>
                         </div>
 
-                        <div class="text-center" style="margin-top: 30px;"><button type="submit">Kirim
-                                Pesan</button></div>
+                        <div class="text-center" style="margin-top: 30px;">
+                            <button class="btn" type="submit">Kirim Pesan</button>
+                        </div>
                     </form>
                 </div>
 

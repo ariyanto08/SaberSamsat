@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Kontak;
+use App\Models\Layanan;
 use App\Models\Kecamatan;
 use App\Models\DaftarNopol;
-use App\Models\Layanan;
 use App\Models\Pendaftaran;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class WebController extends Controller
 {
@@ -15,6 +17,18 @@ class WebController extends Controller
         $data['kecamatan'] = Kecamatan::all();
         $data['layanan_count'] = Layanan::where('layanan_status',1)->count();
         return view('beranda', $data);
+    }
+
+    function kontak(Request $request)
+    {
+        $kontak = new Kontak;
+        $kontak->kontak_nama = request('kontak_nama');
+        $kontak->kontak_email = request('kontak_email');
+        $kontak->kontak_judul = request('kontak_judul');
+        $kontak->kontak_pesan = request('kontak_pesan');
+        $kontak->save();
+
+        return redirect('beranda');
     }
 
     function daftar(Request $request)
