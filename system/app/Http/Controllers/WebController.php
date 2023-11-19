@@ -18,7 +18,7 @@ class WebController extends Controller
         $data['layanan_count'] = Layanan::where('layanan_status',1)->count();
         $data['layanan'] = Layanan::where('layanan_status', 1)->count();
         $data['list_kecamatan'] = Kecamatan::with('layanan')->whereHas('layanan', function ($query) {
-            $query->where('layanan_status', 1);
+            $query->where('layanan_status', 0);
         })->with('jadwal')
         ->with('lokasi')->get();
         // dd($data['list_kecamatan']);

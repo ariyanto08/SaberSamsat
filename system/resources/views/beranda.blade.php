@@ -189,7 +189,7 @@
                         @foreach ($list_kecamatan as $item)
                             <li class="nav-item" style="margin-bottom: 10px;">
                                 <a class="nav-link" href="#day-{{$item->kecamatan_id}}" role="tab" data-bs-toggle="tab">{{$item->kecamatan_nama}}</a>
-                            </li>                            
+                            </li>
                         @endforeach
                     </ul>
                     <h3 class="sub-heading">Untuk sementara waktu hanya untuk Nopol wilayah Kalimantan Barat, <br>Pastikan
@@ -205,13 +205,13 @@
                                         <div class="col-md-10">
                                             <h4>{{ Carbon\Carbon::parse($item->jadwal_mulai)->format('d F Y') }}</h4>
                                             @foreach ($item->lokasi as $lokasi)
-                                                <p class="text-capitalize">{{$lokasi->lokasi_nama}}</p>                                        
+                                                <p class="text-capitalize">{{$lokasi->lokasi_nama}}</p>
                                             @endforeach
                                         </div>
-                                    </div>                                    
+                                    </div>
                                 @endforeach
 
-                            </div>                            
+                            </div>
                         @endforeach
                         <!-- End Schdule -->
 
@@ -219,7 +219,7 @@
 
                 </div>
 
-            </section><!-- End Schedule Section -->            
+            </section><!-- End Schedule Section -->
         @endif
 
 
