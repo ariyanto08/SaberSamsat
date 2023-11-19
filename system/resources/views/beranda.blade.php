@@ -372,20 +372,20 @@
                 </div>
 
                 <div class="form">
-                    <form action="{{url('/')}}" method="POST" role="form" class="php-email-form">
+                    <form action="{{url('kontak')}}" method="POST">
                         @csrf
                         <div class="row">
                             <div class="form-group col-md-6">
-                                <input type="text" name="kontak_nama" class="form-control" id="name"
+                                <input style="padding: 10px 10px 10px 10px;" type="text" name="kontak_nama" class="form-control" id="name"
                                     placeholder="Nama Anda" required>
                             </div>
                             <div class="form-group col-md-6 mt-3 mt-md-0">
-                                <input type="email" class="form-control" name="kontak_email" id="email"
+                                <input style="padding: 10px 10px 10px 10px;" type="email" class="form-control" name="kontak_email" id="email"
                                     placeholder="Email Anda" required>
                             </div>
                         </div>
                         <div class="form-group mt-3">
-                            <input type="text" class="form-control" name="kontak_judul" id="subject"
+                            <input style="padding: 10px 10px 10px 10px;" type="text" class="form-control" name="kontak_judul" id="subject"
                                 placeholder="Judul Pesan" required>
                         </div>
                         <div class="form-group mt-3">
@@ -393,7 +393,7 @@
                         </div>
 
                         <div class="text-center" style="margin-top: 30px;">
-                            <button class="btn" type="submit">Kirim Pesan</button>
+                            <button class="btn btn-primary" style=" background-color: #f82249; border: none; padding: 15px 15px 15px 15px;" type="submit">Kirim Pesan</button>
                         </div>
                     </form>
                 </div>
