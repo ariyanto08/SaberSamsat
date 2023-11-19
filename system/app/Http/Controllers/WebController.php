@@ -34,7 +34,7 @@ class WebController extends Controller
         $kontak->kontak_pesan = request('kontak_pesan');
         $kontak->save();
 
-        return redirect('beranda');
+        return redirect('/');
     }
 
     function daftar(Request $request)
