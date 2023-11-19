@@ -178,100 +178,49 @@
 
         </section><!-- End Buy Ticket Section -->
         <!-- ======= Schedule Section ======= -->
-        <section id="schedule" class="section-with-bg">
-            <div class="container" data-aos="fade-up">
-                <div class="section-header">
-                    <h2>Penjadwalan</h2>
-                    <p>Silahkan cek jadwal sesuai domisili Kecamatan pada saat pendaftaran</p>
-                </div>
+        @if ($layanan > 0)
+            <section id="schedule" class="section-with-bg">
+                <div class="container" data-aos="fade-up">
+                    <div class="section-header">
+                        <h2>Penjadwalan</h2>
+                        <p>Silahkan cek jadwal sesuai domisili Kecamatan pada saat pendaftaran</p>
+                    </div>
+                    <ul class="nav nav-tabs" role="tablist" data-aos="fade-up" data-aos-delay="100">
+                        @foreach ($list_kecamatan as $item)
+                            <li class="nav-item" style="margin-bottom: 10px;">
+                                <a class="nav-link" href="#day-{{$item->kecamatan_id}}" role="tab" data-bs-toggle="tab">{{$item->kecamatan_nama}}</a>
+                            </li>                            
+                        @endforeach
+                    </ul>
+                    <h3 class="sub-heading">Untuk sementara waktu hanya untuk Nopol wilayah Kalimantan Barat, <br>Pastikan
+                        anda membawa dokumen-dokumen terkait.</h3>
+                    <div class="tab-content row justify-content-center" data-aos="fade-up" data-aos-delay="200">
+                        <!-- Schdule -->
+                        @foreach ($list_kecamatan as $item)
+                            <div role="tabpanel" class="col-lg-9 tab-pane fade show" id="day-{{$item->kecamatan_id}}">
 
-                <ul class="nav nav-tabs" role="tablist" data-aos="fade-up" data-aos-delay="100">
-                    <li class="nav-item" style="margin-bottom: 10px;">
-                        <a class="nav-link active" href="#day-1" role="tab" data-bs-toggle="tab">Delta
-                            Pawan</a>
-                    </li>
-                    <li class="nav-item" style="margin-bottom: 10px;">
-                        <a class="nav-link" href="#day-2" role="tab" data-bs-toggle="tab">Simpang Hulu</a>
-                    </li>
-                    <li class="nav-item" style="margin-bottom: 10px;">
-                        <a class="nav-link" href="#day-3" role="tab" data-bs-toggle="tab">Simpang Dua</a>
-                    </li>
+                                @foreach ($item->jadwal as $jadwal)
+                                    <div class="row schedule-item">
+                                        <div class="col-md-2"><time>{{ Carbon\Carbon::parse($jadwal->jadwal_waktu)->format('H.i')}} WIB</time></div>
+                                        <div class="col-md-10">
+                                            <h4>{{ Carbon\Carbon::parse($item->jadwal_mulai)->format('d F Y') }}</h4>
+                                            @foreach ($item->lokasi as $lokasi)
+                                                <p class="text-capitalize">{{$lokasi->lokasi_nama}}</p>                                        
+                                            @endforeach
+                                        </div>
+                                    </div>                                    
+                                @endforeach
 
-                </ul>
-
-                <h3 class="sub-heading">Untuk sementara waktu hanya untuk Nopol wilayah Kalimantan Barat, <br>Pastikan
-                    anda membawa dokumen-dokumen terkait.</h3>
-
-                <div class="tab-content row justify-content-center" data-aos="fade-up" data-aos-delay="200">
-
-                    <!-- Schdule Day 1 -->
-                    <div role="tabpanel" class="col-lg-9 tab-pane fade show active" id="day-1">
-
-                        <div class="row schedule-item">
-                            <div class="col-md-2"><time>09:30 WIB</time></div>
-                            <div class="col-md-10">
-                                <h4>Senin, 24 Nopember 2023</h4>
-                                <p>Gedung SAMSAT KETAPANG</p>
-                            </div>
-                        </div>
-
-                        <div class="row schedule-item">
-                            <div class="col-md-2"><time>12:30 WIB</time></div>
-                            <div class="col-md-10">
-                                <h4>Senin, 24 Nopember 2023</h4>
-                                <p>Halaman Kantor Camat Delta Pawan</p>
-                            </div>
-                        </div>
-
-                        <div class="row schedule-item">
-                            <div class="col-md-2"><time>12:30 WIB</time></div>
-                            <div class="col-md-10">
-                                <h4>Selasa, 25 Nopember 2023</h4>
-                                <p>Halaman Gedung Pancasila Ketapang</p>
-                            </div>
-                        </div>
-
-
+                            </div>                            
+                        @endforeach
+                        <!-- End Schdule -->
 
                     </div>
-                    <!-- End Schdule Day 1 -->
-
-                    <!-- Schdule Day 2 -->
-                    <div role="tabpanel" class="col-lg-9  tab-pane fade" id="day-2">
-
-                        <div class="row schedule-item">
-                            <div class="col-md-2"><time>09:30 WIB</time></div>
-                            <div class="col-md-10">
-                                <h4>Selasa, 25 Nopember 2023</h4>
-                                <p>Kantor Camat Simpang Hulu</p>
-                            </div>
-                        </div>
-
-
-                    </div>
-                    <!-- End Schdule Day 2 -->
-
-                    <!-- Schdule Day 3 -->
-                    <div role="tabpanel" class="col-lg-9  tab-pane fade" id="day-3">
-
-                        <div class="row schedule-item">
-                            <div class="col-md-2"><time>12:30 WIB</time></div>
-                            <div class="col-md-10">
-                                <h4>Kamis, 28 Nopember 2023</h4>
-                                <p>Kantor Camat Simpang Dua</p>
-                            </div>
-                        </div>
-
-
-
-                    </div>
-                    <!-- End Schdule Day 2 -->
 
                 </div>
 
-            </div>
-
-        </section><!-- End Schedule Section -->
+            </section><!-- End Schedule Section -->            
+        @endif
 
 
         <!-- =======  F.A.Q Section ======= -->
