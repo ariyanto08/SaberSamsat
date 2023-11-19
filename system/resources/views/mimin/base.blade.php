@@ -32,6 +32,18 @@
     <link rel="stylesheet" href="{{url('public')}}/mimin/icons/flaticon_1/_flaticon_1.scss">
     <link rel="stylesheet" href="{{url('public')}}/mimin/icons/flaticon_1/flaticon_1.css">
     <link rel="stylesheet" href="{{url('public')}}/mimin/icons/flaticon_1/flaticon_1.html">
+    <link rel="stylesheet" href="{{url('public')}}/mimin/icons/font-awesome/css/all.css">
+    <link rel="stylesheet" href="{{url('public')}}/mimin/icons/font-awesome/css/regular.css">
+    <link rel="stylesheet" href="{{url('public')}}/mimin/icons/font-awesome/css/solid.css">
+    <link rel="stylesheet" href="{{url('public')}}/mimin/icons/font-awesome/css/brands.css">
+    <link rel="stylesheet" href="{{url('public')}}/mimin/icons/font-awesome/css/fontawesome.css">
+    <link rel="stylesheet" href="{{url('public')}}/mimin/icons/font-awesome/scss/fontawesome.scss">
+    <link rel="stylesheet" href="{{url('public')}}/mimin/icons/font-awesome/scss/solid.scss">
+    <link rel="stylesheet" href="{{url('public')}}/mimin/icons/font-awesome/scss/brands.scss">
+    <link rel="stylesheet" href="{{url('public')}}/mimin/icons/font-awesome/scss/regular.scss">
+    <link rel="stylesheet" href="{{url('public')}}/mimin/icons/font-awesome/svgs/regular">
+    <link rel="stylesheet" href="{{url('public')}}/mimin/icons/font-awesome/svgs/solid">
+    <link rel="stylesheet" href="{{url('public')}}/mimin/icons/font-awesome/svgs/brands">
 
 
 
@@ -60,7 +72,7 @@
         <!--**********************************
             Header start
         ***********************************-->
-        @include('mimin.layout.header')        
+        @include('mimin.layout.header')
         <!--**********************************
             Header end ti-comment-alt
         ***********************************-->
@@ -120,13 +132,13 @@
 
     <!-- Dashboard 1 -->
     <script src="{{url('public')}}/mimin/js/dashboard/dashboard-1.js"></script>
-    
+
     <script src="{{url('public')}}/mimin/js/plugins-init/datatables.init.js"></script>
 
 
     <script src="{{url('public')}}/mimin/js/custom.min.js"></script>
-    <script src="{{url('public')}}/mimin/js/dlabnav-init.js"></script>  
-    
+    <script src="{{url('public')}}/mimin/js/dlabnav-init.js"></script>
+
     <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.js"></script>
     <script>
         $(document).ready( function () {

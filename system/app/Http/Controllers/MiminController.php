@@ -10,6 +10,7 @@ use App\Models\Lokasi;
 use App\Models\Pendaftaran;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Kontak;
 
 class MiminController extends Controller
 {
@@ -89,7 +90,7 @@ class MiminController extends Controller
     {
         $data['list_kecamatan'] = Kecamatan::withCount(['daftar' => function ($query) {
             $query->where('daftar_status', 1);
-        }])->with('lokasi')->whereHas('daftar', function ($query) {
+        }])->with('lokasi')->with('layanan')->whereHas('daftar', function ($query) {
             $query->where('daftar_status', 1);
         })->get();
         return view('mimin.pelayanan', $data);
@@ -136,6 +137,16 @@ class MiminController extends Controller
         return redirect('mimin/pengaturan');
     }
 
+    function editKecamatan(Kecamatan $kecamatan)
+    {
+        $kecamatan->kecamatan_nama = request('kecamatan_nama');
+        $kecamatan->kecamatan_target = request('kecamatan_target');
+        $kecamatan->kecamatan_target_pendapatan = request('kecamatan_target_pendapatan');
+        $kecamatan->save();
+
+        return redirect('mimin/pengaturan');
+    }
+
     function pengaturanLokasi(Kecamatan $kecamatan)
     {
         $data['kecamatan'] = $kecamatan;
@@ -155,5 +166,20 @@ class MiminController extends Controller
         $lokasi->save();
 
         return redirect('mimin/pengaturan-lokasi/' . $kecamatan_id);
+    }
+
+    function pesan()
+    {
+        $data['list_pesan'] = Kontak::orderby('kontak_id', 'asc')->get();
+
+        return view('mimin.pesan',$data);
+    }
+
+    function aksiPesan(Kontak $kontak)
+    {
+        $kontak->kontak_status = 1;
+        $kontak->save();
+
+        return redirect()->back();
     }
 }

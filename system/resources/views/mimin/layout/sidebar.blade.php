@@ -27,6 +27,11 @@
                     <span class="nav-text">Pengaturan</span>
                 </a>
             </li>
+            <li><a class="" href="{{url('mimin/pesan')}}" aria-expanded="false">
+                    <i class="fa fa-bell"></i>
+                    <span class="nav-text">Pesan</span>
+                </a>
+            </li>
 
         </ul>
         <div class="plus-box">

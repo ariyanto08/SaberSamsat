@@ -203,7 +203,7 @@
                                     <div class="row schedule-item">
                                         <div class="col-md-2"><time>{{ Carbon\Carbon::parse($jadwal->jadwal_waktu)->format('H.i')}} WIB</time></div>
                                         <div class="col-md-10">
-                                            <h4>{{ Carbon\Carbon::parse($item->jadwal_mulai)->format('d F Y') }}</h4>
+                                            <h4>{{ Carbon\Carbon::parse($jadwal->jadwal_mulai)->format('d F Y') }}</h4>
                                             @foreach ($item->lokasi as $lokasi)
                                                 <p class="text-capitalize">{{$lokasi->lokasi_nama}}</p>
                                             @endforeach
