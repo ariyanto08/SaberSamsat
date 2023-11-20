@@ -16,7 +16,9 @@ class MiminController extends Controller
 {
     function beranda()
     {
-        return view('mimin.beranda');
+        $data['layanan_count'] = Layanan::where('layanan_status',1)->count();
+        $data['antrian_layanan_count'] = Layanan::where('layanan_status',0)->count();
+        return view('mimin.beranda',$data);
     }
 
     function permohonan()

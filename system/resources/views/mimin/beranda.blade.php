@@ -22,7 +22,7 @@
                                 </span>
                                 <div class="media-body">
                                     <p class="mb-1">Jumlah Terlayani</p>
-                                    <h4 class="mb-0">1.234 Layanan</h4>
+                                    <h4 class="mb-0">{{$layanan_count}}</h4>
                                 </div>
                             </div>
                         </div>
@@ -74,7 +74,7 @@
                             </span>
                             <div class="media-body">
                                 <p class="mb-1">Antrian Layanan</p>
-                                <h4 class="mb-0">1.234 Layanan</h4>
+                                <h4 class="mb-0">{{$antrian_layanan_count}}</h4>
 
                             </div>
                         </div>

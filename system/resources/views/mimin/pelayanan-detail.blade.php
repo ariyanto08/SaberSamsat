@@ -113,7 +113,7 @@
                                                     @foreach ($item->daftar->nopol as $nopol)
                                                         <a href="javascript:void(0)"
                                                             class="badge badge-rounded badge-success">KB
-                                                            {{ $nopol->nopol_tengah }} <span class="text-uppercase">{{ $nopol->nopol_belakang }}</span></a>                                                        
+                                                            {{ $nopol->nopol_tengah }} <span class="text-uppercase">{{ $nopol->nopol_belakang }}</span></a>
                                                     @endforeach
                                                 </td>
                                                 <td>
@@ -135,7 +135,7 @@
                                                     @foreach ($item->daftar->nopol as $nopol)
                                                         <a href="javascript:void(0)"
                                                             class="badge badge-rounded badge-danger">KB
-                                                            {{ $nopol->nopol_tengah }} <span class="text-uppercase">{{ $nopol->nopol_belakang }}</span></a>                                                        
+                                                            {{ $nopol->nopol_tengah }} <span class="text-uppercase">{{ $nopol->nopol_belakang }}</span></a>
                                                     @endforeach
                                                 </td>
                                                 <td>

@@ -62,7 +62,7 @@
             </nav><!-- .navbar -->
             <a class="buy-tickets" href="#" data-bs-toggle="modal" data-bs-target="#buy-ticket-modal"
                 data-ticket-type="pro-access">Pendaftaran</a>
-            <a class="buy-tickets" href="{{url('mimin/login')}}">Login</a>
+            <a class="buy-tickets" href="{{ url('mimin/login') }}">Login</a>
 
 
 
@@ -95,7 +95,7 @@
 
                     <div class="col-lg-4">
                         <h3>Jumlah Layanan</h3>
-                        <p><span style="font-size: 55px; font-weight: 700;">{{$layanan_count}}</span></p>
+                        <p><span style="font-size: 55px; font-weight: 700;">{{ $layanan_count }}</span></p>
                     </div>
                 </div>
             </div>
@@ -160,8 +160,8 @@
                                             placeholder="XXXX" maxlength="4">
                                     </div>
                                     <div class="col col-lg-2">
-                                        <input type="text" class="form-control text-center" name="nopol_belakang[]"
-                                            placeholder="XX" maxlength="2">
+                                        <input type="text" class="form-control text-center"
+                                            name="nopol_belakang[]" placeholder="XX" maxlength="2">
                                     </div>
                                 </div>
                                 <div id="dynamicNopol"></div>
@@ -188,26 +188,40 @@
                     <ul class="nav nav-tabs" role="tablist" data-aos="fade-up" data-aos-delay="100">
                         @foreach ($list_kecamatan as $item)
                             <li class="nav-item" style="margin-bottom: 10px;">
-                                <a class="nav-link" href="#day-{{$item->kecamatan_id}}" role="tab" data-bs-toggle="tab">{{$item->kecamatan_nama}}</a>
+                                <a class="nav-link" href="#day-{{ $item->kecamatan_id }}" role="tab"
+                                    data-bs-toggle="tab">{{ $item->kecamatan_nama }}</a>
                             </li>
                         @endforeach
                     </ul>
-                    <h3 class="sub-heading">Untuk sementara waktu hanya untuk Nopol wilayah Kalimantan Barat, <br>Pastikan
-                        anda membawa dokumen-dokumen terkait.</h3>
+                    <h3 class="sub-heading">Untuk sementara waktu hanya untuk Nopol wilayah Kalimantan Barat,
+                        <br>Pastikan
+                        anda membawa dokumen-dokumen terkait.
+                    </h3>
                     <div class="tab-content row justify-content-center" data-aos="fade-up" data-aos-delay="200">
                         <!-- Schdule -->
                         @foreach ($list_kecamatan as $item)
-                            <div role="tabpanel" class="col-lg-9 tab-pane fade show" id="day-{{$item->kecamatan_id}}">
+                            <div role="tabpanel" class="col-lg-9 tab-pane fade show"
+                                id="day-{{ $item->kecamatan_id }}">
 
                                 @foreach ($item->jadwal as $jadwal)
                                     <div class="row schedule-item">
-                                        <div class="col-md-2"><time>{{ Carbon\Carbon::parse($jadwal->jadwal_waktu)->format('H.i')}} WIB</time></div>
-                                        <div class="col-md-10">
-                                            <h4>{{ Carbon\Carbon::parse($jadwal->jadwal_mulai)->format('d F Y') }}</h4>
+                                        <div class="col-md-2">
+                                            <time>{{ Carbon\Carbon::parse($jadwal->jadwal_waktu)->format('H.i') }}
+                                                WIB</time>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <h4>{{ Carbon\Carbon::parse($jadwal->jadwal_mulai)->format('d F Y') }} -
+                                                {{ Carbon\Carbon::parse($jadwal->jadwal_selesai)->format('d F Y') }}
+                                            </h4>
                                             @foreach ($item->lokasi as $lokasi)
-                                                <p class="text-capitalize">{{$lokasi->lokasi_nama}}</p>
+                                                <p class="text-capitalize">{{ $lokasi->lokasi_nama }}</p>
                                             @endforeach
                                         </div>
+                                        @if (now() > Carbon\Carbon::parse($jadwal->jadwal_selesai))
+                                            <div class="col-md-2"> <button class="btn btn-primary"
+                                                    style=" background-color: #f82249; border: none; padding: 15px 15px 15px 15px; border-radius: 25px">Tutup</button>
+                                            </div>
+                                        @endif
                                     </div>
                                 @endforeach
 
@@ -372,28 +386,30 @@
                 </div>
 
                 <div class="form">
-                    <form action="{{url('kontak')}}" method="POST">
+                    <form action="{{ url('kontak') }}" method="POST">
                         @csrf
                         <div class="row">
                             <div class="form-group col-md-6">
-                                <input style="padding: 10px 10px 10px 10px;" type="text" name="kontak_nama" class="form-control" id="name"
-                                    placeholder="Nama Anda" required>
+                                <input style="padding: 10px 10px 10px 10px;" type="text" name="kontak_nama"
+                                    class="form-control" id="name" placeholder="Nama Anda" required>
                             </div>
                             <div class="form-group col-md-6 mt-3 mt-md-0">
-                                <input style="padding: 10px 10px 10px 10px;" type="email" class="form-control" name="kontak_email" id="email"
-                                    placeholder="Email Anda" required>
+                                <input style="padding: 10px 10px 10px 10px;" type="email" class="form-control"
+                                    name="kontak_email" id="email" placeholder="Email Anda" required>
                             </div>
                         </div>
                         <div class="form-group mt-3">
-                            <input style="padding: 10px 10px 10px 10px;" type="text" class="form-control" name="kontak_judul" id="subject"
-                                placeholder="Judul Pesan" required>
+                            <input style="padding: 10px 10px 10px 10px;" type="text" class="form-control"
+                                name="kontak_judul" id="subject" placeholder="Judul Pesan" required>
                         </div>
                         <div class="form-group mt-3">
                             <textarea class="form-control" name="kontak_pesan" rows="5" placeholder="Pesan" required></textarea>
                         </div>
 
                         <div class="text-center" style="margin-top: 30px;">
-                            <button class="btn btn-primary" style=" background-color: #f82249; border: none; padding: 15px 15px 15px 15px;" type="submit">Kirim Pesan</button>
+                            <button class="btn btn-primary"
+                                style=" background-color: #f82249; border: none; padding: 15px 15px 15px 15px; border-radius: 35px"
+                                type="submit">Kirim Pesan</button>
                         </div>
                     </form>
                 </div>
