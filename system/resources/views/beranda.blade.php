@@ -113,6 +113,7 @@
                                 aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
+                            @include('notif')
                             <form method="POST" action="{{ url('daftar-berhasil') }}" class="form-inlin">
                                 @csrf
                                 <div class="form-group">
@@ -205,7 +206,7 @@
                                         <input style="padding: 15px 15px 15px 15px; border-radius: 30px 0px 0px 30px; background-color: rgb(0, 0, 0, 0);"
                                             type="text" name="cari_id" class="form-control" placeholder="Cari ID" aria-label="Cari ID" aria-describedby="basic-addon2">
                                         <div class="input-group-append">
-                                            <button style="padding: 15px 30px 15px 30px; background-color: #f82249; border: none; border-radius: 0px 30px 30px 0px; color:#fff;" 
+                                            <button style="padding: 15px 30px 15px 30px; background-color: #f82249; border: none; border-radius: 0px 30px 30px 0px; color:#fff;"
                                                 class="btn btn-outline-secondary" type="submit" id="submit-btn">Cari</button>
                                         </div>
                                     </div>

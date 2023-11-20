@@ -24,8 +24,8 @@ class WebController extends Controller
         $data['list_kecamatan'] = Kecamatan::with('layanan')->whereHas('layanan', function ($query) {
             $query->where('layanan_status', 0);
         })->with('jadwal')
-        ->with('lokasi')
-        ->with('daftar')->get();
+            ->with('lokasi')
+            ->with('daftar')->get();
         // dd($data['list_kecamatan']);
         return view('beranda', $data);
     }
@@ -34,11 +34,11 @@ class WebController extends Controller
     {
         $input = request('cari_id');
         $data['pendaftar'] = Pendaftaran::where('daftar_id', $input)
-        ->with('jadwal')
-        ->with('kecamatan')
-        ->with('lokasi')
-        ->with('nopol')
-        ->first();
+            ->with('jadwal')
+            ->with('kecamatan')
+            ->with('lokasi')
+            ->with('nopol')
+            ->first();
 
         return view('detail-pendaftaran', $data);
     }
@@ -92,7 +92,7 @@ class WebController extends Controller
 
         // If validation fails, redirect back with errors
         if ($validator->fails()) {
-            return redirect()->back()->with('error', 'Nopol tidak terdaftar')->withInput();
+            return redirect()->back()->with('error', 'Nomor Polisi Tidak Terdaftar, Silahkan Daftar Ulang Dengan Nomor Polisi Yang Benar')->withInput();
         }
 
         // Validation passed, continue with saving the data
@@ -115,7 +115,7 @@ class WebController extends Controller
 
             if (!$nopolExists) {
                 // If nopol_tengah and nopol_belakang do not exist, show an error message and redirect back
-                return redirect()->back()->with('error', 'Nopol ' . $request->nopol_tengah[$i] . ' ' . $request->nopol_belakang[$i] . ' tidak terdaftar')->withInput();
+                return redirect()->back()->with('errors', 'Nopol ' . $request->nopol_tengah[$i] . ' ' . $request->nopol_belakang[$i] . ' tidak terdaftar')->withInput();
             }
 
             // Retrieve additional data from the existing nopol record
