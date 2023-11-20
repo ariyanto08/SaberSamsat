@@ -53,7 +53,7 @@
 
             <nav id="navbar" class="navbar order-last order-lg-0">
                 <ul>
-                    <li><a class="nav-link scrollto" href="index.html">Beranda</a></li>
+                    <li><a class="nav-link scrollto" href="{{url('/')}}">Beranda</a></li>
 
                 </ul>
                 <i class="bi bi-list mobile-nav-toggle"></i>
@@ -97,9 +97,9 @@
                             <div class="col-md-10">
                                 @if ($pendaftar->jadwal == null)
                                     <h4>Permohonan anda belum diproses.</h4>
-                                @else                                
+                                @else
                                     <h4>{{ Carbon\Carbon::parse($pendaftar->jadwal->jadwal_mulai)->format('d F Y') }} -
-                                        {{ Carbon\Carbon::parse($pendaftar->jadwal->jadwal_selesai)->format('d F Y') }}</h4>                                    
+                                        {{ Carbon\Carbon::parse($pendaftar->jadwal->jadwal_selesai)->format('d F Y') }}</h4>
                                 @endif
 
                             </div>
@@ -109,8 +109,8 @@
                             <div class="col-md-10">
                                 @if ($pendaftar->jadwal == null)
                                     <h4>Permohonan anda belum diproses.</h4>
-                                @else                                
-                                    <h4>{{ Carbon\Carbon::parse($pendaftar->jadwal->jadwal_waktu)->format('H.i') }} WIB - Selesai</h4>                                    
+                                @else
+                                    <h4>{{ Carbon\Carbon::parse($pendaftar->jadwal->jadwal_waktu)->format('H.i') }} WIB - Selesai</h4>
                                 @endif
                             </div>
                         </div>
@@ -132,7 +132,7 @@
                             <div class="col-md-2"><time>NOPOL</time></div>
                             @foreach ($pendaftar->nopol as $item)
                                 <div class="col-md-2">
-                                    <h4><a class="nopols">KB {{$item->nopol_tengah}} {{$item->nopol_belakang}}</a></h4>                                    
+                                    <h4><a class="nopols">KB {{$item->nopol_tengah}} {{$item->nopol_belakang}}</a></h4>
                                 </div>
                             @endforeach
                         </div>
