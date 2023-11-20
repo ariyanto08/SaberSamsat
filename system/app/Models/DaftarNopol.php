@@ -23,4 +23,9 @@ class DaftarNopol extends Model
     {
         return $this->belongsTo(Pendaftaran::class, 'nopol_daftar');
     }
+
+    public function layanan_count()
+    {
+        return $this->hasMany(Layanan::class, 'layanan_nopol', 'nopol_id');
+    }
 }

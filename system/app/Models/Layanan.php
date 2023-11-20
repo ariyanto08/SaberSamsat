@@ -28,7 +28,7 @@ class Layanan extends Model
     }
     public function nopol()
     {
-        return $this->hasMany(DaftarNopol::class, 'nopol_id');
+        return $this->belongsTo(DaftarNopol::class, 'nopol_id');
     }
     public function jadwal()
     {

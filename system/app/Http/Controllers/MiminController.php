@@ -16,10 +16,13 @@ class MiminController extends Controller
 {
     function beranda()
     {
-        // $data['mobil_count'] = Layanan::withCount(['nopol' =>function($query){
-        //     $query->where('nopol_jenis','Roda 4')->get();
-        // }]);
-        // dd($data['mobil_count']);
+        $data['mobil_count'] = DaftarNopol::where('nopol_jenis', 'Roda 4')->whereHas('layanan_count', function ($query) {
+            $query->where('layanan_status', 0);
+        })->count();
+        $data['motor_count'] = DaftarNopol::where('nopol_jenis', 'Roda 2')->whereHas('layanan_count', function ($query) {
+            $query->where('layanan_status', 0);
+        })->count();
+        // dd($data['motor_count']);
         $data['layanan_count'] = Layanan::where('layanan_status',1)->count();
         $data['antrian_layanan_count'] = Layanan::where('layanan_status',0)->count();
         return view('mimin.beranda',$data);
@@ -85,7 +88,7 @@ class MiminController extends Controller
             $layanan->layanan_daftar = $pemohon->daftar_id;
             $layanan->layanan_jadwal = $pemohon->daftar_jadwal;
             $nopol = DaftarNopol::where('nopol_daftar', $pemohon->daftar_id)->first();
-            $layanan->layanan_nopol = $nopol->nopol_daftar;
+            $layanan->layanan_nopol = $nopol->nopol_id;
             $layanan->save();
         }
 

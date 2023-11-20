@@ -97,7 +97,7 @@
                             </span>
                             <div class="media-body">
                                 <p class="mb-1">Antrian Motor</p>
-                                <h4 class="mb-0">543 Motor</h4>
+                                <h4 class="mb-0">{{$motor_count}} Motor</h4>
                             </div>
                         </div>
                     </div>
@@ -120,7 +120,7 @@
                             </span>
                             <div class="media-body">
                                 <p class="mb-1">Antrian Mobil</p>
-                                <h4 class="mb-0">1.234 Mobil</h4>
+                                <h4 class="mb-0">{{$mobil_count}} Mobil</h4>
                             </div>
                         </div>
                     </div>
