@@ -48,7 +48,7 @@
                             </span>
                             <div class="media-body text-white text-end">
                                 <p class="mb-1">Pendapatan Pajak</p>
-                                <h3 class="text-white">Rp. 80.500.000.000,-</h3>
+                                <h3 class="text-white">Rp. {{ number_format($grandtotal_pajak) }},-</h3>
                             </div>
                         </div>
                     </div>

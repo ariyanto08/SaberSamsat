@@ -16,6 +16,9 @@ class MiminController extends Controller
 {
     function beranda()
     {
+        $data['grandtotal_pajak'] = DaftarNopol::whereIn('nopol_id', function ($query) {
+            $query->select('layanan_nopol')->from('saber_layanan')->where('layanan_status', 1);
+        })->sum('nopol_grandtotal');
         $data['mobil_count'] = DaftarNopol::where('nopol_jenis', 'Roda 4')->whereHas('layanan_count', function ($query) {
             $query->where('layanan_status', 0);
         })->count();
@@ -23,9 +26,9 @@ class MiminController extends Controller
             $query->where('layanan_status', 0);
         })->count();
         // dd($data['motor_count']);
-        $data['layanan_count'] = Layanan::where('layanan_status',1)->count();
-        $data['antrian_layanan_count'] = Layanan::where('layanan_status',0)->count();
-        return view('mimin.beranda',$data);
+        $data['layanan_count'] = Layanan::where('layanan_status', 1)->count();
+        $data['antrian_layanan_count'] = Layanan::where('layanan_status', 0)->count();
+        return view('mimin.beranda', $data);
     }
 
     function permohonan()
@@ -109,13 +112,17 @@ class MiminController extends Controller
     {
         $data['kecamatan'] = $kecamatan;
         $data['list_pelayanan'] = Layanan::with('daftar.nopol')
-        ->where('layanan_kecamatan', $kecamatan->kecamatan_id)->get();
+            ->where('layanan_kecamatan', $kecamatan->kecamatan_id)->get();
         $data['layanan_count'] = Layanan::where('layanan_kecamatan', $kecamatan->kecamatan_id)
             ->where('layanan_status', 0)
             ->count();
         $data['pelayanan_count'] = Layanan::where('layanan_kecamatan', $kecamatan->kecamatan_id)
             ->where('layanan_status', 1)
             ->count();
+        $data['grandtotal_pajak'] = DaftarNopol::whereIn('nopol_id', function ($query) {
+            $query->select('layanan_nopol')->from('saber_layanan')->where('layanan_status', 1);
+        })->sum('nopol_grandtotal');
+        // dd($data['grandtotal_pajak']);
 
         return view('mimin.pelayanan-detail', $data);
     }
@@ -181,7 +188,7 @@ class MiminController extends Controller
     {
         $data['list_pesan'] = Kontak::orderby('kontak_id', 'asc')->get();
 
-        return view('mimin.pesan',$data);
+        return view('mimin.pesan', $data);
     }
 
     function aksiPesan(Kontak $kontak)

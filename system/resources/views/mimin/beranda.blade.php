@@ -50,7 +50,7 @@
                                 </span>
                                 <div class="media-body">
                                     <p class="mb-1">Jumlah Pajak</p>
-                                    <h4 class="mb-0">Rp. 1.223.456.678</h4>
+                                    <h4 class="mb-0">Rp. {{ number_format($grandtotal_pajak) }}</h4>
                                 </div>
                             </div>
                         </div>
