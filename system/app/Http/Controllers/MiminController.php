@@ -16,6 +16,10 @@ class MiminController extends Controller
 {
     function beranda()
     {
+        // $data['mobil_count'] = Layanan::withCount(['nopol' =>function($query){
+        //     $query->where('nopol_jenis','Roda 4')->get();
+        // }]);
+        // dd($data['mobil_count']);
         $data['layanan_count'] = Layanan::where('layanan_status',1)->count();
         $data['antrian_layanan_count'] = Layanan::where('layanan_status',0)->count();
         return view('mimin.beranda',$data);

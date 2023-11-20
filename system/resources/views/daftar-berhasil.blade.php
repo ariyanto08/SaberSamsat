@@ -125,7 +125,7 @@
                             </div>
                             <div class="col-md-8">
 
-                                <a class="nopols" href="#">ANDA TERMASUK NO. 56 DARI KUOTA 100 LAYANAN</a>
+                                <a class="nopols" href="#">ANDA TERMASUK NO. {{$urutan_daftar}} DARI KUOTA {{$daftar->kecamatan->kecamatan_target}} LAYANAN</a>
 
                             </div>
                         </div>
@@ -142,7 +142,7 @@
                         <div class="row schedule-item">
                             <div class="col-md-2"><time>CATATAN</time></div>
                             <div class="col-md-10">
-                                <h4>PELAYANAN AKAN DILAKUKAN APABILA SUDAH MENCAPAI / MELEBIHI KUOTA LAYANAN SEBESAR 100
+                                <h4>PELAYANAN AKAN DILAKUKAN APABILA SUDAH MENCAPAI / MELEBIHI KUOTA LAYANAN SEBESAR {{$daftar->kecamatan->kecamatan_target}}
                                     LAYANAN</h4>
 
                             </div>

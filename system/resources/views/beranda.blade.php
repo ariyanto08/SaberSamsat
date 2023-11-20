@@ -64,14 +64,13 @@
                 data-ticket-type="pro-access">Pendaftaran</a>
             <a class="buy-tickets" href="{{ url('mimin/login') }}">Login</a>
 
-
-
         </div>
     </header><!-- End Header -->
 
     <!-- ======= Hero Section ======= -->
     <section id="hero">
         <div class="hero-container" data-aos="zoom-in" data-aos-delay="100">
+            @include('notif')
             <h1 class="mb-4 pb-0"><strong style="font-size: 178px;">SABER</strong><br><span>SAMSAT by REQUEST</span>
             </h1>
             <p class="mb-4 pb-0">SAMSAT KETAPANG - KALIMANTAN BARAT</p>
@@ -114,18 +113,18 @@
                                 aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <form method="POST" action="{{ url('/') }}" class="form-inlin">
+                            <form method="POST" action="{{ url('daftar-berhasil') }}" class="form-inlin">
                                 @csrf
                                 <div class="form-group">
                                     <input type="text" class="form-control" name="daftar_nama"
                                         placeholder="Nama Anda">
                                 </div>
                                 <div class="form-group mt-3">
-                                    <input type="text" class="form-control" name="daftar_nik"
+                                    <input type="number" class="form-control" name="daftar_nik"
                                         placeholder="NIK Anda">
                                 </div>
                                 <div class="form-group mt-3">
-                                    <input type="text" class="form-control" name="daftar_wa"
+                                    <input type="number" class="form-control" name="daftar_wa"
                                         placeholder="Nomor WA">
                                 </div>
                                 <div class="form-group mt-3">
@@ -136,7 +135,6 @@
                                 <div class="form-group mt-3">
                                     <select id="ticket-type" name="daftar_kecamatan" class="form-select"
                                         onchange="gantiKecamatan(this.value)">
-                                        <option value="0" selected>-- Pilih Kecamatan Pendaftaran--</option>
                                         @foreach ($kecamatan as $item)
                                             <option value="{{ $item->kecamatan_id }}">{{ $item->kecamatan_nama }}
                                             </option>
