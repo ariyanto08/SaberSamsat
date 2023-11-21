@@ -199,11 +199,11 @@
                         <div class="col-md-3"></div>
                         <div class="col-md-6">
                             <div class="row">
-                                <form action="{{url('filter_id')}}" method="POST" id="searchForm">
+                                <form action="{{url('detail-pendaftaran')}}" method="post" id="searchForm">
                                     @csrf
                                     <div class="input-group mb-3">
                                         <input style="padding: 15px 15px 15px 15px; border-radius: 30px 0px 0px 30px; background-color: rgb(0, 0, 0, 0);"
-                                            type="text" name="daftar_id" class="form-control" placeholder="Cari ID" aria-label="Cari ID" aria-describedby="basic-addon2">
+                                            type="text" name="cari_id" class="form-control" placeholder="Cari ID" aria-label="Cari ID" aria-describedby="basic-addon2">
                                         <div class="input-group-append">
                                             <button style="padding: 15px 30px 15px 30px; background-color: #f82249; border: none; border-radius: 0px 30px 30px 0px; color:#fff;" 
                                                 class="btn btn-outline-secondary" type="submit" id="submit-btn">Cari</button>

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Lokasi;
 use App\Models\Kecamatan;
+use App\Models\Pendaftaran;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -23,5 +24,10 @@ class Jadwal extends Model
     function lokasi()
     {
         return $this->belongsTo(Lokasi::class, 'jadwal_lokasi');
+    }
+
+    function daftar()
+    {
+        return $this->hasMany(Pendaftaran::class, 'daftar_jadwal');
     }
 }

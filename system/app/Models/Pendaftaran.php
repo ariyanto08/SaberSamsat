@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Jadwal;
 use App\Models\Lokasi;
 use App\Models\Layanan;
 use App\Models\Kecamatan;
@@ -34,5 +35,10 @@ class Pendaftaran extends Model
     public function lokasi()
     {
         return $this->belongsTo(Lokasi::class, 'daftar_lokasi');
+    }
+
+    public function jadwal()
+    {
+        return $this->belongsTo(Jadwal::class, 'daftar_jadwal');
     }
 }

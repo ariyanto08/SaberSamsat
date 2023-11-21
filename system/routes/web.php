@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/',[WebController::class,'index']);
+Route::post('detail-pendaftaran',[WebController::class,'cari_id']);
 Route::post('kontak',[WebController::class,'kontak']);
 Route::post('daftar-berhasil',[WebController::class,'daftar']);
 Route::get('daftar-berhasil/{daftar}',[WebController::class,'detail']);

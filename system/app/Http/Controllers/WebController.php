@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 
 class WebController extends Controller
 {
@@ -23,9 +24,23 @@ class WebController extends Controller
         $data['list_kecamatan'] = Kecamatan::with('layanan')->whereHas('layanan', function ($query) {
             $query->where('layanan_status', 0);
         })->with('jadwal')
-            ->with('lokasi')->get();
+        ->with('lokasi')
+        ->with('daftar')->get();
         // dd($data['list_kecamatan']);
         return view('beranda', $data);
+    }
+
+    function cari_id()
+    {
+        $input = request('cari_id');
+        $data['pendaftar'] = Pendaftaran::where('daftar_id', $input)
+        ->with('jadwal')
+        ->with('kecamatan')
+        ->with('lokasi')
+        ->with('nopol')
+        ->first();
+
+        return view('detail-pendaftaran', $data);
     }
 
     function kontak(Request $request)
