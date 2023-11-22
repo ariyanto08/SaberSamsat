@@ -207,4 +207,32 @@ class MiminController extends Controller
 
         return redirect()->back();
     }
+    
+    function laporan()
+    {
+        //Persentase
+        $totalData = DaftarNopol::count();
+        $rd2 = DaftarNopol::where('nopol_jenis', 'Roda 2')->count();
+        $rd4 = DaftarNopol::where('nopol_jenis', 'Roda 4')->count();
+        $total_rd2 = ($rd2 / $totalData) *100;
+        $total_rd4 = ($rd4 / $totalData) *100;
+
+        //Diagram Permohonan
+        $permohonan = Pendaftaran::select('daftar_id')->get();
+        $totalDaftarId = $permohonan->sum('daftar_id');
+        $totalDaftarId = Pendaftaran::count();
+        
+        $kecamatan = Pendaftaran::select('daftar_kecamatan')->get();
+        $totalKecamatan = $kecamatan->sum('daftar_kecamatan');
+        $totalKecamatan = Pendaftaran::count();
+        
+        $totalKecamatan = Pendaftaran::groupBy('daftar_kecamatan')
+        ->selectRaw('daftar_kecamatan, COUNT(*) as count')
+        ->pluck('count', 'daftar_kecamatan')
+        ->toArray();
+
+        $kecamatan = Kecamatan::all();
+        
+        return view('mimin.laporan', compact( 'kecamatan', 'totalKecamatan', 'permohonan', 'totalDaftarId', 'total_rd2','total_rd4'));
+    }
 }
