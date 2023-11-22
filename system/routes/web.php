@@ -30,4 +30,5 @@ Route::prefix('mimin')->group(function () {
    Route::post('tambah-kecamatan', [MiminController::class, 'tambahKecamatan']);
    Route::get('pengaturan-lokasi/{kecamatan}', [MiminController::class, 'pengaturanLokasi']);
    Route::post('tambah-lokasi/{kecamatan}', [MiminController::class, 'tambahLokasi']);
+   Route::get('laporan', [MiminController::class, 'laporan']);
 });

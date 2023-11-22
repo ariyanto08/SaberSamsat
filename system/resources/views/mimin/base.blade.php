@@ -114,15 +114,21 @@
     ***********************************-->
     <!-- Required vendors -->
     <script src="{{url('public')}}/mimin/vendor/global/global.min.js"></script>
-
     <script src="{{url('public')}}/mimin/vendor/jquery-nice-select/js/jquery.nice-select.min.js"></script>
-
 
     <!-- Dashboard 1 -->
     <script src="{{url('public')}}/mimin/js/dashboard/dashboard-1.js"></script>
-    
     <script src="{{url('public')}}/mimin/js/plugins-init/datatables.init.js"></script>
 
+	<!-- Apex Chart -->
+	<script src="{{url('public')}}/mimin/vendor/apexchart/apexchart.js"></script>
+	<script src="{{url('public')}}/mimin/vendor/chart.js/Chart.bundle.min.js"></script>
+    
+	<!-- Chart piety plugin files -->
+    <script src="{{url('public')}}/mimin/vendor/peity/jquery.peity.min.js"></script>
+
+	<!-- Dashboard 1 -->
+	<script src="{{url('public')}}/mimin/js/dashboard/statistics-page.js"></script>
 
     <script src="{{url('public')}}/mimin/js/custom.min.js"></script>
     <script src="{{url('public')}}/mimin/js/dlabnav-init.js"></script>  
