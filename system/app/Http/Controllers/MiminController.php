@@ -38,7 +38,7 @@ class MiminController extends Controller
         }])->with('lokasi')->whereHas('daftar', function ($query) {
             $query->where('daftar_status', 0);
         })->get();
-
+        
         return view('mimin.permohonan', $data);
     }
 
@@ -49,9 +49,9 @@ class MiminController extends Controller
             ->with('nopol')
             ->where('daftar_kecamatan', $kecamatan->kecamatan_id)
             ->get();
-        $data['permohonan_count'] = Pendaftaran::where('daftar_kecamatan', $kecamatan->kecamatan_id)
-            ->where('daftar_status', 0)
-            ->count();
+        $data['permohonan_count'] = DaftarNopol::whereIn('nopol_daftar',function ($query) {
+            $query->select('daftar_id')->from('saber_daftar')->where('daftar_status', 0);
+        })->count();
         // dd($data ['permohonan_count']);
         return view('mimin.permohonan-detail', $data);
     }
