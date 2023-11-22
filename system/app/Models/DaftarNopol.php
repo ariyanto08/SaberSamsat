@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class DaftarNopol extends Model
 {
     use HasFactory;
-    protected $table = 'saber_daftar_nopol';
+    protected $table = 'saber_api_daftar_nopol';
     protected $primatyKey ='nopol_id';
 
     public $timestamps = false;
@@ -21,7 +21,7 @@ class DaftarNopol extends Model
 
     public function daftar()
     {
-        return $this->belongsTo(Pendaftaran::class, 'nopol_daftar');
+        return $this->belongsTo(Pendaftaran::class, 'nopol_daftar', 'daftar_id');
     }
 
     public function layanan_count()

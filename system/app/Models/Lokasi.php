@@ -21,7 +21,7 @@ class Lokasi extends Model
         return $this->belongsTo(Kecamatan::class, 'lokasi_kecamatan');
     }
 
-    function pendaftaran()
+    function daftar()
     {
         return $this->hasMany(Pendaftaran::class, 'daftar_lokasi');
     }

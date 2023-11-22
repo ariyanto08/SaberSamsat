@@ -32,6 +32,7 @@ Route::prefix('mimin')->middleware('auth')->group(function () {
    Route::get('beranda', [MiminController::class, 'beranda']);
    Route::get('permohonan', [MiminController::class, 'permohonan']);
    Route::get('permohonan-detail/{kecamatan}', [MiminController::class, 'permohonanDetail']);
+   Route::put('permohonan-edit/{kecamatan}', [MiminController::class, 'permohonanEdit']);
    Route::get('permohonan-proses/{kecamatan}', [MiminController::class, 'permohonanProses']);
    Route::post('permohonan-proses', [MiminController::class, 'prosesPermohonan']);
    Route::get('pelayanan', [MiminController::class, 'pelayanan']);
@@ -42,6 +43,7 @@ Route::prefix('mimin')->middleware('auth')->group(function () {
    Route::post('tambah-kecamatan', [MiminController::class, 'tambahKecamatan']);
    Route::get('pengaturan-lokasi/{kecamatan}', [MiminController::class, 'pengaturanLokasi']);
    Route::post('tambah-lokasi/{kecamatan}', [MiminController::class, 'tambahLokasi']);
+   Route::get('laporan', [MiminController::class, 'laporan']);
    Route::get('pesan',[MiminController::class,'pesan']);
    Route::post('pesan/{kontak}',[MiminController::class,'aksiPesan']);
 });
