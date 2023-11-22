@@ -17,7 +17,7 @@
                     <span class="nav-text">Pelayanan</span>
                 </a>
             </li>
-            <li><a class="" href="{{url('laporan')}}" aria-expanded="false">
+            <li><a class="" href="{{url('mimin/laporan')}}" aria-expanded="false">
                     <i class="fa fa-chart-area"></i>
                     <span class="nav-text">Laporan</span>
                 </a>
