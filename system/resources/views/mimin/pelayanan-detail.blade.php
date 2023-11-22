@@ -83,6 +83,14 @@
                 <div class="card">
                     <div class="card-header">
                         <h4 class="card-title">Data Pelayanan Kecamatan {{ $kecamatan->kecamatan_nama }}</h4>
+                        {{-- <form action="{{ url('mimin/pelayanan-detail') }}" method="post">
+                            @csrf
+                            @method('post')
+                            <input type="hidden" name="id_jadwal" value="{{ $layanan->layanan->layanan_jadwal }}">
+                            <a onclick="return confirm('Yakin mah e?')">
+                                <button type="submit" class="btn btn-primary ">Selesaikan</button>
+                            </a>
+                        </form> --}}
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
@@ -101,64 +109,66 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($list_pelayanan as $item)
+                                    @foreach ($list_pelayanan as $layanan)
                                         <tr>
-                                            <td>#{{ $item->daftar->daftar_id }}</td>
-                                            <td>{{ $item->daftar->daftar_nama }}</td>
-                                            <td>{{ $item->daftar->daftar_nik }}</td>
-                                            <td>{{ $item->daftar->daftar_wa }}</td>
-                                            <td>{{ $item->daftar->daftar_alamat }}</td>
-                                            @if ($item->layanan_status == 1)
+                                            <td>#{{ $layanan->daftar_id }}</td>
+                                            <td>{{ $layanan->daftar_nama }}</td>
+                                            <td>{{ $layanan->daftar_nik }}</td>
+                                            <td>{{ $layanan->daftar_wa }}</td>
+                                            <td>{{ $layanan->daftar_alamat }}</td>
+                                            @if ($layanan->layanan->layanan_status == 1)
                                                 <td>
-                                                    @foreach ($item->daftar->nopol as $nopol)
-                                                        <a href="javascript:void(0)"
-                                                            class="badge badge-rounded badge-success">KB
-                                                            {{ $nopol->nopol_tengah }} <span class="text-uppercase">{{ $nopol->nopol_belakang }}</span></a>
+                                                    @foreach (App\Models\DaftarNopol::where('nopol_daftar', $layanan->daftar_id)->get() as $item)
+                                                        <a href="" class="badge badge-rounded badge-success">KB <span
+                                                                class="text-uppercase"> {{ $item->nopol_tengah }}
+                                                                {{ $item->nopol_belakang }}</span></a>
                                                     @endforeach
                                                 </td>
                                                 <td>
-                                                    <a href="javascript:void(0)"
-                                                        class="badge badge-rounded badge-outline-success">{{ Carbon\Carbon::parse($item->jadwal->jadwal_mulai)->format('d F Y') }}
+                                                    <a href=""
+                                                        class="badge badge-rounded badge-outline-success">{{ Carbon\Carbon::parse($layanan->jadwal_mulai)->format('d F Y') }}
                                                         -
-                                                        {{ Carbon\Carbon::parse($item->jadwal->jadwal_selesai)->format('d F Y') }}</a>
-
+                                                        {{ Carbon\Carbon::parse($layanan->jadwal_selesai)->format('d F Y') }}</a>
                                                 </td>
-                                                <td>
-                                                    <span
-                                                        class="badge badge-success badge-lg light">{{ $item->status_string }}</span>
+                                                <td><span
+                                                        class="badge badge-success badge-lg light">{{ $layanan->status_string }}</span>
                                                 </td>
                                                 <td>
 
                                                 </td>
                                             @else
                                                 <td>
-                                                    @foreach ($item->daftar->nopol as $nopol)
-                                                        <a href="javascript:void(0)"
-                                                            class="badge badge-rounded badge-danger">KB
-                                                            {{ $nopol->nopol_tengah }} <span class="text-uppercase">{{ $nopol->nopol_belakang }}</span></a>
+                                                    @foreach (App\Models\DaftarNopol::where('nopol_daftar', $layanan->daftar_id)->get() as $item)
+                                                        <a href="" class="badge badge-rounded badge-danger">KB
+                                                            <span class="text-uppercase"> {{ $item->nopol_tengah }}
+                                                                {{ $item->nopol_belakang }}</span></a>
                                                     @endforeach
                                                 </td>
                                                 <td>
-                                                    <a href="javascript:void(0)"
-                                                        class="badge badge-rounded badge-outline-danger">{{ Carbon\Carbon::parse($item->jadwal->jadwal_mulai)->format('d F Y') }}
+                                                    <a href=""
+                                                        class="badge badge-rounded badge-outline-danger">{{ Carbon\Carbon::parse($layanan->jadwal_mulai)->format('d F Y') }}
                                                         -
-                                                        {{ Carbon\Carbon::parse($item->jadwal->jadwal_selesai)->format('d F Y') }}</a>
-
+                                                        {{ Carbon\Carbon::parse($layanan->jadwal_selesai)->format('d F Y') }}</a>
                                                 </td>
-                                                <td>
-                                                    <span
-                                                        class="badge badge-danger badge-lg light">{{ $item->status_string }}</span>
+                                                <td><span
+                                                        class="badge badge-danger badge-lg light">{{ $layanan->layanan->status_string }}</span>
                                                 </td>
                                                 <td>
                                                     <div class="d-flex">
                                                         <form
-                                                            action="{{ url('mimin/pelayanan-detail', $item->layanan_id) }}"
+                                                            action="{{ url('mimin/pelayanan-detail') }}/{{ $layanan->layanan->layanan_id }}"
                                                             method="post">
                                                             @csrf
                                                             @method('post')
-                                                            <button type="submit"
-                                                                class="btn btn-primary shadow btn-xs sharp me-1"><i
-                                                                    class="fas fa-check"></i></button>
+                                                            <input type="hidden" name="id_layanan"
+                                                                value="{{ $layanan->layanan->layanan_id }}">
+                                                            <input type="hidden" name="id_daftar"
+                                                                value="{{ $layanan->layanan->layanan_daftar }}">
+                                                            <a onclick="return confirm('Yakin mah e?')">
+                                                                <button type="submit"
+                                                                    class="btn btn-primary shadow btn-xs sharp me-1"><i
+                                                                        class="fas fa-check"></i></button>
+                                                            </a>
                                                         </form>
                                                     </div>
                                                 </td>
@@ -166,6 +176,7 @@
                                         </tr>
                                     @endforeach
                                 </tbody>
+
                                 <tfoot>
                                     <tr>
                                         <th>ID</th>
@@ -184,9 +195,6 @@
                     </div>
                 </div>
             </div>
-
-
-
         </div>
     </div>
 @endsection
