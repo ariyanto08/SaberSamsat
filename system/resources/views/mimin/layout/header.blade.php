@@ -18,7 +18,7 @@
             <div class="collapse navbar-collapse justify-content-between">
                 <div class="header-left">
                     <div class="dashboard_bar">
-                        
+
                     </div>
 
                 </div>
@@ -28,7 +28,7 @@
                             <img src="{{url('public')}}/mimin/images/logofav.png" width="100%">
                         </a>
                         <div class="dropdown-menu dropdown-menu-end">
-                            <a href="{{url('public')}}/mimin/index.html" class="dropdown-item ai-icon">
+                            <a href="{{url('logout')}}" class="dropdown-item ai-icon">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="text-danger" width="18"
                                     height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                     stroke-width="2" stroke-linecap="round" stroke-linejoin="round">

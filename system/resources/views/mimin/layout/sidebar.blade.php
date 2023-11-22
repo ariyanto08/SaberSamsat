@@ -27,12 +27,17 @@
                     <span class="nav-text">Pengaturan</span>
                 </a>
             </li>
+            <li><a class="" href="{{url('mimin/pesan')}}" aria-expanded="false">
+                    <i class="fa fa-bell"></i>
+                    <span class="nav-text">Pesan</span>
+                </a>
+            </li>
 
         </ul>
         <div class="plus-box">
             <p class="fs-14 font-w600 mb-2">SABER <br>memudahkan<br>Pelayanan,<br>Pajak Kendaraan <br></p>
             <p>Untuk Kalimantan Barat<br>lebih baik</p>
-            <img src="images/SABERfinal.png" width="100%">
+            <img src="{{url('public')}}/mimin/images/SABERfinal.png" width="100%">
         </div>
         <div class="copyright">
             <p><strong>SABER</strong> © 2023 All Rights Reserved</p>

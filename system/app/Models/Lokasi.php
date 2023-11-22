@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Layanan;
 use App\Models\Kecamatan;
 use App\Models\Pendaftaran;
 use Illuminate\Database\Eloquent\Model;
@@ -23,5 +24,10 @@ class Lokasi extends Model
     function pendaftaran()
     {
         return $this->hasMany(Pendaftaran::class, 'daftar_lokasi');
+    }
+
+    function layanan()
+    {
+        return $this->hasMany(Layanan::class, 'layanan_lokasi');
     }
 }

@@ -22,7 +22,7 @@
                                 </span>
                                 <div class="media-body">
                                     <p class="mb-1">Jumlah Terlayani</p>
-                                    <h4 class="mb-0">1.234 Layanan</h4>
+                                    <h4 class="mb-0">{{$layanan_count}}</h4>
                                 </div>
                             </div>
                         </div>
@@ -50,7 +50,7 @@
                                 </span>
                                 <div class="media-body">
                                     <p class="mb-1">Jumlah Pajak</p>
-                                    <h4 class="mb-0">Rp. 1.223.456.678</h4>
+                                    <h4 class="mb-0">Rp. {{ number_format($grandtotal_pajak) }}</h4>
                                 </div>
                             </div>
                         </div>
@@ -74,7 +74,7 @@
                             </span>
                             <div class="media-body">
                                 <p class="mb-1">Antrian Layanan</p>
-                                <h4 class="mb-0">1.234 Layanan</h4>
+                                <h4 class="mb-0">{{$antrian_layanan_count}}</h4>
 
                             </div>
                         </div>
@@ -97,7 +97,7 @@
                             </span>
                             <div class="media-body">
                                 <p class="mb-1">Antrian Motor</p>
-                                <h4 class="mb-0">543 Motor</h4>
+                                <h4 class="mb-0">{{$motor_count}} Motor</h4>
                             </div>
                         </div>
                     </div>
@@ -120,7 +120,7 @@
                             </span>
                             <div class="media-body">
                                 <p class="mb-1">Antrian Mobil</p>
-                                <h4 class="mb-0">1.234 Mobil</h4>
+                                <h4 class="mb-0">{{$mobil_count}} Mobil</h4>
                             </div>
                         </div>
                     </div>
