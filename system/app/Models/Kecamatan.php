@@ -36,4 +36,10 @@ class Kecamatan extends Model
     {
         return $this->hasMany(Layanan::class, 'layanan_kecamatan');
     }
+    
+    // Menambahkan relasi dengan model Nopol melalui relasi Daftar
+    public function nopol()
+    {
+        return $this->hasManyThrough(DaftarNopol::class, Pendaftaran::class, 'daftar_id', 'nopol_id');
+    }
 }

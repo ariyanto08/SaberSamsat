@@ -47,7 +47,8 @@
                             </span>
                             <div class="media-body text-white text-end">
                                 <p class="mb-1">Target Pendapatan</p>
-                                <h3 class="text-white">Rp. {{ number_format($kecamatan->kecamatan_target_pendapatan) }},-</h3>
+                                <h3 class="text-white">Rp. {{ number_format($kecamatan->kecamatan_target_pendapatan) }},-
+                                </h3>
                             </div>
                         </div>
                     </div>
@@ -112,13 +113,16 @@
                                             <td>
                                                 @foreach ($item->nopol as $nopol)
                                                     <a href="javascript:void(0)"
-                                                        class="badge badge-rounded badge-secondary">KB {{$nopol->nopol_tengah}} <span class="text-uppercase">{{$nopol->nopol_belakang}}</span></a>
+                                                        class="badge badge-rounded badge-secondary">KB
+                                                        {{ $nopol->nopol_tengah }} <span
+                                                            class="text-uppercase">{{ $nopol->nopol_belakang }}</span></a>
                                                 @endforeach
                                             </td>
                                             <td>
                                                 <div class="d-flex">
-                                                    <a href="#" class="btn btn-primary shadow btn-xs sharp me-1"><i
-                                                            class="fas fa-pencil-alt"></i></a>
+                                                    <a class="btn btn-primary shadow btn-xs sharp me-1"><i
+                                                            class="fas fa-pencil-alt" data-bs-toggle="modal"
+                                                            data-bs-target="#editModal{{ $item->daftar_id }}"></i></a>
                                                 </div>
                                             </td>
                                         </tr>
@@ -142,4 +146,82 @@
             </div>
         </div>
     </div>
+
+    <!-- Modal -->
+    @foreach ($list_permohonan as $item)
+        <div class="modal fade" id="editModal{{ $item->daftar_id }}">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Modal Edit</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal">
+                        </button>
+                    </div>
+                    <form action="{{ url('mimin/permohonan-edit', $item->daftar_id) }}" method="POST">
+                        @csrf
+                        @method('PUT')
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="inputAddress">Nama</label>
+                                <input type="text" class="form-control" id="inputAddress" name="daftar_nama" value="{{$item->daftar_nama}}">
+                            </div>
+                            <div class="form-group">
+                                <label for="inputAddress2">NIK</label>
+                                <input type="text" class="form-control" id="inputAddress2" name="daftar_nik" value="{{$item->daftar_nik}}">
+                            </div>
+                            <div class="form-group">
+                                <label for="inputAddress">Nomor Telepon</label>
+                                <input type="text" class="form-control" id="inputAddress" name="daftar_wa" value="{{$item->daftar_wa}}">
+                            </div>
+                            <div class="form-group">
+                                <label for="inputAddress2">Alamat</label>
+                                <input type="text" class="form-control" id="inputAddress2" name="daftar_alamat" value="{{$item->daftar_alamat}}">
+                            </div>
+                            <div class="form-group">
+                                <label for="inputState">Kecamatan</label>
+                                <select id="inputState" class="form-control" onchange="gantiKecamatanMimin(this.value)">
+                                    <option value="{{$item->daftar_id}}" selected>{{$item->kecamatan->kecamatan_nama}}</option>
+                                    @foreach ($kecamatanlist as $kecamatan)
+                                        <option value="{{ $kecamatan->kecamatan_id }}">{{ $kecamatan->kecamatan_nama }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="lokasi">Lokasi</label>
+                                <select id="lokasi" class="form-control">
+                                    <option value="{{$item->daftar_lokasi}}" selected>{{$item->lokasi->lokasi_nama}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger light" data-bs-dismiss="modal">Batal</button>
+                            <button type="button" class="btn btn-primary">Simpan</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    @endforeach
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script>
+        function gantiKecamatanMimin(kecamatan_id) {
+            // Inisialisasi variabel option
+            var option = '';
+
+            // Kirim permintaan GET menggunakan jQuery
+            $.get("api/lokasi_mimin/" + kecamatan_id, function(result) {
+                // Parse hasil JSON
+                result = JSON.parse(result);
+
+                // Loop melalui hasil dan buat opsi untuk setiap lokasi
+                for (var i = 0; i < result.length; i++) {
+                    option += '<option value="' + result[i].lokasi_id + '">' + result[i].lokasi_nama + '</option>';
+                }
+
+                // Setel HTML dari elemen dengan ID "lokasi" dengan opsi yang dibuat
+                $("#lokasi").html(option);
+            });
+        }
+    </script>
 @endsection

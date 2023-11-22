@@ -34,7 +34,7 @@ class Pendaftaran extends Model
 
     public function lokasi()
     {
-        return $this->belongsTo(Lokasi::class, 'daftar_lokasi');
+        return $this->belongsTo(Lokasi::class, 'daftar_lokasi', 'lokasi_id');
     }
 
     public function jadwal()

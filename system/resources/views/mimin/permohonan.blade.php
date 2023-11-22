@@ -24,7 +24,7 @@
                                         </div>
                                         <div class="job-available">
                                             <a href="" class="btn btn-outline-success btn-rounded">Target {{$item->kecamatan_target}}</a>
-                                            <a href="" class="btn btn-outline-primary btn-rounded">{{$item->daftar_count}} Permohonan</a>
+                                            <a href="" class="btn btn-outline-primary btn-rounded">{{$item->jumlah_nopol}} Permohonan</a>
                                         </div>
                                     </div>
                                 </div>

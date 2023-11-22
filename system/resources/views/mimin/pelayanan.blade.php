@@ -37,11 +37,11 @@
                                                     <a href="javascript:void(0);"
                                                         class="btn btn-outline-warning btn-rounded">Tutup</a>
                                                     <a href="javascript:void(0);"
-                                                        class="btn btn-outline-primary btn-rounded">{{ $item->daftar_count }}
+                                                        class="btn btn-outline-primary btn-rounded">{{ $item->jumlah_nopol }}
                                                         Pelayanan</a>
                                                 @else
                                                     <a href="javascript:void(0);"
-                                                        class="btn btn-outline-primary btn-rounded">{{ $item->daftar_count }}
+                                                        class="btn btn-outline-primary btn-rounded">{{ $item->jumlah_nopol }}
                                                         Pelayanan</a>
                                                 @endif
                                             </div>

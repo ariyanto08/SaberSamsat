@@ -11,6 +11,7 @@ use App\Models\Pendaftaran;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Kontak;
+use Illuminate\Support\Facades\DB;
 
 class MiminController extends Controller
 {
@@ -33,27 +34,33 @@ class MiminController extends Controller
 
     function permohonan()
     {
-        $data['list_kecamatan'] = Kecamatan::withCount(['daftar' => function ($query) {
-            $query->where('daftar_status', 0);
+        $data['list_kecamatan'] = Kecamatan::withCount(['daftar as jumlah_nopol' => function ($query) {
+            $query->where('daftar_status', 0)->join('saber_daftar_nopol', 'saber_daftar.daftar_id', '=', 'saber_daftar_nopol.nopol_daftar');
         }])->with('lokasi')->whereHas('daftar', function ($query) {
             $query->where('daftar_status', 0);
         })->get();
-        
+
+        // dd($data['list_kecamatan']);
         return view('mimin.permohonan', $data);
     }
 
     function permohonanDetail(Kecamatan $kecamatan)
     {
         $data['kecamatan'] = $kecamatan;
+        $data['kecamatanlist'] = Kecamatan::all();
         $data['list_permohonan'] = Pendaftaran::where('daftar_status', 0)
-            ->with('nopol')
+            ->with('nopol')->with('lokasi')
             ->where('daftar_kecamatan', $kecamatan->kecamatan_id)
             ->get();
         $data['permohonan_count'] = DaftarNopol::whereIn('nopol_daftar',function ($query) {
             $query->select('daftar_id')->from('saber_daftar')->where('daftar_status', 0);
         })->count();
-        // dd($data ['permohonan_count']);
+        // dd($data ['list_permohonan']);
         return view('mimin.permohonan-detail', $data);
+    }
+
+    function permohonanEdit(){
+        
     }
 
     function permohonanProses(Kecamatan $kecamatan)
@@ -100,11 +107,13 @@ class MiminController extends Controller
 
     function pelayanan()
     {
-        $data['list_kecamatan'] = Kecamatan::withCount(['daftar' => function ($query) {
-            $query->where('daftar_status', 1);
+        $data['list_kecamatan'] = Kecamatan::withCount(['layanan as jumlah_nopol' => function ($query) {
+            $query->where('layanan_status', 0)->join('saber_daftar_nopol', 'saber_layanan.layanan_daftar', '=', 'saber_daftar_nopol.nopol_daftar');
         }])->with('lokasi')->with('layanan')->whereHas('daftar', function ($query) {
             $query->where('daftar_status', 1);
         })->get();
+
+        // dd($data['list_kecamatan']);
         return view('mimin.pelayanan', $data);
     }
 

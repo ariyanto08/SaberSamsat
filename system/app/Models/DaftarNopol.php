@@ -21,7 +21,7 @@ class DaftarNopol extends Model
 
     public function daftar()
     {
-        return $this->belongsTo(Pendaftaran::class, 'nopol_daftar');
+        return $this->belongsTo(Pendaftaran::class, 'nopol_daftar', 'daftar_id');
     }
 
     public function layanan_count()
