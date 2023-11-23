@@ -136,7 +136,6 @@
                                                         class="badge badge-success badge-lg light">{{ $layanan->status_string }}</span>
                                                 </td>
                                                 <td>
-
                                                 </td>
                                             @else
                                                 <td>

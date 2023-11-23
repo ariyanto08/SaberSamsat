@@ -133,27 +133,28 @@
     <script src="{{url('public')}}/mimin/js/dashboard/dashboard-1.js"></script>
     <script src="{{url('public')}}/mimin/js/plugins-init/datatables.init.js"></script>
 
-	<!-- Apex Chart -->
-	<script src="{{url('public')}}/mimin/vendor/apexchart/apexchart.js"></script>
-	<script src="{{url('public')}}/mimin/vendor/chart.js/Chart.bundle.min.js"></script>
+    <!-- Apex Chart -->
+    <script src="{{url('public')}}/mimin/vendor/apexchart/apexchart.js"></script>
+    <script src="{{url('public')}}/mimin/vendor/chart.js/Chart.bundle.min.js"></script>
 
-	<!-- Chart piety plugin files -->
+    <!-- Chart piety plugin files -->
     <script src="{{url('public')}}/mimin/vendor/peity/jquery.peity.min.js"></script>
 
-	<!-- Dashboard 1 -->
-	<script src="{{url('public')}}/mimin/js/dashboard/statistics-page.js"></script>
+    <!-- Dashboard 1 -->
+    <script src="{{url('public')}}/mimin/js/dashboard/statistics-page.js"></script>
 
     <script src="{{url('public')}}/mimin/js/custom.min.js"></script>
     <script src="{{url('public')}}/mimin/js/dlabnav-init.js"></script>
 
-    <script src="{{url('public')}}/mimin/vendor/sweetalert2/dist/sweetalert2.min.js"></script>
-    <script src="{{url('public')}}/mimin/js/plugins-init/sweetalert.init.js"></script>
     <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.js"></script>
     <script>
         $(document).ready( function () {
             $('.table-datatable').DataTable();
         });
     </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    @stack('script')
 
     {{-- <script>
         function JobickCarousel() {
