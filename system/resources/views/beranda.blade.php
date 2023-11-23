@@ -210,29 +210,6 @@
                         <br>Pastikan
                         anda membawa dokumen-dokumen terkait.
                     </h3>
-                    <div class="row mb-3">
-                        <div class="col-md-3"></div>
-                        <div class="col-md-6">
-                            <div class="row">
-                                <form action="{{ url('detail-pendaftaran') }}" method="post" id="searchForm">
-                                    @csrf
-                                    <div class="input-group mb-3">
-                                        <input
-                                            style="padding: 15px 15px 15px 15px; border-radius: 30px 0px 0px 30px; background-color: rgb(0, 0, 0, 0);"
-                                            type="text" name="cari_id" class="form-control" placeholder="Cari ID"
-                                            aria-label="Cari ID" aria-describedby="basic-addon2">
-                                        <div class="input-group-append">
-                                            <button
-                                                style="padding: 15px 30px 15px 30px; background-color: #f82249; border: none; border-radius: 0px 30px 30px 0px; color:#fff;"
-                                                class="btn btn-outline-secondary" type="submit"
-                                                id="submit-btn">Cari</button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                        <div class="col-md-3"></div>
-                    </div>
                     <div class="tab-content row justify-content-center" data-aos="fade-up" data-aos-delay="200"
                         id="searchResult">
                         <!-- Schdule -->
