@@ -3,7 +3,8 @@
     <div class="container-fluid">
         <div class="row page-titles">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item active"><a href="javascript:void(0)">Kecamatan {{ $jadwal->kecamatan->kecamatan_nama }}</a>
+                <li class="breadcrumb-item active"><a href="javascript:void(0)">Kecamatan
+                        {{ $jadwal->kecamatan->kecamatan_nama }}</a>
                 </li>
 
             </ol>
@@ -84,15 +85,13 @@
                     <div class="card-header">
                         <h4 class="card-title">Data Pelayanan Kecamatan {{ $jadwal->kecamatan->kecamatan_nama }}</h4>
                         @if ($jadwal->jadwal_status == 0)
-                            <form
-                                action="{{ url('mimin/pelayanan-tutup', $jadwal->jadwal_id) }}"
-                                method="post">
+                            <form action="{{ url('mimin/pelayanan-tutup', $jadwal->jadwal_id) }}" method="post">
                                 @csrf
                                 <button type="submit" class="btn light btn-primary btn-xs">Tutup Layanan</button>
-                            </form>                            
+                            </form>
                         @endif
                         @if ($jadwal->jadwal_status == 1)
-                        <a href="javascript:void(0)" class="btn light btn-primary btn-xs">Layanan Sudah Ditutup</a>
+                            <a href="javascript:void(0)" class="btn light btn-primary btn-xs">Layanan Sudah Ditutup</a>
                         @endif
                     </div>
                     <div class="card-body">
@@ -189,10 +188,10 @@
                                             <td>{{ $item->daftar->daftar_alamat }}</td>
                                             @if ($item->layanan_status == 1)
                                                 <td>
-                                                        <a href="javascript:void(0)"
-                                                            class="badge badge-rounded badge-success">KB
-                                                            {{ $item->nopol->nopol_tengah }} <span
-                                                                class="text-uppercase">{{ $item->nopol->nopol_belakang }}</span></a>
+                                                    <a href="javascript:void(0)"
+                                                        class="badge badge-rounded badge-success">KB
+                                                        {{ $item->nopol->nopol_tengah }} <span
+                                                            class="text-uppercase">{{ $item->nopol->nopol_belakang }}</span></a>
                                                 </td>
                                                 <td>
                                                     <a href="javascript:void(0)"
@@ -210,10 +209,9 @@
                                             @endif
                                             @if ($item->layanan_status == 0)
                                                 <td>
-                                                    <a href="javascript:void(0)"
-                                                    class="badge badge-rounded badge-danger">KB
-                                                    {{ $item->nopol->nopol_tengah }} <span
-                                                        class="text-uppercase">{{ $item->nopol->nopol_belakang }}</span></a>
+                                                    <a href="javascript:void(0)" class="badge badge-rounded badge-danger">KB
+                                                        {{ $item->nopol->nopol_tengah }} <span
+                                                            class="text-uppercase">{{ $item->nopol->nopol_belakang }}</span></a>
                                                 </td>
                                                 <td>
                                                     <a href="javascript:void(0)"
@@ -239,12 +237,13 @@
                                                     </div>
                                                 </td>
                                             @endif
-                                            @if ($item->layanan_status ==2)
+                                            @if ($item->layanan_status == 2)
                                                 <td>
                                                     @foreach ($item->daftar->nopol as $nopol)
                                                         <a href="javascript:void(0)"
                                                             class="badge badge-rounded badge-danger">KB
-                                                            {{ $nopol->nopol_tengah }} <span class="text-uppercase">{{ $nopol->nopol_belakang }}</span></a>
+                                                            {{ $nopol->nopol_tengah }} <span
+                                                                class="text-uppercase">{{ $nopol->nopol_belakang }}</span></a>
                                                     @endforeach
                                                 </td>
                                                 <td>

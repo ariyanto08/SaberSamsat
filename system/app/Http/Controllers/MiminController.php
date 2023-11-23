@@ -162,12 +162,11 @@ class MiminController extends Controller
         $data['jadwal'] = $jadwal;
         $data['list_pelayanan'] = Layanan::with('daftar.nopol')
             ->where('layanan_jadwal', $jadwal->jadwal_id)->get();
-        $data['pelayanan_count'] = Layanan::where('layanan_jadwal', $jadwal->jadwal_id)
         $data['layanan_count'] = DaftarNopol::whereIn('nopol_id', function ($query) use ($jadwal) {
             $query->select('layanan_nopol')->from('saber_layanan')->where('layanan_status', 0)->where('layanan_kecamatan', $jadwal->jadwal_id);
         })->count();
 
-        $data['pelayanan_count'] = Layanan::where('layanan_kecamatan', $kecamatan->kecamatan_id)
+        $data['pelayanan_count'] = Layanan::where('layanan_jadwal', $jadwal->jadwal_id)
             ->where('layanan_status', 1)
             ->count();
 
@@ -255,7 +254,7 @@ class MiminController extends Controller
 
     function deleteLokasi(Lokasi $lokasi){
         $lokasi->delete();
-        
+
         return redirect()->back();
     }
 
