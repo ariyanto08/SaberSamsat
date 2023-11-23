@@ -108,7 +108,7 @@
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                {{-- <tbody>
                                     @foreach ($list_pelayanan as $layanan)
                                         <tr>
                                             <td>#{{ $layanan->daftar_id }}</td>
@@ -169,6 +169,68 @@
                                                                     class="btn btn-primary shadow btn-xs sharp me-1"><i
                                                                         class="fas fa-check"></i></button>
                                                             </a>
+                                                        </form>
+                                                    </div>
+                                                </td>
+                                            @endif
+                                        </tr>
+                                    @endforeach
+                                </tbody> --}}
+                                <tbody>
+                                    @foreach ($list_pelayanan as $item)
+                                        <tr>
+                                            <td>#{{ $item->daftar->daftar_id }}</td>
+                                            <td>{{ $item->daftar->daftar_nama }}</td>
+                                            <td>{{ $item->daftar->daftar_nik }}</td>
+                                            <td>{{ $item->daftar->daftar_wa }}</td>
+                                            <td>{{ $item->daftar->daftar_alamat }}</td>
+                                            @if ($item->layanan_status == 1)
+                                                <td>
+                                                        <a href="javascript:void(0)"
+                                                            class="badge badge-rounded badge-success">KB
+                                                            {{ $item->nopol->nopol_tengah }} <span
+                                                                class="text-uppercase">{{ $item->nopol->nopol_belakang }}</span></a>
+                                                </td>
+                                                <td>
+                                                    <a href="javascript:void(0)"
+                                                        class="badge badge-rounded badge-outline-success">{{ Carbon\Carbon::parse($item->jadwal->jadwal_mulai)->format('d F Y') }}
+                                                        -
+                                                        {{ Carbon\Carbon::parse($item->jadwal->jadwal_selesai)->format('d F Y') }}</a>
+                                                </td>
+                                                <td>
+                                                    <span
+                                                        class="badge badge-success badge-lg light">{{ $item->status_string }}</span>
+                                                </td>
+                                                <td>
+
+                                                </td>
+                                            @else
+                                                <td>
+                                                    <a href="javascript:void(0)"
+                                                    class="badge badge-rounded badge-danger">KB
+                                                    {{ $item->nopol->nopol_tengah }} <span
+                                                        class="text-uppercase">{{ $item->nopol->nopol_belakang }}</span></a>
+                                                </td>
+                                                <td>
+                                                    <a href="javascript:void(0)"
+                                                        class="badge badge-rounded badge-outline-danger">{{ Carbon\Carbon::parse($item->jadwal->jadwal_mulai)->format('d F Y') }}
+                                                        -
+                                                        {{ Carbon\Carbon::parse($item->jadwal->jadwal_selesai)->format('d F Y') }}</a>
+                                                </td>
+                                                <td>
+                                                    <span
+                                                        class="badge badge-danger badge-lg light">{{ $item->status_string }}</span>
+                                                </td>
+                                                <td>
+                                                    <div class="d-flex">
+                                                        <form
+                                                            action="{{ url('mimin/pelayanan-detail', $item->layanan_id) }}"
+                                                            method="post">
+                                                            @csrf
+                                                            @method('post')
+                                                            <button type="submit"
+                                                                class="btn btn-primary shadow btn-xs sharp me-1"><i
+                                                                    class="fas fa-check"></i></button>
                                                         </form>
                                                     </div>
                                                 </td>

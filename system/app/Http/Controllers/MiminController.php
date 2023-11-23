@@ -26,7 +26,10 @@ class MiminController extends Controller
         $data['motor_count'] = DaftarNopol::where('nopol_jenis', 'Roda 2')->whereHas('layanan_count', function ($query) {
             $query->where('layanan_status', 0);
         })->count();
-        // dd($data['motor_count']);
+        $data['permohonan_count'] = DaftarNopol::whereIn('nopol_daftar', function ($query) {
+            $query->select('daftar_id')->from('saber_daftar')->where('daftar_status', 0);
+        })->count();
+        // dd( $data['permohonan_count']);
         $data['layanan_count'] = Layanan::where('layanan_status', 1)->count();
         $data['antrian_layanan_count'] = Layanan::where('layanan_status', 0)->count();
         return view('mimin.beranda', $data);
@@ -159,16 +162,19 @@ class MiminController extends Controller
     {
         $data['kecamatan'] = $kecamatan;
 
-        $pendaftar = $data['list_pelayanan'] = Pendaftaran::where('daftar_kecamatan', $kecamatan->kecamatan_id)
-        ->where('daftar_status',1)
-        ->get();
+        // $pendaftar = $data['list_pelayanan'] = Pendaftaran::where('daftar_kecamatan', $kecamatan->kecamatan_id)
+        // ->where('daftar_status',1)
+        // ->get();
 
-        foreach ($pendaftar as $p) {
-            $jadwal = Jadwal::where('jadwal_lokasi', $p->daftar_lokasi)->first();
-            $p->jadwal_mulai = $jadwal ? $jadwal->jadwal_mulai : null;
-            $p->jadwal_selesai = $jadwal ? $jadwal->jadwal_selesai : null;
-        }
+        // foreach ($pendaftar as $p) {
+        //     $jadwal = Jadwal::where('jadwal_lokasi', $p->daftar_lokasi)->first();
+        //     $p->jadwal_mulai = $jadwal ? $jadwal->jadwal_mulai : null;
+        //     $p->jadwal_selesai = $jadwal ? $jadwal->jadwal_selesai : null;
+        // }
 
+        $data['list_pelayanan'] = Layanan::with('daftar')->with('nopol')
+            ->where('layanan_kecamatan', $kecamatan->kecamatan_id)->get();
+            // dd($data['list_pelayanan']);
         $data['layanan_count'] = DaftarNopol::whereIn('nopol_id', function ($query) use ($kecamatan) {
             $query->select('layanan_nopol')->from('saber_layanan')->where('layanan_status', 0)->where('layanan_kecamatan', $kecamatan->kecamatan_id);
         })->count();
@@ -186,12 +192,9 @@ class MiminController extends Controller
 
     function update(Layanan $layanan)
     {
-        $id_daftar = request('id_daftar');
-        Layanan::where('layanan_daftar',$id_daftar)
-        ->update([
 
-            'layanan_status' => 1
-        ]);
+        $layanan->layanan_status = 1;
+        $layanan->save();
 
         return redirect()->back();
     }

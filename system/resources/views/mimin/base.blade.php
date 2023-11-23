@@ -45,6 +45,7 @@
     <link rel="stylesheet" href="{{url('public')}}/mimin/icons/font-awesome/svgs/solid">
     <link rel="stylesheet" href="{{url('public')}}/mimin/icons/font-awesome/svgs/brands">
 
+    <link href="{{url('public')}}/mimin/vendor/sweetalert2/dist/sweetalert2.min.css" rel="stylesheet">
 
 
 </head>
@@ -135,7 +136,7 @@
 	<!-- Apex Chart -->
 	<script src="{{url('public')}}/mimin/vendor/apexchart/apexchart.js"></script>
 	<script src="{{url('public')}}/mimin/vendor/chart.js/Chart.bundle.min.js"></script>
-    
+
 	<!-- Chart piety plugin files -->
     <script src="{{url('public')}}/mimin/vendor/peity/jquery.peity.min.js"></script>
 
@@ -145,6 +146,8 @@
     <script src="{{url('public')}}/mimin/js/custom.min.js"></script>
     <script src="{{url('public')}}/mimin/js/dlabnav-init.js"></script>
 
+    <script src="{{url('public')}}/mimin/vendor/sweetalert2/dist/sweetalert2.min.js"></script>
+    <script src="{{url('public')}}/mimin/js/plugins-init/sweetalert.init.js"></script>
     <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.js"></script>
     <script>
         $(document).ready( function () {

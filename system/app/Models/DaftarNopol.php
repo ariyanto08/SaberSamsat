@@ -9,14 +9,14 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class DaftarNopol extends Model
 {
     use HasFactory;
-    protected $table = 'saber_api_daftar_nopol';
+    protected $table = 'saber_daftar_nopol';
     protected $primatyKey ='nopol_id';
 
     public $timestamps = false;
 
     public function layanan()
     {
-        return $this->belongsTo(Layanan::class, 'layanan_nopol');
+        return $this->hasOne(Layanan::class, 'layanan_nopol');
     }
 
     public function daftar()
