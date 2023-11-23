@@ -150,7 +150,7 @@ class MiminController extends Controller
     {
         $data['list_jadwal'] = Jadwal::with('kecamatan')->with('lokasi')->with('layanan')
             ->withCount(['layanan as jumlah_nopol' => function ($query) {
-                $query->where('layanan_status', 0)->join('saber_daftar_nopol', 'saber_layanan.layanan_daftar', '=', 'saber_daftar_nopol.nopol_daftar');
+                $query->where('layanan_status', 0);
             }])->orderBy('jadwal_id','asc')->get();
 
         // dd($data['list_jadwal']);
