@@ -58,16 +58,7 @@
                                             <td>{{$item->lokasi_nama}}</td>
                                             <td>
                                                 <div class="d-flex">
-                                                {{-- <form action="{{url('mimin/prosesHapus', $item->lokasi_id)}}" method="post" id="deleteForm">
-                                                    @csrf
-                                                    @method('delete')
-                                                    <button type="button" class="btn btn-primary shadow btn-xs sharp me-1" onclick="confirmDelete()"><i class="fas fa-trash"></i></button>
-                                                </form> --}}
-                                                <form action="{{url('mimin/prosesHapus', $item->lokasi_id)}}" method="post">
-                                                    @csrf
-                                                    @method('delete')
-                                                    <button class="btn btn-primary shadow btn-xs sharp me-1"><i class="fas fa-trash"></i></button>
-                                                </form>
+                                                    <button type="button" class="btn btn-primary shadow btn-xs sharp me-1" onclick="confirmDelete('{{url('mimin/prosesHapus', $item->lokasi_id)}}', '{{ csrf_token() }}')"><i class="fas fa-trash"></i></button>
                                                 </div>
                                             </td>
                                         </tr>
@@ -89,10 +80,10 @@
     </div>
 
     <script>
-        function confirmDelete() {
+        function confirmDelete(url, csrfToken) {
             Swal.fire({
                 title: 'Apakah anda yakin?',
-                text: 'Data tidak akan bisa dikembalikan!',
+                text: 'Data tidak bisa dikembalikan!!',
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#68e365',
@@ -100,7 +91,25 @@
                 confirmButtonText: 'Ya, saya yakin!'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    document.getElementById('deleteForm').submit();
+                    const form = document.createElement('form');
+                    form.action = url;
+                    form.method = 'POST';
+
+                    const csrfInput = document.createElement('input');
+                    csrfInput.type = 'hidden';
+                    csrfInput.name = '_token';
+                    csrfInput.value = csrfToken;
+
+                    const methodInput = document.createElement('input');
+                    methodInput.type = 'hidden';
+                    methodInput.name = '_method';
+                    methodInput.value = 'DELETE';
+
+                    form.appendChild(csrfInput);
+                    form.appendChild(methodInput);
+
+                    document.body.appendChild(form);
+                    form.submit();
                 }
             });
         }

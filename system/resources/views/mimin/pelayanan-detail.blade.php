@@ -157,15 +157,11 @@
                                                 </td>
                                                 <td>
                                                     <div class="d-flex">
-                                                        <form
-                                                            action="{{ url('mimin/pelayanan-detail', $item->layanan_id) }}"
-                                                            method="post" id="myForm">
-                                                            @csrf
-                                                            @method('post')
-                                                            <button type="button"
-                                                                class="btn btn-primary shadow btn-xs sharp me-1" onclick="showConfirmation()"><i
-                                                                    class="fas fa-check"></i></button>
-                                                        </form>
+                                                        <button type="button"
+                                                            class="btn btn-primary shadow btn-xs sharp me-1"
+                                                            onclick="showConfirmation('{{ url('mimin/pelayanan-detail', $item->layanan_id) }}', '{{ csrf_token() }}')">
+                                                            <i class="fas fa-check"></i>
+                                                        </button>
                                                     </div>
                                                 </td>
                                             @endif
@@ -217,7 +213,7 @@
     </div>
 
     <script>
-        function showConfirmation() {
+        function showConfirmation(url, csrfToken) {
             Swal.fire({
                 title: 'Apakah anda yakin?',
                 text: 'Data tidak bisa dikembalikan!!',
@@ -228,10 +224,27 @@
                 confirmButtonText: 'Ya, saya yakin!'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    document.getElementById('myForm').submit();
+                    const form = document.createElement('form');
+                    form.action = url;
+                    form.method = 'POST';
+
+                    const csrfInput = document.createElement('input');
+                    csrfInput.type = 'hidden';
+                    csrfInput.name = '_token';
+                    csrfInput.value = csrfToken;
+
+                    const methodInput = document.createElement('input');
+                    methodInput.type = 'hidden';
+                    methodInput.name = '_method';
+                    methodInput.value = 'post';
+
+                    form.appendChild(csrfInput);
+                    form.appendChild(methodInput);
+
+                    document.body.appendChild(form);
+                    form.submit();
                 }
             });
         }
     </script>
-
 @endsection
