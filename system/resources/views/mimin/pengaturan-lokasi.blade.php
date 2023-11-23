@@ -1,9 +1,9 @@
 @extends('mimin.base')
 @section('content')
-    
+
     <div class="container-fluid">
-                    
-                    
+
+
         <div class="row">
             <div class="col-12">
                 <div class="card">
@@ -45,23 +45,27 @@
                         <div class="table-responsive">
                             <table id="example" class="display table-datatable" style="min-width: 845px">
                                 <thead>
-                                    <tr>                                    
+                                    <tr>
                                         <th>Nama Kecamatan</th>
-                                        <th>Nama Lokasi</th>                                       
+                                        <th>Nama Lokasi</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach ($list_lokasi_kecamatan as $item)
-                                        <tr>                                        
+                                        <tr>
                                             <td>{{$item->kecamatan->kecamatan_nama}}</td>
                                             <td>{{$item->lokasi_nama}}</td>
                                             <td>
                                                 <div class="d-flex">
-                                                <a href="#" class="btn btn-primary shadow btn-xs sharp me-1"><i class="fas fa-pencil-alt"></i></a>
+                                                <form action="{{url('mimin/prosesHapus',$item->lokasi_id)}}" method="post" onclick="return confirm('Yakin Ingin Hapus?')">
+                                                    @csrf
+                                                    @method('delete')
+                                                    <button class="btn btn-primary shadow btn-xs sharp me-1"><i class="fas fa-trash"></i></button>
+                                                </form>
                                                 </div>
                                             </td>
-                                        </tr>                                        
+                                        </tr>
                                     @endforeach
                                 </tbody>
                                 <tfoot>
@@ -76,9 +80,9 @@
                     </div>
                 </div>
             </div>
-            
-            
-            
+
+
+
         </div>
     </div>
 

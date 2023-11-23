@@ -248,6 +248,12 @@ class MiminController extends Controller
         return redirect('mimin/pengaturan-lokasi/' . $kecamatan_id);
     }
 
+    function deleteLokasi(Lokasi $lokasi){
+        $lokasi->delete();
+        
+        return redirect()->back();
+    }
+
     function pesan()
     {
         $data['list_pesan'] = Kontak::orderby('kontak_id', 'asc')->get();
