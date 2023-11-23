@@ -25,7 +25,7 @@
                                                     <a href="javascript:void(0);"
                                                         class="btn btn-outline-success btn-rounded">Selesai</a>
                                                     <a href="javascript:void(0);"
-                                                        class="btn btn-outline-primary btn-rounded">{{ $item->daftar_count }}
+                                                        class="btn btn-outline-primary btn-rounded">{{ $item->jumlah_nopol }}
                                                         Pelayanan</a>
                                                 @elseif ($item->jadwal_status == 1)
                                                     <a href="javascript:void(0);"

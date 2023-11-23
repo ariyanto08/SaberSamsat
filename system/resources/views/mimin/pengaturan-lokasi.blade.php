@@ -58,7 +58,12 @@
                                             <td>{{$item->lokasi_nama}}</td>
                                             <td>
                                                 <div class="d-flex">
-                                                <form action="{{url('mimin/prosesHapus',$item->lokasi_id)}}" method="post" onclick="return confirm('Yakin Ingin Hapus?')">
+                                                {{-- <form action="{{url('mimin/prosesHapus', $item->lokasi_id)}}" method="post" id="deleteForm">
+                                                    @csrf
+                                                    @method('delete')
+                                                    <button type="button" class="btn btn-primary shadow btn-xs sharp me-1" onclick="confirmDelete()"><i class="fas fa-trash"></i></button>
+                                                </form> --}}
+                                                <form action="{{url('mimin/prosesHapus', $item->lokasi_id)}}" method="post">
                                                     @csrf
                                                     @method('delete')
                                                     <button class="btn btn-primary shadow btn-xs sharp me-1"><i class="fas fa-trash"></i></button>
@@ -80,10 +85,25 @@
                     </div>
                 </div>
             </div>
-
-
-
         </div>
     </div>
+
+    <script>
+        function confirmDelete() {
+            Swal.fire({
+                title: 'Apakah anda yakin?',
+                text: 'Data tidak akan bisa dikembalikan!',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#68e365',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Ya, saya yakin!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.getElementById('deleteForm').submit();
+                }
+            });
+        }
+    </script>
 
 @endsection

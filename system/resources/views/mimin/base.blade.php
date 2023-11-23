@@ -18,36 +18,34 @@
     <title>SABER</title>
 
     <!-- FAVICONS ICON -->
-    <link rel="shortcut icon" type="image/png" href="{{url('public')}}/mimin/images/favicon.png" />
-    <link href="{{url('public')}}/mimin/vendor/jquery-nice-select/css/nice-select.css" rel="stylesheet">
-    <link href="{{url('public')}}/mimin/vendor/owl-carousel/owl.carousel.css" rel="stylesheet">
+    <link rel="shortcut icon" type="image/png" href="{{ url('public') }}/mimin/images/favicon.png" />
+    <link href="{{ url('public') }}/mimin/vendor/jquery-nice-select/css/nice-select.css" rel="stylesheet">
+    <link href="{{ url('public') }}/mimin/vendor/owl-carousel/owl.carousel.css" rel="stylesheet">
 
     <!-- Style css -->
-    <link href="{{url('public')}}/mimin/css/style.css" rel="stylesheet">
-    <script src="{{url('public')}}/mimin/jquery-3.6.1.min.js"></script>
+    <link href="{{ url('public') }}/mimin/css/style.css" rel="stylesheet">
+    <script src="{{ url('public') }}/mimin/jquery-3.6.1.min.js"></script>
 
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.css" />
 
     {{-- icon --}}
-    <link rel="stylesheet" href="{{url('public')}}/mimin/icons/flaticon_1/_flaticon_1.scss">
-    <link rel="stylesheet" href="{{url('public')}}/mimin/icons/flaticon_1/flaticon_1.css">
-    <link rel="stylesheet" href="{{url('public')}}/mimin/icons/flaticon_1/flaticon_1.html">
-    <link rel="stylesheet" href="{{url('public')}}/mimin/icons/font-awesome/css/all.css">
-    <link rel="stylesheet" href="{{url('public')}}/mimin/icons/font-awesome/css/regular.css">
-    <link rel="stylesheet" href="{{url('public')}}/mimin/icons/font-awesome/css/solid.css">
-    <link rel="stylesheet" href="{{url('public')}}/mimin/icons/font-awesome/css/brands.css">
-    <link rel="stylesheet" href="{{url('public')}}/mimin/icons/font-awesome/css/fontawesome.css">
-    <link rel="stylesheet" href="{{url('public')}}/mimin/icons/font-awesome/scss/fontawesome.scss">
-    <link rel="stylesheet" href="{{url('public')}}/mimin/icons/font-awesome/scss/solid.scss">
-    <link rel="stylesheet" href="{{url('public')}}/mimin/icons/font-awesome/scss/brands.scss">
-    <link rel="stylesheet" href="{{url('public')}}/mimin/icons/font-awesome/scss/regular.scss">
-    <link rel="stylesheet" href="{{url('public')}}/mimin/icons/font-awesome/svgs/regular">
-    <link rel="stylesheet" href="{{url('public')}}/mimin/icons/font-awesome/svgs/solid">
-    <link rel="stylesheet" href="{{url('public')}}/mimin/icons/font-awesome/svgs/brands">
+    <link rel="stylesheet" href="{{ url('public') }}/mimin/icons/flaticon_1/_flaticon_1.scss">
+    <link rel="stylesheet" href="{{ url('public') }}/mimin/icons/flaticon_1/flaticon_1.css">
+    <link rel="stylesheet" href="{{ url('public') }}/mimin/icons/flaticon_1/flaticon_1.html">
+    <link rel="stylesheet" href="{{ url('public') }}/mimin/icons/font-awesome/css/all.css">
+    <link rel="stylesheet" href="{{ url('public') }}/mimin/icons/font-awesome/css/regular.css">
+    <link rel="stylesheet" href="{{ url('public') }}/mimin/icons/font-awesome/css/solid.css">
+    <link rel="stylesheet" href="{{ url('public') }}/mimin/icons/font-awesome/css/brands.css">
+    <link rel="stylesheet" href="{{ url('public') }}/mimin/icons/font-awesome/css/fontawesome.css">
+    <link rel="stylesheet" href="{{ url('public') }}/mimin/icons/font-awesome/scss/fontawesome.scss">
+    <link rel="stylesheet" href="{{ url('public') }}/mimin/icons/font-awesome/scss/solid.scss">
+    <link rel="stylesheet" href="{{ url('public') }}/mimin/icons/font-awesome/scss/brands.scss">
+    <link rel="stylesheet" href="{{ url('public') }}/mimin/icons/font-awesome/scss/regular.scss">
+    <link rel="stylesheet" href="{{ url('public') }}/mimin/icons/font-awesome/svgs/regular">
+    <link rel="stylesheet" href="{{ url('public') }}/mimin/icons/font-awesome/svgs/solid">
+    <link rel="stylesheet" href="{{ url('public') }}/mimin/icons/font-awesome/svgs/brands">
 
-    <link href="{{url('public')}}/mimin/vendor/sweetalert2/dist/sweetalert2.min.css" rel="stylesheet">
-
-
+    @stack('style')
 </head>
 
 <body>
@@ -103,7 +101,7 @@
     <!--**********************************
             Footer start
         ***********************************-->
-        @include('mimin.layout.footer')
+    @include('mimin.layout.footer')
     <!--**********************************
             Footer end
         ***********************************-->
@@ -126,34 +124,35 @@
         Scripts
     ***********************************-->
     <!-- Required vendors -->
-    <script src="{{url('public')}}/mimin/vendor/global/global.min.js"></script>
-    <script src="{{url('public')}}/mimin/vendor/jquery-nice-select/js/jquery.nice-select.min.js"></script>
+    <script src="{{ url('public') }}/mimin/vendor/global/global.min.js"></script>
+    <script src="{{ url('public') }}/mimin/vendor/jquery-nice-select/js/jquery.nice-select.min.js"></script>
 
     <!-- Dashboard 1 -->
-    <script src="{{url('public')}}/mimin/js/dashboard/dashboard-1.js"></script>
-    <script src="{{url('public')}}/mimin/js/plugins-init/datatables.init.js"></script>
+    <script src="{{ url('public') }}/mimin/js/dashboard/dashboard-1.js"></script>
+    <script src="{{ url('public') }}/mimin/js/plugins-init/datatables.init.js"></script>
 
-	<!-- Apex Chart -->
-	<script src="{{url('public')}}/mimin/vendor/apexchart/apexchart.js"></script>
-	<script src="{{url('public')}}/mimin/vendor/chart.js/Chart.bundle.min.js"></script>
+    <!-- Apex Chart -->
+    <script src="{{ url('public') }}/mimin/vendor/apexchart/apexchart.js"></script>
+    <script src="{{ url('public') }}/mimin/vendor/chart.js/Chart.bundle.min.js"></script>
 
-	<!-- Chart piety plugin files -->
-    <script src="{{url('public')}}/mimin/vendor/peity/jquery.peity.min.js"></script>
+    <!-- Chart piety plugin files -->
+    <script src="{{ url('public') }}/mimin/vendor/peity/jquery.peity.min.js"></script>
 
-	<!-- Dashboard 1 -->
-	<script src="{{url('public')}}/mimin/js/dashboard/statistics-page.js"></script>
+    <!-- Dashboard 1 -->
+    <script src="{{ url('public') }}/mimin/js/dashboard/statistics-page.js"></script>
 
-    <script src="{{url('public')}}/mimin/js/custom.min.js"></script>
-    <script src="{{url('public')}}/mimin/js/dlabnav-init.js"></script>
+    <script src="{{ url('public') }}/mimin/js/custom.min.js"></script>
+    <script src="{{ url('public') }}/mimin/js/dlabnav-init.js"></script>
 
-    <script src="{{url('public')}}/mimin/vendor/sweetalert2/dist/sweetalert2.min.js"></script>
-    <script src="{{url('public')}}/mimin/js/plugins-init/sweetalert.init.js"></script>
     <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.js"></script>
     <script>
-        $(document).ready( function () {
+        $(document).ready(function() {
             $('.table-datatable').DataTable();
         });
     </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    @stack('script')
 
     {{-- <script>
         function JobickCarousel() {

@@ -110,74 +110,6 @@
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
-                                {{-- <tbody>
-                                    @foreach ($list_pelayanan as $layanan)
-                                        <tr>
-                                            <td>#{{ $layanan->daftar_id }}</td>
-                                            <td>{{ $layanan->daftar_nama }}</td>
-                                            <td>{{ $layanan->daftar_nik }}</td>
-                                            <td>{{ $layanan->daftar_wa }}</td>
-                                            <td>{{ $layanan->daftar_alamat }}</td>
-                                            @if ($layanan->layanan->layanan_status == 1)
-                                                <td>
-                                                    @foreach (App\Models\DaftarNopol::where('nopol_daftar', $layanan->daftar_id)->get() as $item)
-                                                        <a href="" class="badge badge-rounded badge-success">KB <span
-                                                                class="text-uppercase"> {{ $item->nopol_tengah }}
-                                                                {{ $item->nopol_belakang }}</span></a>
-                                                    @endforeach
-                                                </td>
-                                                <td>
-                                                    <a href=""
-                                                        class="badge badge-rounded badge-outline-success">{{ Carbon\Carbon::parse($layanan->jadwal_mulai)->format('d F Y') }}
-                                                        -
-                                                        {{ Carbon\Carbon::parse($layanan->jadwal_selesai)->format('d F Y') }}</a>
-                                                </td>
-                                                <td><span
-                                                        class="badge badge-success badge-lg light">{{ $layanan->status_string }}</span>
-                                                </td>
-                                                <td>
-
-                                                </td>
-                                            @else
-                                                <td>
-                                                    @foreach (App\Models\DaftarNopol::where('nopol_daftar', $layanan->daftar_id)->get() as $item)
-                                                        <a href="" class="badge badge-rounded badge-danger">KB
-                                                            <span class="text-uppercase"> {{ $item->nopol_tengah }}
-                                                                {{ $item->nopol_belakang }}</span></a>
-                                                    @endforeach
-                                                </td>
-                                                <td>
-                                                    <a href=""
-                                                        class="badge badge-rounded badge-outline-danger">{{ Carbon\Carbon::parse($layanan->jadwal_mulai)->format('d F Y') }}
-                                                        -
-                                                        {{ Carbon\Carbon::parse($layanan->jadwal_selesai)->format('d F Y') }}</a>
-                                                </td>
-                                                <td><span
-                                                        class="badge badge-danger badge-lg light">{{ $layanan->layanan->status_string }}</span>
-                                                </td>
-                                                <td>
-                                                    <div class="d-flex">
-                                                        <form
-                                                            action="{{ url('mimin/pelayanan-detail') }}/{{ $layanan->layanan->layanan_id }}"
-                                                            method="post">
-                                                            @csrf
-                                                            @method('post')
-                                                            <input type="hidden" name="id_layanan"
-                                                                value="{{ $layanan->layanan->layanan_id }}">
-                                                            <input type="hidden" name="id_daftar"
-                                                                value="{{ $layanan->layanan->layanan_daftar }}">
-                                                            <a onclick="return confirm('Yakin mah e?')">
-                                                                <button type="submit"
-                                                                    class="btn btn-primary shadow btn-xs sharp me-1"><i
-                                                                        class="fas fa-check"></i></button>
-                                                            </a>
-                                                        </form>
-                                                    </div>
-                                                </td>
-                                            @endif
-                                        </tr>
-                                    @endforeach
-                                </tbody> --}}
                                 <tbody>
                                     @foreach ($list_pelayanan as $item)
                                         <tr>
@@ -227,11 +159,11 @@
                                                     <div class="d-flex">
                                                         <form
                                                             action="{{ url('mimin/pelayanan-detail', $item->layanan_id) }}"
-                                                            method="post">
+                                                            method="post" id="myForm">
                                                             @csrf
                                                             @method('post')
-                                                            <button type="submit"
-                                                                class="btn btn-primary shadow btn-xs sharp me-1"><i
+                                                            <button type="button"
+                                                                class="btn btn-primary shadow btn-xs sharp me-1" onclick="showConfirmation()"><i
                                                                     class="fas fa-check"></i></button>
                                                         </form>
                                                     </div>
@@ -283,4 +215,23 @@
             </div>
         </div>
     </div>
+
+    <script>
+        function showConfirmation() {
+            Swal.fire({
+                title: 'Apakah anda yakin?',
+                text: 'Data tidak bisa dikembalikan!!',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#68e365',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Ya, saya yakin!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.getElementById('myForm').submit();
+                }
+            });
+        }
+    </script>
+
 @endsection
