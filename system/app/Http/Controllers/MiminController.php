@@ -200,7 +200,7 @@ class MiminController extends Controller
 
         $layanan->layanan_status = 1;
         $layanan->save();
-
+        // dd($layanan);
         return redirect()->back();
     }
 
