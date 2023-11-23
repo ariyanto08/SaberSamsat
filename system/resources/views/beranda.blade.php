@@ -63,7 +63,6 @@
 
             <a class="buy-tickets" href="#" data-bs-toggle="modal" data-bs-target="#buy-ticket-modal"
                 data-ticket-type="pro-access">Pendaftaran</a>
-
             <form action="{{ url('detail-pendaftaran') }}" method="post" id="searchForm" class="ms-3">
                 @csrf
                 <div class="input-group">
@@ -77,8 +76,6 @@
                     </div>
                 </div>
             </form>
-
-
         </div>
     </header><!-- End Header -->
 
