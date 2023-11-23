@@ -3,7 +3,7 @@
     <div class="container-fluid">
         <div class="row page-titles">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item active"><a href="javascript:void(0)">Kecamatan {{ $kecamatan->kecamatan_nama }}</a>
+                <li class="breadcrumb-item active"><a href="javascript:void(0)">Kecamatan {{ $jadwal->kecamatan->kecamatan_nama }}</a>
                 </li>
 
             </ol>
@@ -82,7 +82,18 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="card-title">Data Pelayanan Kecamatan {{ $kecamatan->kecamatan_nama }}</h4>
+                        <h4 class="card-title">Data Pelayanan Kecamatan {{ $jadwal->kecamatan->kecamatan_nama }}</h4>
+                        @if ($jadwal->jadwal_status == 0)
+                            <form
+                                action="{{ url('mimin/pelayanan-tutup', $jadwal->jadwal_id) }}"
+                                method="post">
+                                @csrf
+                                <button type="submit" class="btn light btn-primary btn-xs">Tutup Layanan</button>
+                            </form>                            
+                        @endif
+                        @if ($jadwal->jadwal_status == 1)
+                        <a href="javascript:void(0)" class="btn light btn-primary btn-xs">Layanan Sudah Ditutup</a>
+                        @endif
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
@@ -130,7 +141,8 @@
                                                 <td>
 
                                                 </td>
-                                            @else
+                                            @endif
+                                            @if ($item->layanan_status == 0)
                                                 <td>
                                                     @foreach ($item->daftar->nopol as $nopol)
                                                         <a href="javascript:void(0)"
@@ -162,6 +174,27 @@
                                                         </form>
                                                     </div>
                                                 </td>
+                                            @endif
+                                            @if ($item->layanan_status ==2)
+                                                <td>
+                                                    @foreach ($item->daftar->nopol as $nopol)
+                                                        <a href="javascript:void(0)"
+                                                            class="badge badge-rounded badge-danger">KB
+                                                            {{ $nopol->nopol_tengah }} <span class="text-uppercase">{{ $nopol->nopol_belakang }}</span></a>
+                                                    @endforeach
+                                                </td>
+                                                <td>
+                                                    <a href="javascript:void(0)"
+                                                        class="badge badge-rounded badge-outline-danger">{{ Carbon\Carbon::parse($item->jadwal->jadwal_mulai)->format('d F Y') }}
+                                                        -
+                                                        {{ Carbon\Carbon::parse($item->jadwal->jadwal_selesai)->format('d F Y') }}</a>
+
+                                                </td>
+                                                <td>
+                                                    <span
+                                                        class="badge badge-danger badge-lg light">{{ $item->status_string }}</span>
+                                                </td>
+                                                <td></td>
                                             @endif
                                         </tr>
                                     @endforeach

@@ -107,33 +107,49 @@ class MiminController extends Controller
 
     function pelayanan()
     {
-        $data['list_kecamatan'] = Kecamatan::withCount(['layanan as jumlah_nopol' => function ($query) {
-            $query->where('layanan_status', 0)->join('saber_daftar_nopol', 'saber_layanan.layanan_daftar', '=', 'saber_daftar_nopol.nopol_daftar');
-        }])->with('lokasi')->with('layanan')->whereHas('daftar', function ($query) {
-            $query->where('daftar_status', 1);
-        })->get();
+        $data['list_jadwal'] = Jadwal::with('kecamatan')->with('lokasi')->with('layanan')
+            ->withCount(['layanan as jumlah_nopol' => function ($query) {
+                $query->where('layanan_status', 0)->join('saber_daftar_nopol', 'saber_layanan.layanan_daftar', '=', 'saber_daftar_nopol.nopol_daftar');
+            }])->get();
 
-        // dd($data['list_kecamatan']);
+        // dd($data['list_jadwal']);
         return view('mimin.pelayanan', $data);
     }
 
-    function pelayananDetail(Kecamatan $kecamatan)
+    function pelayananDetail(Jadwal $jadwal)
     {
-        $data['kecamatan'] = $kecamatan;
+        $data['jadwal'] = $jadwal;
         $data['list_pelayanan'] = Layanan::with('daftar.nopol')
-            ->where('layanan_kecamatan', $kecamatan->kecamatan_id)->get();
-        $data['layanan_count'] = Layanan::where('layanan_kecamatan', $kecamatan->kecamatan_id)
+            ->where('layanan_jadwal', $jadwal->jadwal_id)->get();
+        $data['layanan_count'] = Layanan::where('layanan_jadwal', $jadwal->jadwal_id)
             ->where('layanan_status', 0)
             ->count();
-        $data['pelayanan_count'] = Layanan::where('layanan_kecamatan', $kecamatan->kecamatan_id)
+        $data['pelayanan_count'] = Layanan::where('layanan_jadwal', $jadwal->jadwal_id)
             ->where('layanan_status', 1)
             ->count();
         $data['grandtotal_pajak'] = DaftarNopol::whereIn('nopol_id', function ($query) {
             $query->select('layanan_nopol')->from('saber_layanan')->where('layanan_status', 1);
         })->sum('nopol_grandtotal');
-        // dd($data['grandtotal_pajak']);
+        // dd($data['list_pelayanan']);
 
         return view('mimin.pelayanan-detail', $data);
+    }
+
+    function pelayananTutup(Jadwal $jadwal)
+    {
+        $jadwal->jadwal_status = 1;
+        $jadwal->save();
+
+        $list_layanan = Layanan::where('layanan_jadwal', $jadwal->jadwal_id)->get();
+        // $jadwal = $layanan->layanan_jadwal;
+
+        foreach ($list_layanan as $layanan) {
+            $layanan->layanan_status = 2;
+            $layanan->save();
+        }
+
+        // dd($layanan);
+        return redirect('mimin/pelayanan');
     }
 
     function update(Layanan $layanan)

@@ -36,8 +36,9 @@ Route::prefix('mimin')->middleware('auth')->group(function () {
    Route::get('permohonan-proses/{kecamatan}', [MiminController::class, 'permohonanProses']);
    Route::post('permohonan-proses', [MiminController::class, 'prosesPermohonan']);
    Route::get('pelayanan', [MiminController::class, 'pelayanan']);
-   Route::get('pelayanan-detail/{kecamatan}', [MiminController::class, 'pelayananDetail']);
+   Route::get('pelayanan-detail/{jadwal}', [MiminController::class, 'pelayananDetail']);
    Route::post('pelayanan-detail/{layanan}', [MiminController::class, 'update']);
+   Route::post('pelayanan-tutup/{jadwal}', [MiminController::class, 'pelayananTutup']);
    Route::get('pengaturan', [MiminController::class, 'pengaturan']);
    Route::put('pengaturan/{kecamatan}', [MiminController::class, 'editKecamatan']);
    Route::post('tambah-kecamatan', [MiminController::class, 'tambahKecamatan']);
