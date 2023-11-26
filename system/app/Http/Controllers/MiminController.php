@@ -61,8 +61,8 @@ class MiminController extends Controller
         return view('mimin.permohonan-detail', $data);
     }
 
-    function permohonanEdit()
-    {
+    function permohonanEdit(){
+
     }
 
     function permohonanProses(Kecamatan $kecamatan)
@@ -149,7 +149,7 @@ class MiminController extends Controller
         $data['list_jadwal'] = Jadwal::with('kecamatan')->with('lokasi')->with('layanan')
             ->withCount(['layanan as jumlah_nopol' => function ($query) {
                 $query->where('layanan_status', 0);
-            }])->orderBy('jadwal_id', 'asc')->get();
+            }])->orderBy('jadwal_id','asc')->get();
 
         // dd($data['list_jadwal']);
         return view('mimin.pelayanan', $data);
@@ -251,8 +251,7 @@ class MiminController extends Controller
         return redirect('mimin/pengaturan-lokasi/' . $kecamatan_id);
     }
 
-    function deleteLokasi(Lokasi $lokasi)
-    {
+    function deleteLokasi(Lokasi $lokasi){
         $lokasi->delete();
 
         return redirect()->back();
@@ -286,18 +285,18 @@ class MiminController extends Controller
         $permohonan = Pendaftaran::select('daftar_id')->get();
         $totalDaftarId = $permohonan->sum('daftar_id');
         $totalDaftarId = Pendaftaran::count();
-        
+
         $kecamatan = Pendaftaran::select('daftar_kecamatan')->get();
         $totalKecamatan = $kecamatan->sum('daftar_kecamatan');
         $totalKecamatan = Pendaftaran::count();
-        
+
         $totalKecamatan = Pendaftaran::groupBy('daftar_kecamatan')
         ->selectRaw('daftar_kecamatan, COUNT(*) as count')
         ->pluck('count', 'daftar_kecamatan')
         ->toArray();
 
         $kecamatan = Kecamatan::all();
-        
+
         return view('mimin.laporan', compact( 'kecamatan', 'totalKecamatan', 'permohonan', 'totalDaftarId', 'total_rd2','total_rd4'));
     }
 }

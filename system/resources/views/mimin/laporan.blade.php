@@ -56,16 +56,17 @@
                                         </svg>
                                         Permohonan
                                     </span>
-									{{-- <span class="ms-4 fs-16 font-w600">{{ $permohonan_count }}</span> --}}
-                                    {{-- <div class="mt-2">
-                                    <span>
-                                        <svg class="me-3" xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 13 13">
-                                          <rect  width="13" height="13" fill="#black"/>
-                                        </svg>
-                                        Realisasi
-                                    </span>
-                                    <span class="ms-4 fs-16 font-w600">824</span>
-                                </div> --}}
+                                    <span class="ms-4 fs-16 font-w600">{{ $permohonan }}</span>
+                                    <div class="mt-2">
+                                        <span>
+                                            <svg class="me-3" xmlns="http://www.w3.org/2000/svg" width="13"
+                                                height="13" viewBox="0 0 13 13">
+                                                <rect width="13" height="13" fill="#black" />
+                                            </svg>
+                                            Realisasi
+                                        </span>
+                                        <span class="ms-4 fs-16 font-w600">{{ $realisasi }}</span>
+                                    </div>
                                 </div>
                             </div>
                             <div class="card-body pt-0 pb-3">
@@ -116,25 +117,19 @@
     }
 </script>
 
-<!-- kecamatan/index.blade.php -->
-<script> var kecamatan = @json($kecamatan->pluck('kecamatan_nama')->toArray()); </script>
 <script>
-    // Gunakan kecamatan di sini
-    console.log(kecamatan);
-</script>
-
-<script>
+	var totalKecamatan = @json($totalKecamatan);
     var chartBar = function() {
 
         var options = {
             series: [{
-                    name: 'Pelayanan',
-                    data: [3, 12, 5, 6, 2, 1, 9],
-                    //radius: 12,
+                    name: 'Realisasi',
+                    data: <?php echo json_encode($realisasiData); ?>,
+                    // radius: 12,
                 },
                 {
                     name: 'Permohonan',
-                    data: Object.values(permohonan_json),
+                    data: <?php echo json_encode($permohonanData); ?>,
                 },
 
             ],
