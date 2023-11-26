@@ -16,7 +16,7 @@ class DaftarNopol extends Model
 
     public function layanan()
     {
-        return $this->hasOne(Layanan::class, 'layanan_nopol', 'nonpol_id');
+        return $this->hasOne(Layanan::class, 'layanan_nopol');
     }
 
     public function daftar()

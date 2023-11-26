@@ -158,9 +158,9 @@ class MiminController extends Controller
     function pelayananDetail(Jadwal $jadwal)
     {
         $data['jadwal'] = $jadwal;
-        $data['list_pelayanan'] = Layanan::with('daftar')->with('nopol')
+        $data['list_pelayanan'] = Layanan::with('daftar.nopol')
             ->where('layanan_jadwal', $jadwal->jadwal_id)->get();
-        // dd($data['list_pelayanan']);
+
         $data['layanan_count'] = DaftarNopol::whereIn('nopol_id', function ($query) use ($jadwal) {
             $query->select('layanan_nopol')->from('saber_layanan')->where('layanan_status', 0)->where('layanan_jadwal', $jadwal->jadwal_id);
         })->count();

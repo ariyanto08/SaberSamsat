@@ -31,7 +31,7 @@
     {{-- icon --}}
     <link rel="stylesheet" href="{{url('public')}}/mimin/icons/flaticon_1/_flaticon_1.scss">
     <link rel="stylesheet" href="{{url('public')}}/mimin/icons/flaticon_1/flaticon_1.css">
-    <link rel="stylesheet" href="{{url('public')}}/mimin/icons/flaticon_1/flaticon_1.html">
+    {{-- <link rel="stylesheet" href="{{url('public')}}/mimin/icons/flaticon_1/flaticon_1.html"> --}}
     <link rel="stylesheet" href="{{url('public')}}/mimin/icons/font-awesome/css/all.css">
     <link rel="stylesheet" href="{{url('public')}}/mimin/icons/font-awesome/css/regular.css">
     <link rel="stylesheet" href="{{url('public')}}/mimin/icons/font-awesome/css/solid.css">

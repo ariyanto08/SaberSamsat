@@ -56,7 +56,7 @@
                                         </svg>
                                         Permohonan
                                     </span>
-									<span class="ms-4 fs-16 font-w600">{{ $permohonan_count }}</span>
+									{{-- <span class="ms-4 fs-16 font-w600">{{ $permohonan_count }}</span> --}}
                                     {{-- <div class="mt-2">
                                     <span>
                                         <svg class="me-3" xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 13 13">
@@ -124,8 +124,6 @@
 </script>
 
 <script>
-	var permohonan_json = {!! $permohonan_json !!};
-    console.log(permohonan_json.permohonan_count);
     var chartBar = function() {
 
         var options = {
