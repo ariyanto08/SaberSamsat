@@ -31,7 +31,7 @@
     {{-- icon --}}
     <link rel="stylesheet" href="{{url('public')}}/mimin/icons/flaticon_1/_flaticon_1.scss">
     <link rel="stylesheet" href="{{url('public')}}/mimin/icons/flaticon_1/flaticon_1.css">
-    <link rel="stylesheet" href="{{url('public')}}/mimin/icons/flaticon_1/flaticon_1.html">
+    {{-- <link rel="stylesheet" href="{{url('public')}}/mimin/icons/flaticon_1/flaticon_1.html"> --}}
     <link rel="stylesheet" href="{{url('public')}}/mimin/icons/font-awesome/css/all.css">
     <link rel="stylesheet" href="{{url('public')}}/mimin/icons/font-awesome/css/regular.css">
     <link rel="stylesheet" href="{{url('public')}}/mimin/icons/font-awesome/css/solid.css">
@@ -128,13 +128,8 @@
     <script src="{{url('public')}}/mimin/vendor/global/global.min.js"></script>
     <script src="{{url('public')}}/mimin/vendor/jquery-nice-select/js/jquery.nice-select.min.js"></script>
 
-    <!-- Dashboard 1 -->
-    <script src="{{url('public')}}/mimin/js/dashboard/dashboard-1.js"></script>
-    <script src="{{url('public')}}/mimin/js/plugins-init/datatables.init.js"></script>
-
 	<!-- Apex Chart -->
 	<script src="{{url('public')}}/mimin/vendor/apexchart/apexchart.js"></script>
-	<script src="{{url('public')}}/mimin/vendor/chart.js/Chart.bundle.min.js"></script>
     
 	<!-- Chart piety plugin files -->
     <script src="{{url('public')}}/mimin/vendor/peity/jquery.peity.min.js"></script>

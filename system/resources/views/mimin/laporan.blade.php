@@ -1,5 +1,15 @@
 @extends('mimin.base')
 @section('content')
+
+<style>
+    /* Ganti nilai width dan height sesuai kebutuhan */
+    progress {
+        width: 255px;
+        height: 20px;
+        
+    }
+</style>
+
     <!-- row -->
     <div class="container-fluid">
         <div class="row">
@@ -46,7 +56,7 @@
                                         </svg>
                                         Permohonan
                                     </span>
-									<span class="ms-4 fs-16 font-w600">{{ $totalDaftarId }}</span>
+									<span class="ms-4 fs-16 font-w600">{{ $permohonan_count }}</span>
                                     {{-- <div class="mt-2">
                                     <span>
                                         <svg class="me-3" xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 13 13">
@@ -108,25 +118,25 @@
 
 <!-- kecamatan/index.blade.php -->
 <script> var kecamatan = @json($kecamatan->pluck('kecamatan_nama')->toArray()); </script>
-
 <script>
     // Gunakan kecamatan di sini
     console.log(kecamatan);
 </script>
 
 <script>
-	var totalKecamatan = @json($totalKecamatan);
+	var permohonan_json = {!! $permohonan_json !!};
+    console.log(permohonan_json.permohonan_count);
     var chartBar = function() {
 
         var options = {
             series: [{
-                    name: '',
-                    data: [0, 0, 0, 0, 0, 0, 0],
-                    //radius: 12,	
+                    name: 'Pelayanan',
+                    data: [3, 12, 5, 6, 2, 1, 9],
+                    //radius: 12,
                 },
                 {
                     name: 'Permohonan',
-                    data: Object.values(totalKecamatan),
+                    data: Object.values(permohonan_json),
                 },
 
             ],
