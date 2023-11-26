@@ -40,14 +40,14 @@
 <body>
 
     <!-- ======= Header ======= -->
-    <header id="header" class="d-flex align-items-center ">
+    <header id="header" class="d-flex align-items-center">
         <div class="container-fluid container-xxl d-flex align-items-center">
 
             <div id="logo" class="me-auto">
-                <!-- Uncomment below if you prefer to use a text logo -->
-                <!-- <h1><a href="index.html">The<span>Event</span></a></h1>-->
-                <a href="index.html" class="scrollto"><img src="{{ url('public') }}/assets/img/SABERfinal.png"
-                        height="150%" alt="" title=""></a>
+                <a href="{{ url('/') }}" class="scrollto">
+                    <img src="{{ url('public') }}/assets/img/SABERfinal.png" height="150%" alt=""
+                        title="">
+                </a>
             </div>
 
             <nav id="navbar" class="navbar order-last order-lg-0">
@@ -59,13 +59,39 @@
                     <li><a class="nav-link scrollto" href="#contact">Kontak</a></li>
                 </ul>
                 <i class="bi bi-list mobile-nav-toggle"></i>
-            </nav><!-- .navbar -->
+            </nav>
+
             <a class="buy-tickets" href="#" data-bs-toggle="modal" data-bs-target="#buy-ticket-modal"
                 data-ticket-type="pro-access">Pendaftaran</a>
-            <a class="buy-tickets" href="{{ url('mimin/login') }}">Login</a>
+
+            <a class="buy-tickets" href="#" data-bs-toggle="modal" data-ticket-type="pro-access"
+                data-bs-target="#cari-modal" class="buy-tickets"><i class="bi bi-search"></i>Cari ID</a>
 
         </div>
     </header><!-- End Header -->
+    <!-- /.modal cari-->
+    <div id="cari-modal" class="modal fade">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content" style="background-color: #ffffff00; border: none;">
+                <div class="modal-body">
+                    <form action="{{ url('detail-pendaftaran') }}" method="post" id="searchForm" class="ms-3">
+                        @csrf
+                        <div class="input-group">
+                            <input type="text" name="cari_id" class="form-control"
+                                style="border-radius: 30px 0px 0px 30px; background-color: rgb(255, 255, 255, 0.9); height: 40px;"
+                                placeholder="Cari ID" aria-label="Cari ID" aria-describedby="basic-addon2">
+                            <div class="input-group-append" style="height: 40px;">
+                                <button class="btn btn-outline-secondary"
+                                    style="border-radius: 0px 30px 30px 0px; background-color: #f82249; border: none; color: #fff; height: 100%;"
+                                    type="submit" id="submit-btn">Cari</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
     <!-- ======= Hero Section ======= -->
     <section id="hero">
@@ -184,7 +210,8 @@
                         <h2>Penjadwalan</h2>
                         <p>Silahkan cek jadwal sesuai domisili Kecamatan pada saat pendaftaran</p>
                     </div>
-                    <ul class="nav nav-tabs" role="tablist" data-aos="fade-up" data-aos-delay="100" style="margin-bottom: 20px">
+                    <ul class="nav nav-tabs" role="tablist" data-aos="fade-up" data-aos-delay="100"
+                        style="margin-bottom: 20px">
                         @foreach ($list_kecamatan as $item)
                             <li class="nav-item" style="margin-bottom: 10px;">
                                 <a class="nav-link" href="#day-{{ $item->kecamatan_id }}" role="tab"
@@ -196,26 +223,8 @@
                         <br>Pastikan
                         anda membawa dokumen-dokumen terkait.
                     </h3>
-                    <div class="row mb-3">
-                        <div class="col-md-3"></div>
-                        <div class="col-md-6">
-                            <div class="row">
-                                <form action="{{url('detail-pendaftaran')}}" method="post" id="searchForm">
-                                    @csrf
-                                    <div class="input-group mb-3">
-                                        <input style="padding: 15px 15px 15px 15px; border-radius: 30px 0px 0px 30px; background-color: rgb(0, 0, 0, 0);"
-                                            type="text" name="cari_id" class="form-control" placeholder="Cari ID" aria-label="Cari ID" aria-describedby="basic-addon2">
-                                        <div class="input-group-append">
-                                            <button style="padding: 15px 30px 15px 30px; background-color: #f82249; border: none; border-radius: 0px 30px 30px 0px; color:#fff;"
-                                                class="btn btn-outline-secondary" type="submit" id="submit-btn">Cari</button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                        <div class="col-md-3"></div>
-                    </div>
-                    <div class="tab-content row justify-content-center" data-aos="fade-up" data-aos-delay="200" id="searchResult">
+                    <div class="tab-content row justify-content-center" data-aos="fade-up" data-aos-delay="200"
+                        id="searchResult">
                         <!-- Schdule -->
                         @foreach ($list_kecamatan as $item)
                             <div role="tabpanel" class="col-lg-9 tab-pane fade show"

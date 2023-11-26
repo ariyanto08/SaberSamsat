@@ -30,4 +30,9 @@ class Jadwal extends Model
     {
         return $this->hasMany(Pendaftaran::class, 'daftar_jadwal');
     }
+
+    function layanan()
+    {
+        return $this->hasMany(Layanan::class, 'layanan_jadwal');
+    }
 }

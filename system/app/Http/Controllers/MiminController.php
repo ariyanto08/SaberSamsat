@@ -11,6 +11,7 @@ use App\Models\Pendaftaran;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Kontak;
+use Illuminate\Support\Facades\DB;
 
 class MiminController extends Controller
 {
@@ -25,7 +26,10 @@ class MiminController extends Controller
         $data['motor_count'] = DaftarNopol::where('nopol_jenis', 'Roda 2')->whereHas('layanan_count', function ($query) {
             $query->where('layanan_status', 0);
         })->count();
-        // dd($data['motor_count']);
+        $data['permohonan_count'] = DaftarNopol::whereIn('nopol_daftar', function ($query) {
+            $query->select('daftar_id')->from('saber_daftar')->where('daftar_status', 0);
+        })->count();
+        // dd( $data['permohonan_count']);
         $data['layanan_count'] = Layanan::where('layanan_status', 1)->count();
         $data['antrian_layanan_count'] = Layanan::where('layanan_status', 0)->count();
         return view('mimin.beranda', $data);
@@ -33,27 +37,32 @@ class MiminController extends Controller
 
     function permohonan()
     {
-        $data['list_kecamatan'] = Kecamatan::withCount(['daftar' => function ($query) {
-            $query->where('daftar_status', 0);
+        $data['list_kecamatan'] = Kecamatan::withCount(['daftar as jumlah_nopol' => function ($query) {
+            $query->where('daftar_status', 0)->join('saber_daftar_nopol', 'saber_daftar.daftar_id', '=', 'saber_daftar_nopol.nopol_daftar');
         }])->with('lokasi')->whereHas('daftar', function ($query) {
             $query->where('daftar_status', 0);
         })->get();
-
+        
         return view('mimin.permohonan', $data);
     }
 
     function permohonanDetail(Kecamatan $kecamatan)
     {
         $data['kecamatan'] = $kecamatan;
+        $data['kecamatanlist'] = Kecamatan::all();
         $data['list_permohonan'] = Pendaftaran::where('daftar_status', 0)
-            ->with('nopol')
+            ->with('nopol')->with('lokasi')
             ->where('daftar_kecamatan', $kecamatan->kecamatan_id)
             ->get();
-        $data['permohonan_count'] = DaftarNopol::whereIn('nopol_daftar', function ($query) {
+        $data['permohonan_count'] = DaftarNopol::whereIn('nopol_daftar',function ($query) {
             $query->select('daftar_id')->from('saber_daftar')->where('daftar_status', 0);
         })->count();
-        // dd($data ['permohonan_count']);
+        // dd($data ['list_permohonan']);
         return view('mimin.permohonan-detail', $data);
+    }
+
+    function permohonanEdit()
+    {
     }
 
     function permohonanProses(Kecamatan $kecamatan)
@@ -64,9 +73,42 @@ class MiminController extends Controller
         return view('mimin.permohonan-proses', $data);
     }
 
+    // public function prosesPermohonan(Request $request)
+    // {
+    //     // dd(request()->all());
+    //     $jadwal = new Jadwal;
+    //     $jadwal->jadwal_kecamatan = request('jadwal_kecamatan');
+    //     $jadwal->jadwal_lokasi = request('jadwal_lokasi');
+    //     $jadwal->jadwal_penanggungjawab = request('jadwal_penanggungjawab');
+    //     $jadwal->jadwal_mulai = request('jadwal_mulai');
+    //     $jadwal->jadwal_selesai = request('jadwal_selesai');
+    //     $jadwal->jadwal_waktu = request('jadwal_waktu');
+    //     $jadwal->save();
+
+    //     $list_pemohon = Pendaftaran::where('daftar_status', 0)->where('daftar_kecamatan', $jadwal->jadwal_kecamatan)->get();
+
+    //     foreach ($list_pemohon as $pemohon) {
+    //         $pemohon->daftar_status = 1;
+    //         $pemohon->daftar_jadwal = $jadwal->jadwal_id;
+    //         $pemohon->save();
+    //     }
+
+    //     foreach ($list_pemohon as $pemohon) {
+    //         $layanan = new Layanan;
+    //         $layanan->layanan_kecamatan = $pemohon->daftar_kecamatan;
+    //         $layanan->layanan_lokasi = $pemohon->daftar_lokasi;
+    //         $layanan->layanan_daftar = $pemohon->daftar_id;
+    //         $layanan->layanan_jadwal = $pemohon->daftar_jadwal;
+    //         $nopol = DaftarNopol::where('nopol_daftar', $pemohon->daftar_id)->first();
+    //         $layanan->layanan_nopol = $nopol->nopol_id;
+    //         $layanan->save();
+    //     }
+
+    //     return redirect('mimin/permohonan');
+    // }
+
     public function prosesPermohonan(Request $request)
     {
-        // dd(request()->all());
         $jadwal = new Jadwal;
         $jadwal->jadwal_kecamatan = request('jadwal_kecamatan');
         $jadwal->jadwal_lokasi = request('jadwal_lokasi');
@@ -76,62 +118,87 @@ class MiminController extends Controller
         $jadwal->jadwal_waktu = request('jadwal_waktu');
         $jadwal->save();
 
-        $list_pemohon = Pendaftaran::where('daftar_status', 0)->where('daftar_kecamatan', $jadwal->jadwal_kecamatan)->get();
+        $list_pemohon = Pendaftaran::where('daftar_status', 0)
+            ->where('daftar_kecamatan', $jadwal->jadwal_kecamatan)
+            ->get();
 
         foreach ($list_pemohon as $pemohon) {
             $pemohon->daftar_status = 1;
             $pemohon->daftar_jadwal = $jadwal->jadwal_id;
             $pemohon->save();
-        }
 
-        foreach ($list_pemohon as $pemohon) {
-            $layanan = new Layanan;
-            $layanan->layanan_kecamatan = $pemohon->daftar_kecamatan;
-            $layanan->layanan_lokasi = $pemohon->daftar_lokasi;
-            $layanan->layanan_daftar = $pemohon->daftar_id;
-            $layanan->layanan_jadwal = $pemohon->daftar_jadwal;
-            $nopol = DaftarNopol::where('nopol_daftar', $pemohon->daftar_id)->first();
-            $layanan->layanan_nopol = $nopol->nopol_id;
-            $layanan->save();
+            $nopolList = DaftarNopol::where('nopol_daftar', $pemohon->daftar_id)->get();
+
+            foreach ($nopolList as $nopol) {
+                $layanan = new Layanan;
+                $layanan->layanan_kecamatan = $pemohon->daftar_kecamatan;
+                $layanan->layanan_lokasi = $pemohon->daftar_lokasi;
+                $layanan->layanan_daftar = $pemohon->daftar_id;
+                $layanan->layanan_jadwal = $pemohon->daftar_jadwal;
+                $layanan->layanan_nopol = $nopol->nopol_id;
+                $layanan->save();
+            }
         }
 
         return redirect('mimin/permohonan');
     }
 
+
     function pelayanan()
     {
-        $data['list_kecamatan'] = Kecamatan::withCount(['daftar' => function ($query) {
-            $query->where('daftar_status', 1);
-        }])->with('lokasi')->with('layanan')->whereHas('daftar', function ($query) {
-            $query->where('daftar_status', 1);
-        })->get();
+        $data['list_jadwal'] = Jadwal::with('kecamatan')->with('lokasi')->with('layanan')
+            ->withCount(['layanan as jumlah_nopol' => function ($query) {
+                $query->where('layanan_status', 0);
+            }])->orderBy('jadwal_id', 'asc')->get();
+
+        // dd($data['list_jadwal']);
         return view('mimin.pelayanan', $data);
     }
 
-    function pelayananDetail(Kecamatan $kecamatan)
+    function pelayananDetail(Jadwal $jadwal)
     {
-        $data['kecamatan'] = $kecamatan;
-        $data['list_pelayanan'] = Layanan::with('daftar.nopol')
-            ->where('layanan_kecamatan', $kecamatan->kecamatan_id)->get();
-        $data['layanan_count'] = Layanan::where('layanan_kecamatan', $kecamatan->kecamatan_id)
-            ->where('layanan_status', 0)
-            ->count();
-        $data['pelayanan_count'] = Layanan::where('layanan_kecamatan', $kecamatan->kecamatan_id)
+        $data['jadwal'] = $jadwal;
+        $data['list_pelayanan'] = Layanan::with('daftar')->with('nopol')
+            ->where('layanan_jadwal', $jadwal->jadwal_id)->get();
+        // dd($data['list_pelayanan']);
+        $data['layanan_count'] = DaftarNopol::whereIn('nopol_id', function ($query) use ($jadwal) {
+            $query->select('layanan_nopol')->from('saber_layanan')->where('layanan_status', 0)->where('layanan_jadwal', $jadwal->jadwal_id);
+        })->count();
+
+        $data['pelayanan_count'] = Layanan::where('layanan_jadwal', $jadwal->jadwal_id)
             ->where('layanan_status', 1)
             ->count();
+
         $data['grandtotal_pajak'] = DaftarNopol::whereIn('nopol_id', function ($query) {
             $query->select('layanan_nopol')->from('saber_layanan')->where('layanan_status', 1);
         })->sum('nopol_grandtotal');
-        // dd($data['grandtotal_pajak']);
 
         return view('mimin.pelayanan-detail', $data);
     }
 
+    function pelayananTutup(Jadwal $jadwal)
+    {
+        $jadwal->jadwal_status = 1;
+        $jadwal->save();
+
+        $list_layanan = Layanan::where('layanan_jadwal', $jadwal->jadwal_id)->get();
+        // $jadwal = $layanan->layanan_jadwal;
+
+        foreach ($list_layanan as $layanan) {
+            $layanan->layanan_status = 2;
+            $layanan->save();
+        }
+
+        // dd($layanan);
+        return redirect('mimin/pelayanan');
+    }
+
     function update(Layanan $layanan)
     {
+
         $layanan->layanan_status = 1;
         $layanan->save();
-
+        // dd($layanan);
         return redirect()->back();
     }
 
@@ -184,6 +251,13 @@ class MiminController extends Controller
         return redirect('mimin/pengaturan-lokasi/' . $kecamatan_id);
     }
 
+    function deleteLokasi(Lokasi $lokasi)
+    {
+        $lokasi->delete();
+
+        return redirect()->back();
+    }
+
     function pesan()
     {
         $data['list_pesan'] = Kontak::orderby('kontak_id', 'asc')->get();
@@ -205,34 +279,25 @@ class MiminController extends Controller
         $totalData = DaftarNopol::count();
         $rd2 = DaftarNopol::where('nopol_jenis', 'Roda 2')->count();
         $rd4 = DaftarNopol::where('nopol_jenis', 'Roda 4')->count();
-        $total_rd2 = ($totalData != 0) ? ($rd2 / $totalData) * 100 : 0;
-        $total_rd4 = ($totalData != 0) ? ($rd4 / $totalData) * 100 : 0;
+        $total_rd2 = ($rd2 / $totalData) *100;
+        $total_rd4 = ($rd4 / $totalData) *100;
 
         //Diagram Permohonan
-        $permohonan_count = DaftarNopol::whereIn('nopol_daftar', function ($query) {
-            $query->select('daftar_id')->from('saber_daftar')->where('daftar_status', 0);
-        })->count();
-        $permohonan_json = json_encode(['permohonan_count' => $permohonan_count]);
-
+        $permohonan = Pendaftaran::select('daftar_id')->get();
+        $totalDaftarId = $permohonan->sum('daftar_id');
+        $totalDaftarId = Pendaftaran::count();
         
-
-        // $permohonan = Pendaftaran::select('daftar_id')
-        // ->where('daftar_status', 1) //Filter berdasarkan daftar_status = 1
-        // ->get();
-        // $totalDaftarId = $permohonan->sum('daftar_id');
-        // $totalCount = $permohonan->count();
-
         $kecamatan = Pendaftaran::select('daftar_kecamatan')->get();
         $totalKecamatan = $kecamatan->sum('daftar_kecamatan');
         $totalKecamatan = Pendaftaran::count();
-
+        
         $totalKecamatan = Pendaftaran::groupBy('daftar_kecamatan')
-            ->selectRaw('daftar_kecamatan, COUNT(*) as count')
-            ->pluck('count', 'daftar_kecamatan')
-            ->toArray();
+        ->selectRaw('daftar_kecamatan, COUNT(*) as count')
+        ->pluck('count', 'daftar_kecamatan')
+        ->toArray();
 
         $kecamatan = Kecamatan::all();
-
-        return view('mimin.laporan', compact('permohonan_count', 'kecamatan', 'permohonan_json', 'total_rd2', 'total_rd4'));
+        
+        return view('mimin.laporan', compact( 'kecamatan', 'totalKecamatan', 'permohonan', 'totalDaftarId', 'total_rd2','total_rd4'));
     }
 }

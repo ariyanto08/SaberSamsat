@@ -1,9 +1,9 @@
 @extends('mimin.base')
 @section('content')
-    
+
     <div class="container-fluid">
-                    
-                    
+
+
         <div class="row">
             <div class="col-12">
                 <div class="card">
@@ -45,23 +45,23 @@
                         <div class="table-responsive">
                             <table id="example" class="display table-datatable" style="min-width: 845px">
                                 <thead>
-                                    <tr>                                    
+                                    <tr>
                                         <th>Nama Kecamatan</th>
-                                        <th>Nama Lokasi</th>                                       
+                                        <th>Nama Lokasi</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach ($list_lokasi_kecamatan as $item)
-                                        <tr>                                        
+                                        <tr>
                                             <td>{{$item->kecamatan->kecamatan_nama}}</td>
                                             <td>{{$item->lokasi_nama}}</td>
                                             <td>
                                                 <div class="d-flex">
-                                                <a href="#" class="btn btn-primary shadow btn-xs sharp me-1"><i class="fas fa-pencil-alt"></i></a>
+                                                    <button type="button" class="btn btn-primary shadow btn-xs sharp me-1" onclick="confirmDelete('{{url('mimin/prosesHapus', $item->lokasi_id)}}', '{{ csrf_token() }}')"><i class="fas fa-trash"></i></button>
                                                 </div>
                                             </td>
-                                        </tr>                                        
+                                        </tr>
                                     @endforeach
                                 </tbody>
                                 <tfoot>
@@ -76,10 +76,43 @@
                     </div>
                 </div>
             </div>
-            
-            
-            
         </div>
     </div>
+
+    <script>
+        function confirmDelete(url, csrfToken) {
+            Swal.fire({
+                title: 'Apakah anda yakin?',
+                text: 'Data tidak bisa dikembalikan!!',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#68e365',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Ya, saya yakin!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    const form = document.createElement('form');
+                    form.action = url;
+                    form.method = 'POST';
+
+                    const csrfInput = document.createElement('input');
+                    csrfInput.type = 'hidden';
+                    csrfInput.name = '_token';
+                    csrfInput.value = csrfToken;
+
+                    const methodInput = document.createElement('input');
+                    methodInput.type = 'hidden';
+                    methodInput.name = '_method';
+                    methodInput.value = 'DELETE';
+
+                    form.appendChild(csrfInput);
+                    form.appendChild(methodInput);
+
+                    document.body.appendChild(form);
+                    form.submit();
+                }
+            });
+        }
+    </script>
 
 @endsection

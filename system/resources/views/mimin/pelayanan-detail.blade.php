@@ -3,7 +3,8 @@
     <div class="container-fluid">
         <div class="row page-titles">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item active"><a href="javascript:void(0)">Kecamatan {{ $kecamatan->kecamatan_nama }}</a>
+                <li class="breadcrumb-item active"><a href="javascript:void(0)">Kecamatan
+                        {{ $jadwal->kecamatan->kecamatan_nama }}</a>
                 </li>
 
             </ol>
@@ -82,7 +83,16 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="card-title">Data Pelayanan Kecamatan {{ $kecamatan->kecamatan_nama }}</h4>
+                        <h4 class="card-title">Data Pelayanan Kecamatan {{ $jadwal->kecamatan->kecamatan_nama }}</h4>
+                        @if ($jadwal->jadwal_status == 0)
+                            <form action="{{ url('mimin/pelayanan-tutup', $jadwal->jadwal_id) }}" method="post">
+                                @csrf
+                                <button type="submit" class="btn light btn-primary btn-xs">Tutup Layanan</button>
+                            </form>
+                        @endif
+                        @if ($jadwal->jadwal_status == 1)
+                            <a href="javascript:void(0)" class="btn light btn-primary btn-xs">Layanan Sudah Ditutup</a>
+                        @endif
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
@@ -110,18 +120,16 @@
                                             <td>{{ $item->daftar->daftar_alamat }}</td>
                                             @if ($item->layanan_status == 1)
                                                 <td>
-                                                    @foreach ($item->daftar->nopol as $nopol)
-                                                        <a href="javascript:void(0)"
-                                                            class="badge badge-rounded badge-success">KB
-                                                            {{ $nopol->nopol_tengah }} <span class="text-uppercase">{{ $nopol->nopol_belakang }}</span></a>
-                                                    @endforeach
+                                                    <a href="javascript:void(0)"
+                                                        class="badge badge-rounded badge-success">KB
+                                                        {{ $item->nopol->nopol_tengah }} <span
+                                                            class="text-uppercase">{{ $item->nopol->nopol_belakang }}</span></a>
                                                 </td>
                                                 <td>
                                                     <a href="javascript:void(0)"
                                                         class="badge badge-rounded badge-outline-success">{{ Carbon\Carbon::parse($item->jadwal->jadwal_mulai)->format('d F Y') }}
                                                         -
                                                         {{ Carbon\Carbon::parse($item->jadwal->jadwal_selesai)->format('d F Y') }}</a>
-
                                                 </td>
                                                 <td>
                                                     <span
@@ -130,13 +138,39 @@
                                                 <td>
 
                                                 </td>
-                                            @else
+                                            @endif
+                                            @if ($item->layanan_status == 0)
                                                 <td>
-                                                    @foreach ($item->daftar->nopol as $nopol)
-                                                        <a href="javascript:void(0)"
-                                                            class="badge badge-rounded badge-danger">KB
-                                                            {{ $nopol->nopol_tengah }} <span class="text-uppercase">{{ $nopol->nopol_belakang }}</span></a>
-                                                    @endforeach
+                                                    <a href="javascript:void(0)" class="badge badge-rounded badge-danger">KB
+                                                        {{ $item->nopol->nopol_tengah }} <span
+                                                            class="text-uppercase">{{ $item->nopol->nopol_belakang }}</span></a>
+                                                </td>
+                                                <td>
+                                                    <a href="javascript:void(0)"
+                                                        class="badge badge-rounded badge-outline-danger">{{ Carbon\Carbon::parse($item->jadwal->jadwal_mulai)->format('d F Y') }}
+                                                        -
+                                                        {{ Carbon\Carbon::parse($item->jadwal->jadwal_selesai)->format('d F Y') }}</a>
+                                                </td>
+                                                <td>
+                                                    <span
+                                                        class="badge badge-danger badge-lg light">{{ $item->status_string }}</span>
+                                                </td>
+                                                <td>
+                                                    <div class="d-flex">
+                                                        <button type="button"
+                                                            class="btn btn-primary shadow btn-xs sharp me-1"
+                                                            onclick="showConfirmation('{{ url('mimin/pelayanan-detail', $item->layanan_id) }}', '{{ csrf_token() }}')">
+                                                            <i class="fas fa-check"></i>
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            @endif
+                                            @if ($item->layanan_status == 2)
+                                                <td>
+                                                    <a href="javascript:void(0)"
+                                                        class="badge badge-rounded badge-danger">KB
+                                                        {{ $item->nopol->nopol_tengah }} <span
+                                                        class="text-uppercase">{{ $item->nopol->nopol_belakang }}</span></a>
                                                 </td>
                                                 <td>
                                                     <a href="javascript:void(0)"
@@ -149,23 +183,12 @@
                                                     <span
                                                         class="badge badge-danger badge-lg light">{{ $item->status_string }}</span>
                                                 </td>
-                                                <td>
-                                                    <div class="d-flex">
-                                                        <form
-                                                            action="{{ url('mimin/pelayanan-detail', $item->layanan_id) }}"
-                                                            method="post">
-                                                            @csrf
-                                                            @method('post')
-                                                            <button type="submit"
-                                                                class="btn btn-primary shadow btn-xs sharp me-1"><i
-                                                                    class="fas fa-check"></i></button>
-                                                        </form>
-                                                    </div>
-                                                </td>
+                                                <td></td>
                                             @endif
                                         </tr>
                                     @endforeach
                                 </tbody>
+
                                 <tfoot>
                                     <tr>
                                         <th>ID</th>
@@ -184,9 +207,42 @@
                     </div>
                 </div>
             </div>
-
-
-
         </div>
     </div>
+
+    <script>
+        function showConfirmation(url, csrfToken) {
+            Swal.fire({
+                title: 'Apakah anda yakin?',
+                text: 'Data tidak bisa dikembalikan!!',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#68e365',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Ya, saya yakin!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    const form = document.createElement('form');
+                    form.action = url;
+                    form.method = 'POST';
+
+                    const csrfInput = document.createElement('input');
+                    csrfInput.type = 'hidden';
+                    csrfInput.name = '_token';
+                    csrfInput.value = csrfToken;
+
+                    const methodInput = document.createElement('input');
+                    methodInput.type = 'hidden';
+                    methodInput.name = '_method';
+                    methodInput.value = 'post';
+
+                    form.appendChild(csrfInput);
+                    form.appendChild(methodInput);
+
+                    document.body.appendChild(form);
+                    form.submit();
+                }
+            });
+        }
+    </script>
 @endsection

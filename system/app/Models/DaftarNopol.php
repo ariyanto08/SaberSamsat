@@ -16,12 +16,12 @@ class DaftarNopol extends Model
 
     public function layanan()
     {
-        return $this->belongsTo(Layanan::class, 'layanan_nopol');
+        return $this->hasOne(Layanan::class, 'layanan_nopol', 'nonpol_id');
     }
 
     public function daftar()
     {
-        return $this->belongsTo(Pendaftaran::class, 'nopol_daftar');
+        return $this->belongsTo(Pendaftaran::class, 'nopol_daftar', 'daftar_id');
     }
 
     public function layanan_count()

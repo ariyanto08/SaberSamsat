@@ -58,7 +58,6 @@
                 <i class="bi bi-list mobile-nav-toggle"></i>
             </nav><!-- .navbar -->
             {{-- <a class="buy-tickets" href="#" data-bs-toggle="modal" data-bs-target="#buy-ticket-modal" data-ticket-type="pro-access">Pendaftaran</a> --}}
-            <a class="buy-tickets" href="{{url('mimin/login')}}">Login</a>
 
 
 
