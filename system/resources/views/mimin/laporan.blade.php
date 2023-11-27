@@ -1,14 +1,13 @@
 @extends('mimin.base')
 @section('content')
+    <style>
+        /* Ganti nilai width dan height sesuai kebutuhan */
+        progress {
+            width: 255px;
+            height: 20px;
 
-<style>
-    /* Ganti nilai width dan height sesuai kebutuhan */
-    progress {
-        width: 255px;
-        height: 20px;
-        
-    }
-</style>
+        }
+    </style>
 
     <!-- row -->
     <div class="container-fluid">
@@ -23,18 +22,34 @@
                             <div class="card-body">
                                 <div class="row align-items-center">
                                     <div class="col-xl-6 col-sm-6">
-										<progress value="{{ number_format(floatval($total_rd2)), 2 }}" max="100"></progress>
+                                        <div class="progress default-progress">
+                                            <div class="progress-bar bg-vigit progress-animated"
+                                                style="width: {{ number_format(floatval($total_rd2)), 2 }}%; height:13px;"
+                                                role="progressbar">
+                                                <span class="sr-only">{{ number_format(floatval($total_rd2)), 2 }}%
+                                                    Complete</span>
+                                            </div>
+                                        </div>
                                         <div class="d-flex align-items-end mt-2 pb-4 justify-content-between">
                                             <span class="fs-14 font-w500">Kendaraan Roda 2</span>
-                                            <span class="fs-16"><span class="text-black pe-2"></span>{{ number_format(floatval($total_rd2)), 2 }} %</span>
+                                            <span class="fs-16"><span
+                                                    class="text-black pe-2"></span>{{ number_format(floatval($total_rd2)), 2 }}
+                                                %</span>
                                         </div>
-										<progress value="{{ number_format(floatval($total_rd4)), 2 }}" max="100"></progress>
+                                        <div class="progress default-progress">
+                                            <div class="progress-bar bg-contact progress-animated"
+                                                style="width: {{ number_format(floatval($total_rd4)), 2 }}%; height:13px;"
+                                                role="progressbar">
+                                                <span class="sr-only">{{ number_format(floatval($total_rd4)), 2 }}%
+                                                    Complete</span>
+                                            </div>
+                                        </div>
                                         <div class="d-flex align-items-end mt-2 pb-4 justify-content-between">
                                             <span class="fs-14 font-w500">Kendaraan Roda 4</span>
                                             <span class="fs-16"><span
-                                                    class="text-black pe-2"></span>{{ number_format(floatval($total_rd4)), 2 }} %</span>
+                                                class="text-black pe-2"></span>{{ number_format(floatval($total_rd4)), 2 }}
+                                                %</span>
                                         </div>
-
 
                                     </div>
                                     <div class="col-xl-6 col-sm-6">
@@ -56,16 +71,17 @@
                                         </svg>
                                         Permohonan
                                     </span>
-									<span class="ms-4 fs-16 font-w600">{{ $totalDaftarId }}</span>
-                                    {{-- <div class="mt-2">
-                                    <span>
-                                        <svg class="me-3" xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 13 13">
-                                          <rect  width="13" height="13" fill="#black"/>
-                                        </svg>
-                                        Realisasi
-                                    </span>
-                                    <span class="ms-4 fs-16 font-w600">824</span>
-                                </div> --}}
+                                    <span class="ms-4 fs-16 font-w600">{{ $permohonan }}</span>
+                                    <div class="mt-2">
+                                        <span>
+                                            <svg class="me-3" xmlns="http://www.w3.org/2000/svg" width="13"
+                                                height="13" viewBox="0 0 13 13">
+                                                <rect width="13" height="13" fill="#black" />
+                                            </svg>
+                                            Realisasi
+                                        </span>
+                                        <span class="ms-4 fs-16 font-w600">{{ $realisasi }}</span>
+                                    </div>
                                 </div>
                             </div>
                             <div class="card-body pt-0 pb-3">
@@ -116,33 +132,23 @@
     }
 </script>
 
-<!-- kecamatan/index.blade.php -->
-<script> var kecamatan = @json($kecamatan->pluck('kecamatan_nama')->toArray()); </script>
-
 <script>
-    // Gunakan kecamatan di sini
-    console.log(kecamatan);
-</script>
-
-<script>
-	var totalKecamatan = @json($totalKecamatan);
     var chartBar = function() {
-
         var options = {
             series: [{
-                    name: '',
-                    data: [0, 0, 0, 0, 0, 0, 0],
-                    //radius: 12,	
+                    name: 'Realisasi',
+                    data: <?php echo json_encode($realisasiData); ?>,
+                    // radius: 12,
                 },
                 {
                     name: 'Permohonan',
-                    data: Object.values(totalKecamatan),
+                    data: <?php echo json_encode($permohonanData); ?>,
                 },
 
             ],
             chart: {
                 type: 'bar',
-                height: 230,
+                height: 250,
 
                 toolbar: {
                     show: false,
@@ -191,7 +197,7 @@
             },
             xaxis: {
 
-                categories: kecamatan,
+                categories: <?php echo json_encode($categories); ?>,
                 labels: {
                     style: {
                         colors: '#787878',
@@ -222,7 +228,7 @@
             tooltip: {
                 y: {
                     formatter: function(val) {
-                        return val
+                        return Math.round(val);
                     }
                 }
             }

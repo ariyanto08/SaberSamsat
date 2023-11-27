@@ -167,12 +167,7 @@
                                             @endif
                                             @if ($item->layanan_status == 2)
                                                 <td>
-                                                    @foreach ($item->daftar->nopol as $nopol)
-                                                        <a href="javascript:void(0)"
-                                                            class="badge badge-rounded badge-danger">KB
-                                                            {{ $nopol->nopol_tengah }} <span
-                                                                class="text-uppercase">{{ $nopol->nopol_belakang }}</span></a>
-                                                    @endforeach
+                                                    <a href="javascript:void(0)" class="badge badge-rounded badge-danger">KB {{ $item->nopol->nopol_tengah }} <span class="text-uppercase">{{ $item->nopol->nopol_belakang }}</span> </a>
                                                 </td>
                                                 <td>
                                                     <a href="javascript:void(0)"

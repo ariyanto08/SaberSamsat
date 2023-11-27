@@ -28,7 +28,7 @@ class Layanan extends Model
     }
     public function nopol()
     {
-        return $this->hasOne(DaftarNopol::class, 'nopol_id');
+        return $this->hasOne(DaftarNopol::class, 'nopol_id', 'layanan_nopol');
     }
     public function jadwal()
     {
