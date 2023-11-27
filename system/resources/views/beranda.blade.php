@@ -79,7 +79,7 @@
                         <div class="input-group">
                             <input type="text" name="cari_id" class="form-control"
                                 style="border-radius: 30px 0px 0px 30px; background-color: rgb(255, 255, 255, 0.9); height: 40px;"
-                                placeholder="Cari ID" aria-label="Cari ID" aria-describedby="basic-addon2">
+                                placeholder="Cari ID" aria-label="Cari ID" aria-describedby="basic-addon2" required>
                             <div class="input-group-append" style="height: 40px;">
                                 <button class="btn btn-outline-secondary"
                                     style="border-radius: 0px 30px 30px 0px; background-color: #f82249; border: none; color: #fff; height: 100%;"

@@ -40,6 +40,9 @@ class WebController extends Controller
             ->with('nopol')
             ->first();
 
+        if (!$data['pendaftar']) {
+            return redirect()->back()->with('error', 'ID tidak ditemukan.');
+        }
         return view('detail-pendaftaran', $data);
     }
 
