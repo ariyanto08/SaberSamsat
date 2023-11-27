@@ -42,7 +42,7 @@ class MiminController extends Controller
         }])->with('lokasi')->whereHas('daftar', function ($query) {
             $query->where('daftar_status', 0);
         })->get();
-        
+
         return view('mimin.permohonan', $data);
     }
 
@@ -54,15 +54,15 @@ class MiminController extends Controller
             ->with('nopol')->with('lokasi')
             ->where('daftar_kecamatan', $kecamatan->kecamatan_id)
             ->get();
-        $data['permohonan_count'] = DaftarNopol::whereIn('nopol_daftar',function ($query) {
+        $data['permohonan_count'] = DaftarNopol::whereIn('nopol_daftar', function ($query) {
             $query->select('daftar_id')->from('saber_daftar')->where('daftar_status', 0);
         })->count();
         // dd($data ['list_permohonan']);
         return view('mimin.permohonan-detail', $data);
     }
 
-    function permohonanEdit(){
-
+    function permohonanEdit()
+    {
     }
 
     function permohonanProses(Kecamatan $kecamatan)
@@ -149,7 +149,7 @@ class MiminController extends Controller
         $data['list_jadwal'] = Jadwal::with('kecamatan')->with('lokasi')->with('layanan')
             ->withCount(['layanan as jumlah_nopol' => function ($query) {
                 $query->where('layanan_status', 0);
-            }])->orderBy('jadwal_id','asc')->get();
+            }])->orderBy('jadwal_id', 'asc')->get();
 
         // dd($data['list_jadwal']);
         return view('mimin.pelayanan', $data);
@@ -158,9 +158,11 @@ class MiminController extends Controller
     function pelayananDetail(Jadwal $jadwal)
     {
         $data['jadwal'] = $jadwal;
-        $data['list_pelayanan'] = Layanan::with('daftar.nopol')
-            ->where('layanan_jadwal', $jadwal->jadwal_id)->get();
-
+        $data['list_pelayanan'] = Layanan::with('daftar')->with('nopol')
+            ->where('layanan_jadwal', $jadwal->jadwal_id)
+            ->get();
+        // dd($data['list_pelayanan']);
+        
         $data['layanan_count'] = DaftarNopol::whereIn('nopol_id', function ($query) use ($jadwal) {
             $query->select('layanan_nopol')->from('saber_layanan')->where('layanan_status', 0)->where('layanan_jadwal', $jadwal->jadwal_id);
         })->count();
@@ -251,7 +253,8 @@ class MiminController extends Controller
         return redirect('mimin/pengaturan-lokasi/' . $kecamatan_id);
     }
 
-    function deleteLokasi(Lokasi $lokasi){
+    function deleteLokasi(Lokasi $lokasi)
+    {
         $lokasi->delete();
 
         return redirect()->back();
@@ -275,28 +278,54 @@ class MiminController extends Controller
     function laporan()
     {
         //Persentase
-        $totalData = DaftarNopol::count();
-        $rd2 = DaftarNopol::where('nopol_jenis', 'Roda 2')->count();
-        $rd4 = DaftarNopol::where('nopol_jenis', 'Roda 4')->count();
-        $total_rd2 = ($rd2 / $totalData) *100;
-        $total_rd4 = ($rd4 / $totalData) *100;
+        $totalDataMotor = DaftarNopol::where('nopol_jenis', 'Roda 2')->whereIn('nopol_id', function ($query) {
+            $query->select('layanan_nopol')->from('saber_layanan');
+        })->count();
+        $totalDataMobil = DaftarNopol::where('nopol_jenis', 'Roda 4')->whereIn('nopol_id', function ($query) {
+            $query->select('layanan_nopol')->from('saber_layanan');
+        })->count();
+        $rd2 = DaftarNopol::where('nopol_jenis', 'Roda 2')->whereIn('nopol_id', function ($query) {
+            $query->select('layanan_nopol')->from('saber_layanan')->where('layanan_status', 1);
+        })->count();
+        $rd4 = DaftarNopol::where('nopol_jenis', 'Roda 4')->whereIn('nopol_id', function ($query) {
+            $query->select('layanan_nopol')->from('saber_layanan')->where('layanan_status', 1);
+        })->count();
+        $total_rd2 = ($rd2 / $totalDataMotor) * 100;
+        $total_rd4 = ($rd4 / $totalDataMobil) * 100;
 
         //Diagram Permohonan
-        $permohonan = Pendaftaran::select('daftar_id')->get();
-        $totalDaftarId = $permohonan->sum('daftar_id');
-        $totalDaftarId = Pendaftaran::count();
+        $permohonan = Layanan::where('layanan_status', 0)->count();
+        //Reaslisai
+        $realisasi = Layanan::where('layanan_status', 1)->count();
 
-        $kecamatan = Pendaftaran::select('daftar_kecamatan')->get();
-        $totalKecamatan = $kecamatan->sum('daftar_kecamatan');
-        $totalKecamatan = Pendaftaran::count();
+        //chart batang
+        $data = Layanan::select('saber_kecamatan.kecamatan_nama as kecamatan_nama')
+            ->whereIn('layanan_kecamatan', function ($query) {
+                $query->select('kecamatan_id')
+                    ->from('saber_kecamatan');
+            })
+            ->selectRaw('(SELECT COUNT(*) FROM saber_layanan WHERE saber_layanan.layanan_kecamatan = saber_kecamatan.kecamatan_id AND saber_layanan.layanan_status = 0) as total_permohonan')
+            ->selectRaw('(SELECT COUNT(*) FROM saber_layanan WHERE saber_layanan.layanan_kecamatan = saber_kecamatan.kecamatan_id AND saber_layanan.layanan_status = 1) as total_realisasi')
+            ->join('saber_kecamatan', 'saber_kecamatan.kecamatan_id', '=', 'saber_layanan.layanan_kecamatan')
+            ->groupBy('layanan_kecamatan', 'saber_kecamatan.kecamatan_nama')
+            ->get();
 
-        $totalKecamatan = Pendaftaran::groupBy('daftar_kecamatan')
-        ->selectRaw('daftar_kecamatan, COUNT(*) as count')
-        ->pluck('count', 'daftar_kecamatan')
-        ->toArray();
+        $categories = $data->pluck('kecamatan_nama')->toArray();
+        $permohonanData = $data->pluck('total_permohonan')->toArray();
+        $realisasiData = $data->pluck('total_realisasi')->toArray();
+        // dd($realisasiData);
 
-        $kecamatan = Kecamatan::all();
-
-        return view('mimin.laporan', compact( 'kecamatan', 'totalKecamatan', 'permohonan', 'totalDaftarId', 'total_rd2','total_rd4'));
+        return view(
+            'mimin.laporan',
+            compact(
+                'categories',
+                'permohonanData',
+                'realisasiData',
+                'total_rd2',
+                'total_rd4',
+                'permohonan',
+                'realisasi'
+            )
+        );
     }
 }
