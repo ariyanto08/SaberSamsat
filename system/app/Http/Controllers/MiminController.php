@@ -73,40 +73,6 @@ class MiminController extends Controller
         return view('mimin.permohonan-proses', $data);
     }
 
-    // public function prosesPermohonan(Request $request)
-    // {
-    //     // dd(request()->all());
-    //     $jadwal = new Jadwal;
-    //     $jadwal->jadwal_kecamatan = request('jadwal_kecamatan');
-    //     $jadwal->jadwal_lokasi = request('jadwal_lokasi');
-    //     $jadwal->jadwal_penanggungjawab = request('jadwal_penanggungjawab');
-    //     $jadwal->jadwal_mulai = request('jadwal_mulai');
-    //     $jadwal->jadwal_selesai = request('jadwal_selesai');
-    //     $jadwal->jadwal_waktu = request('jadwal_waktu');
-    //     $jadwal->save();
-
-    //     $list_pemohon = Pendaftaran::where('daftar_status', 0)->where('daftar_kecamatan', $jadwal->jadwal_kecamatan)->get();
-
-    //     foreach ($list_pemohon as $pemohon) {
-    //         $pemohon->daftar_status = 1;
-    //         $pemohon->daftar_jadwal = $jadwal->jadwal_id;
-    //         $pemohon->save();
-    //     }
-
-    //     foreach ($list_pemohon as $pemohon) {
-    //         $layanan = new Layanan;
-    //         $layanan->layanan_kecamatan = $pemohon->daftar_kecamatan;
-    //         $layanan->layanan_lokasi = $pemohon->daftar_lokasi;
-    //         $layanan->layanan_daftar = $pemohon->daftar_id;
-    //         $layanan->layanan_jadwal = $pemohon->daftar_jadwal;
-    //         $nopol = DaftarNopol::where('nopol_daftar', $pemohon->daftar_id)->first();
-    //         $layanan->layanan_nopol = $nopol->nopol_id;
-    //         $layanan->save();
-    //     }
-
-    //     return redirect('mimin/permohonan');
-    // }
-
     public function prosesPermohonan(Request $request)
     {
         $jadwal = new Jadwal;
@@ -162,7 +128,7 @@ class MiminController extends Controller
             ->where('layanan_jadwal', $jadwal->jadwal_id)
             ->get();
         // dd($data['list_pelayanan']);
-        
+
         $data['layanan_count'] = DaftarNopol::whereIn('nopol_id', function ($query) use ($jadwal) {
             $query->select('layanan_nopol')->from('saber_layanan')->where('layanan_status', 0)->where('layanan_jadwal', $jadwal->jadwal_id);
         })->count();
@@ -290,8 +256,10 @@ class MiminController extends Controller
         $rd4 = DaftarNopol::where('nopol_jenis', 'Roda 4')->whereIn('nopol_id', function ($query) {
             $query->select('layanan_nopol')->from('saber_layanan')->where('layanan_status', 1);
         })->count();
-        $total_rd2 = ($rd2 / $totalDataMotor) * 100;
-        $total_rd4 = ($rd4 / $totalDataMobil) * 100;
+
+        // Check for division by zero
+        $total_rd2 = ($totalDataMotor > 0) ? ($rd2 / $totalDataMotor) * 100 : 0;
+        $total_rd4 = ($totalDataMobil > 0) ? ($rd4 / $totalDataMobil) * 100 : 0;
 
         //Diagram Permohonan
         $permohonan = Layanan::where('layanan_status', 0)->count();

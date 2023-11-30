@@ -77,12 +77,12 @@
                 <ul class="nav nav-tabs" role="tablist" data-aos="fade-up" data-aos-delay="100">
                     <li class="nav-item" style="margin-bottom: 10px;">
                         <a class="nav-link active" href="#day-1" role="tab" data-bs-toggle="tab">ID PENDAFTARAN
-                            #{{ $daftar->daftar_id }}</a>
+                            #{{ $daftar->daftar_kode }}</a>
                     </li>
 
                 </ul>
 
-                <h3 class="sub-heading">Pastikan Data yang anda isikan sudah benar</h3>
+                <h3 class="sub-heading">Pastikan Simpan / Catat ID Pendaftaran Anda</h3>
 
                 <div class="tab-content row justify-content-center" data-aos="fade-up" data-aos-delay="200">
 
@@ -159,81 +159,6 @@
     </main><!-- End #main -->
 
     <section id="buy-tickets" class="section-with-bg" style="margin-top: -50px;">
-
-
-        <!-- Modal Order Form -->
-        {{-- <div id="buy-ticket-modal" class="modal fade">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h4 class="modal-title">Pendaftaran</h4>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            <form method="POST" action="keranjang.html">
-              <div class="form-group">
-                <input type="text" class="form-control" name="your-name" placeholder="Nama Anda">
-              </div>
-              <div class="form-group mt-3">
-                <input type="text" class="form-control" name="your-nik" placeholder="NIK Anda">
-              </div>
-              <div class="form-group mt-3">
-                <input type="text" class="form-control" name="your-wa" placeholder="Nomor WA">
-              </div>
-              <div class="form-group mt-3">
-                <input type="text" class="form-control" name="your-alamat" placeholder="Alamat Anda">
-              </div>
-
-              <div class="form-group mt-3">
-
-                <select id="ticket-type" name="ticket-type" class="form-select">
-                  <option value="0" selected>-- Pilih Kecamatan Pendaftaran--</option>
-                  <option value="1">Delta Pawan</option>
-                  <option value="2">Benua Kayong</option>
-                  <option value="3">Matan Hilir Selatan</option>
-                  <option value="4">Matan Hilir Utara</option>
-                  <option value="5">Muara Pawan</option>
-                  <option value="6">Kendawangan</option>
-                  <option value="7">Manis Mata</option>
-                  <option value="8">Air Upas</option>
-                  <option value="9">Marau</option>
-                  <option value="10">Singkup</option>
-                  <option value="11">Tumbang Titi</option>
-                  <option value="12">Sungai Melayu Rayak</option>
-                  <option value="13">Jelai Hulu</option>
-                  <option value="14">Pemahan</option>
-                  <option value="15">Sandai</option>
-                  <option value="16">Tayap</option>
-                  <option value="17">Hulu Sungai</option>
-                  <option value="18">Sungai Laur</option>
-                  <option value="19">Simpang Dua</option>
-                  <option value="20">Simpang Hulu</option>
-                </select>
-              </div>
-              <div class="form-group mt-3 mb-2 row">
-                <div class="col col-lg-2">
-                  <label for="exampleFormControlInput1" class="form-label mt-1">NOPOL:</label>
-                </div>
-                <div class="col col-lg-1">
-                  <label for="exampleFormControlInput1" class="form-label mt-1">KB</label>
-                </div>
-                <div class="col col-lg-3">
-                  <input type="text" class="form-control text-center" name="your-alamat" placeholder="XXXX" maxlength="4" >
-                </div>
-                <div class="col col-lg-2">
-                  <input type="text" class="form-control text-center" name="your-alamat" placeholder="XX" maxlength="2">
-                </div>
-
-
-              </div>
-              <div class="text-center mt-3">
-                <button type="submit" class="btn">Daftar Sekarang</button>
-              </div>
-            </form>
-          </div>
-        </div><!-- /.modal-content -->
-      </div><!-- /.modal-dialog -->
-    </div><!-- /.modal --> --}}
 
     </section><!-- End Buy Ticket Section -->
     <section id="nopol" class="section-with-bg" style="margin-top: -50px;">

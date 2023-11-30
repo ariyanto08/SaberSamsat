@@ -98,8 +98,20 @@ class WebController extends Controller
             return redirect()->back()->with('error', 'Nomor Polisi Tidak Terdaftar, Silahkan Daftar Ulang Dengan Nomor Polisi Yang Benar')->withInput();
         }
 
+        function generateRandomCode($length = 6) {
+            $characters = date('ymd') . 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.'0123456789';
+            $code = '';
+
+            for ($i = 0; $i < $length; $i++) {
+                $code .= $characters[rand(0, strlen($characters) - 1)];
+            }
+
+            return $code;
+        }
+
         // Validation passed, continue with saving the data
         $daftar = new Pendaftaran;
+        $daftar->daftar_kode = generateRandomCode();
         $daftar->daftar_nama = request('daftar_nama');
         $daftar->daftar_nik = request('daftar_nik');
         $daftar->daftar_wa = request('daftar_wa');

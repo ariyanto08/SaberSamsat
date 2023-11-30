@@ -99,7 +99,7 @@
                             <table id="example" class="display table-datatable" style="min-width: 845px">
                                 <thead>
                                     <tr>
-                                        <th>ID</th>
+                                        <th>ID Daftar</th>
                                         <th>Nama</th>
                                         <th>NIK</th>
                                         <th>No. Telp</th>
@@ -113,7 +113,7 @@
                                 <tbody>
                                     @foreach ($list_pelayanan as $item)
                                         <tr>
-                                            <td>#{{ $item->daftar->daftar_id }}</td>
+                                            <td>#{{ $item->daftar->daftar_kode }}</td>
                                             <td>{{ $item->daftar->daftar_nama }}</td>
                                             <td>{{ $item->daftar->daftar_nik }}</td>
                                             <td>{{ $item->daftar->daftar_wa }}</td>
