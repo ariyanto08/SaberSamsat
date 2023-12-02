@@ -72,7 +72,7 @@
                 <ul class="nav nav-tabs" role="tablist" data-aos="fade-up" data-aos-delay="100">
                     <li class="nav-item" style="margin-bottom: 10px;">
                         <a class="nav-link active" href="#day-1" role="tab" data-bs-toggle="tab">ID PENDAFTARAN
-                            #{{$pendaftar->daftar_id}}</a>
+                            #{{$pendaftar->daftar_kode}}</a>
                     </li>
 
                 </ul>

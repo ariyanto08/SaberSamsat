@@ -33,7 +33,7 @@ class WebController extends Controller
     function cari_id()
     {
         $input = request('cari_id');
-        $data['pendaftar'] = Pendaftaran::where('daftar_id', $input)
+        $data['pendaftar'] = Pendaftaran::where('daftar_kode', $input)
             ->with('jadwal')
             ->with('kecamatan')
             ->with('lokasi')
